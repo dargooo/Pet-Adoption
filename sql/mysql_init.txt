@@ -1,0 +1,13 @@
+CREATE TABLE pets(
+    id int PRIMARY KEY,
+    name VARCHAR(20),
+    age double,
+    weight double,
+    adopt_status VARCHAR(10),
+    personality varchar(125),
+    color varchar(20),
+    image varchar(255),
+    hair VARCHAR(6),
+    breed_id int,
+    adopt_user varchar(20),
+    adopt_time datetime);
