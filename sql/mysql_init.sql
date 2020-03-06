@@ -23,7 +23,7 @@ CREATE TABLE user (
     is_person BOOLEAN
 );
 
-CREATE TABLE pets(`
+CREATE TABLE pets(
     id INT PRIMARY KEY,
     name VARCHAR(20),
     age DOUBLE,
