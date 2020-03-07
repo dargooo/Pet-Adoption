@@ -27,6 +27,7 @@ CREATE TABLE pets(
     id INT PRIMARY KEY,
     name VARCHAR(20),
     age DOUBLE,
+    gender CHAR(1),
     weight DOUBLE,
     adopt_status VARCHAR(10),
     personality VARCHAR(125),
@@ -48,3 +49,6 @@ CREATE TABLE posts (
     close_time DATETIME,
     description DATETIME(500)
 );
+
+INSERT INTO species VALUES (1, 'dog');
+INSERT INTO species VALUES (2, 'cat');
