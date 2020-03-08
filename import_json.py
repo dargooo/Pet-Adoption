@@ -8,6 +8,7 @@ api_url_base = 'https://api.petfinder.com/v2'
 headers = {'Content-Type': 'application/json',
            'Authorization': 'Bearer {0}'.format(api_token)}
 species = ['dog', 'cat']
+count = 1
 
 try:
     cnx = mysql.connector.connect(user='coasttocoast_yijun', password='sql41149.',
@@ -23,11 +24,11 @@ def get_json(i):
     if response.status_code == 200:
         breed_list = json.loads(response.content.decode('utf-8'))['breeds']
         insert_query = "INSERT INTO breed VALUES (%s, %s, %s)"
-        index = 1
         print("len = %s" % len(breed_list))
         for x in breed_list:
-            print(x['name'])
-            query_data = (++index, i, x['name'])
+            print("count = %s , name = %s") % (count, x['name'])
+            query_data = (count, i, x['name'])
+            count += 1
             cursor.execute(insert_query, query_data)
         cnx.commit()
         cursor.close()
