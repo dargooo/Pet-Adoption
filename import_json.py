@@ -9,9 +9,11 @@ headers = {'Content-Type': 'application/json',
            'Authorization': 'Bearer {0}'.format(api_token)}
 species = ['dog', 'cat']
 
-cnx = mysql.connector.connect(user='coasttocoast_yijun', password='sql41149.',
+try:
+    cnx = mysql.connector.connect(user='coasttocoast_yijun', password='sql41149.',
                                 host='localhost', database='coasttocoast_petadoptionapp')
-cursor = cnx.cursor()
+except:
+    cursor = cnx.cursor()
 
 
 def get_json(i):
@@ -24,6 +26,7 @@ def get_json(i):
         insert_query = "INSERT INTO breed VALUES (%s, %s, %s)"
         index = 1
         for x in breed_list:
+            print(x['name'])
             query_data = (++index, i, x['name'])
             cursor.execute(insert_query, query_data)
         cnx.commit()
@@ -34,7 +37,7 @@ def get_json(i):
 
 
 def main(argv):
-    for x in range(1, len(species) + 1):
+    for x in range(0, len(species)):
         get_json(x)
 main(sys.argv)
 
