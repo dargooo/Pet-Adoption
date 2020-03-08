@@ -25,6 +25,7 @@ def get_json(i):
         breed_list = json.loads(response.content.decode('utf-8'))['breeds']
         insert_query = "INSERT INTO breed VALUES (%s, %s, %s)"
         index = 1
+        print("len = %s" % len(breed_list))
         for x in breed_list:
             print(x['name'])
             query_data = (++index, i, x['name'])
