@@ -8,7 +8,7 @@ api_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJ3NDdCRWpUcnFEWE5nMF
 api_url_base = 'https://api.petfinder.com/v2'
 headers = {'Content-Type': 'application/json',
            'Authorization': 'Bearer {0}'.format(api_token)}
-breeds = ['cockapoo']
+breeds = ['cockapoo', 'Siberian','tiger', 'Persian']
 count = 1
 
 try:
