@@ -17,7 +17,7 @@ try:
 except:
     print("Log in mysql db failed!")
 
-def get_json(i):
+def get_json(i, count):
     x = species[i]
     api_url = api_url_base + '/types/%s/breeds' % x
     response = requests.get(api_url, headers=headers)
@@ -26,6 +26,7 @@ def get_json(i):
         insert_query = "INSERT INTO breed VALUES (%s, %s, %s)"
         print("len = %s" % len(breed_list))
         for x in breed_list:
+            global count
             print(count)
             query_data = (count, i, x['name'])
             count += 1
@@ -42,7 +43,9 @@ def main(argv):
         insert_query = "INSERT INTO species VALUES (%s, %s)"
         query_data = (i, species[i])
         cursor.execute(insert_query, query_data)
-        get_json(i)
-main(sys.argv)
+        get_json(i, count)
+
+if __name__=="__main__":
+    main(sys.argv)
 
 
