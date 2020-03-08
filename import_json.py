@@ -31,10 +31,7 @@ def get_json(i):
             query_data = (count, i, x['name'])
             count += 1
             cursor.execute(insert_query, query_data)
-        cnx.commit()
-        cursor.close()
-        cnx.close()
-    else:
+   else:
         return None
 
 
@@ -44,6 +41,10 @@ def main(argv):
         query_data = (i, species[i])
         cursor.execute(insert_query, query_data)
         get_json(i)
+    cnx.commit()
+    cursor.close()
+    cnx.close()
+ 
 
 if __name__=="__main__":
     main(sys.argv)
