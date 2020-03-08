@@ -12,9 +12,9 @@ species = ['dog', 'cat']
 try:
     cnx = mysql.connector.connect(user='coasttocoast_yijun', password='sql41149.',
                                 host='localhost', database='coasttocoast_petadoptionapp')
-except:
     cursor = cnx.cursor()
-
+except:
+    print("Log in mysql db failed!")
 
 def get_json(i):
     x = species[i]
