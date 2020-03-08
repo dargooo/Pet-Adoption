@@ -5,7 +5,7 @@ from flask_admin.contrib.sqla import ModelView
 from sqlalchemy.ext.automap import automap_base
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:EwFDKfkwfnyh@localhost/coasttocoast_petadoptionapp'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://coasttocoast_admin:EwFDKfkwfnyh@localhost/coasttocoast_petadoptionapp'
 db = SQLAlchemy(app)
 admin = Admin(app)
 
@@ -29,3 +29,4 @@ def main():
 
 if __name__ == '__main__':
     app.run()
+
