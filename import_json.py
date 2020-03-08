@@ -31,7 +31,7 @@ def get_json(i):
             query_data = (count, i, x['name'])
             count += 1
             cursor.execute(insert_query, query_data)
-   else:
+    else:
         return None
 
 
