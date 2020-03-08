@@ -26,7 +26,7 @@ def get_json(i):
         insert_query = "INSERT INTO breed VALUES (%s, %s, %s)"
         print("len = %s" % len(breed_list))
         for x in breed_list:
-            print("count = %s , name = %s" % (count, x['name']))
+            print(count)
             query_data = (count, i, x['name'])
             count += 1
             cursor.execute(insert_query, query_data)
