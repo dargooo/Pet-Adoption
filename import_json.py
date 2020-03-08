@@ -25,14 +25,12 @@ def get_json(i):
     if response.status_code == 200:
         breed_list = json.loads(response.content.decode('utf-8'))['breeds']
         insert_query = "INSERT INTO breed VALUES (%s, %s, %s)"
-        print("len = %s" % len(breed_list))
         for x in breed_list:
-            print(count)
             query_data = (count, i, x['name'])
             count += 1
             cursor.execute(insert_query, query_data)
     else:
-        return None
+        print("Failed to connect to " + api_url)
 
 
 def main(argv):
