@@ -19,7 +19,6 @@ except:
 def get_json(i):
     x = species[i]
     api_url = api_url_base + '/types/%s/breeds' % x
-    print(api_url)
     response = requests.get(api_url, headers=headers)
     if response.status_code == 200:
         breed_list = json.loads(response.content.decode('utf-8'))['breeds']
@@ -38,8 +37,11 @@ def get_json(i):
 
 
 def main(argv):
-    for x in range(0, len(species)):
-        get_json(x)
+    for i in range(0, len(species)):
+        insert_query = "INSERT INTO species VALUES (%s, %s)"
+        query_data = (i, species[i])
+        cursor.execute(insert_query, query_data)
+        get_json(i)
 main(sys.argv)
 
 
