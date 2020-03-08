@@ -33,7 +33,8 @@ def get_data(i):
             c = x['colors']
             g = x['gender']
             p = x['photos'][0]
-            query_data = (count, x['name'], 2.5, g[0], 7.7, x['status'], x['tags'], c['primary'], p['full'], x['coat'], 76, "NULL", "NULL")
+            t = x['tags']
+            query_data = (count, x['name'], 2.5, g[0], 7.7, x['status'], ','.join(t), c['primary'], p['full'], x['coat'], 76, "NULL", "NULL")
             count += 1
             cursor.execute(insert_query, query_data)
     else:
