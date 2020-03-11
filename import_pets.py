@@ -43,9 +43,10 @@ def get_data(breed_id, breed_name):
 
 
 def main(argv):
-    select_query = "SELECT id, name FROM breed"
+    select_query = "SELECT id AS breed_id, name AS breed_name FROM breed"
     cursor.execute(select_query)
-    for (breed_id, breed_name) in cursor:
+    result = cursor.fetchall()
+    for (breed_id, breed_name) in result:
         get_data(breed_id, breed_name)
     cnx.commit()
     cursor.close()
