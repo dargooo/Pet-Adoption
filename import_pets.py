@@ -39,7 +39,6 @@ def get_data(breed_id, breed_name):
                 photo = photo_list[0]['full']
             tag = x['tags']
             age = random() * 15
-            weight
             if age < 1:
                 weight = age * (3.5 + random()) + 2
             else:
