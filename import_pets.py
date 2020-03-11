@@ -38,11 +38,11 @@ def get_data(breed_id, breed_name):
             if (len(photo_list) > 0):
                 photo = photo_list[0]['full']
             tag = x['tags']
-            age = random() * 15
+            age = round(random() * 15, 1)
             if age < 1:
-                weight = age * (3.5 + random()) + 2
+                weight = round(age * (3.5 + random()) + 2, 1)
             else:
-                weight = age * (0.8 + random() * 0.4) + 5
+                weight = round(age * (0.8 + random() * 0.4) + 5, 1)
             query_data = (count, x['name'], age, gender[0], weight, x['status'], ','.join(tag), color['primary'], photo, x['coat'], breed_id, "NULL", "NULL")
             count += 1
             cursor.execute(insert_query, query_data)
