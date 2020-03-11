@@ -31,19 +31,41 @@ def get_data(breed_id, breed_name):
         print(len(pet_list))
         insert_query = "INSERT INTO pets VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
         for x in pet_list:
-            color = x['colors']
-            gender = x['gender']
-            photo_list = x['photos']
-            photo = "NULL"
-            if (len(photo_list) > 0):
-                photo = photo_list[0]['full']
-            tag = x['tags']
+
+            ######
+            if count > 100:
+                break
+            #####
+
             age = round(random() * 15, 1)
+
+            gender = x['gender']
+
             if age < 1:
                 weight = round(age * (3.5 + random()) + 2, 1)
             else:
                 weight = round(age * (0.8 + random() * 0.4) + 5, 1)
-            query_data = (count, x['name'], age, gender[0], weight, x['status'], ','.join(tag), color['primary'], photo, x['coat'], breed_id, "NULL", "NULL")
+
+            tag = x['tags']
+
+            color_list = ['white', 'brown', 'black', 'orange', 'gray', 'mix']
+            color_result = x['colors']
+            if len(color_result) > 0:
+                color = color_resul['primary']
+            else:
+                color = random.choice(color_list)
+
+            photo_list = x['photos']
+            photo = "NULL"
+            if (len(photo_list) > 0):
+                photo = photo_list[0]['full']
+
+            hair_list = ['none', 'short', 'medium', 'long']
+            hair = x['coat']
+            if not hair:
+                hair = random.choice(hair_list)
+
+            query_data = (count, x['name'], age, gender[0], weight, x['status'], ','.join(tag), color, photo, hair, breed_id, "NULL", "NULL")
             count += 1
             cursor.execute(insert_query, query_data)
     else:
