@@ -18,16 +18,9 @@ try:
 except:
     print("Log in mysql db failed!")
 
-def query_breeds():
-    select_query = "SELECT * FROM breed"
-    cursor.execute(select_query)
-    result = cursor.fetchall()
-    print(result)
-
-def get_data(i):
+def get_data(breed_id, breed_name):
     global count
-    x = breeds[i]
-    api_url = api_url_base + '/animals?breed=' + x
+    api_url = api_url_base + '/animals?breed=' + breed_name
     print(api_url)
     response = requests.get(api_url, headers=headers)
     if response.status_code == 200:
@@ -42,7 +35,7 @@ def get_data(i):
             if (len(photo_list) > 0):
                 photo = photo_list[0]['full']
             t = x['tags']
-            query_data = (count, x['name'], 2.5, g[0], 7.7, x['status'], ','.join(t), c['primary'], photo, x['coat'], 76, "NULL", "NULL")
+            query_data = (count, x['name'], 2.5, g[0], 7.7, x['status'], ','.join(t), c['primary'], photo, x['coat'], breed_id, "NULL", "NULL")
             count += 1
             cursor.execute(insert_query, query_data)
     else:
@@ -50,8 +43,10 @@ def get_data(i):
 
 
 def main(argv):
-    for i in range(0, len(breeds)):
-        get_data(i)
+    select_query = "SELECT id, name FROM breed"
+    cursor.execute(select_query)
+    for (breed_id, breed_name) in cursor:
+        get_data(breed_id, breed_name)
     cnx.commit()
     cursor.close()
     cnx.close()

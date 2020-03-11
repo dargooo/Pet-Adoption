@@ -19,7 +19,7 @@ except:
     print("Log in mysql db failed!")
 
 def query_breeds():
-    select_query = "SELECT * FROM breed"
+    select_query = "SELECT id, name FROM breed"
     cursor.execute(select_query)
     result = cursor.fetchall()
     print(result)
