@@ -18,6 +18,11 @@ try:
 except:
     print("Log in mysql db failed!")
 
+def query_breeds():
+    select_query = "SELECT * FROM breed"
+    cursor.execute(select_query)
+    result = cursor.fetchall()
+    print(result)
 
 def get_data(i):
     global count
