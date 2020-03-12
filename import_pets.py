@@ -46,7 +46,8 @@ def get_data(breed_id, breed_name):
             else:
                 weight = round(age * (0.8 + random() * 0.4) + 5, 1)
 
-            tag = x['tags']
+            personality_list = ['sweet', 'stubborn', 'proud', 'quite', 'cute', 'rotal', 'independent', 'happy', 'shy', 'adaptable', 'intelligent', 'anxious', 'brave', 'crazy', 'wild', 'needy']
+            personality = random.choice(personality_list)
 
             color_list = ['white', 'brown', 'black', 'orange', 'gray', 'mix']
             color_result = x['colors']
@@ -65,7 +66,7 @@ def get_data(breed_id, breed_name):
             if not hair:
                 hair = random.choice(hair_list)
 
-            query_data = (count, x['name'], age, gender[0], weight, x['status'], ','.join(tag), color, photo, hair, breed_id, "NULL", "NULL")
+            query_data = (count, x['name'], age, gender[0], weight, x['status'], personality, color, photo, hair, breed_id, "NULL", "NULL")
             count += 1
             cursor.execute(insert_query, query_data)
     else:
