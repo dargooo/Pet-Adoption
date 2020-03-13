@@ -23,10 +23,6 @@ except:
 
 def get_data(breed_id, breed_name):
     global count
-    ######
-    if count > 100:
-        return
-    #####
 
     api_url = api_url_base + '/animals?breed=' + breed_name
     print(api_url)
