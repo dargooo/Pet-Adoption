@@ -48,7 +48,7 @@ def get_data(breed_id, breed_name):
                 weight = round(age * (0.8 + random() * 0.4) + 5, 1)
 
             personality_list = ['sweet', 'stubborn', 'proud', 'quite', 'cute', 'rotal', 'independent', 'happy', 'shy', 'adaptable', 'intelligent', 'anxious', 'brave', 'crazy', 'wild', 'needy']
-            personality = random.choice(personality_list)
+            personality = choice(personality_list)
 
             color_list = ['white', 'brown', 'black', 'orange', 'gray', 'mix']
             color_result = x['colors']
