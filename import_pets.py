@@ -30,7 +30,7 @@ def get_data(breed_id, breed_name):
         seed(1)
         pet_list = json.loads(response.content.decode('utf-8'))['animals']
         print(len(pet_list))
-        insert_query = "INSERT INTO pets VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+        insert_query = "INSERT INTO pet VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
         for x in pet_list:
 
             ######
