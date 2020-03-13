@@ -51,11 +51,7 @@ def get_data(breed_id, breed_name):
             personality = choice(personality_list)
 
             color_list = ['white', 'brown', 'black', 'orange', 'gray', 'mix']
-            color_result = x['colors']
-            if len(color_result) > 0:
-                color = color_result['primary']
-            else:
-                color = choice(color_list)
+            color = choice(color_list)
 
             photo_list = x['photos']
             photo = "NULL"
