@@ -53,7 +53,7 @@ def get_data(breed_id, breed_name):
             color_list = ['white', 'brown', 'black', 'orange', 'gray', 'mix']
             color_result = x['colors']
             if len(color_result) > 0:
-                color = color_resul['primary']
+                color = color_result['primary']
             else:
                 color = choice(color_list)
 
@@ -65,7 +65,7 @@ def get_data(breed_id, breed_name):
             hair_list = ['none', 'short', 'medium', 'long']
             hair = x['coat']
             if not hair:
-                hair = random.choice(hair_list)
+                hair = choice(hair_list)
 
             query_data = (count, x['name'], age, gender[0], weight, x['status'], personality, color, photo, hair, breed_id, "NULL", "NULL")
             count += 1
