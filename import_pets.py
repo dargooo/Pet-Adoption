@@ -55,7 +55,7 @@ def get_data(breed_id, breed_name):
             if len(color_result) > 0:
                 color = color_resul['primary']
             else:
-                color = random.choice(color_list)
+                color = choice(color_list)
 
             photo_list = x['photos']
             photo = "NULL"
