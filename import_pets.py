@@ -75,7 +75,6 @@ def get_data(breed_id, breed_name):
 
 
 def main(argv):
-    print(random.__file__)
     select_query = "SELECT id AS breed_id, name AS breed_name FROM breed"
     cursor.execute(select_query)
     result = cursor.fetchall()
