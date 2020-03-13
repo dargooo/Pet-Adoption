@@ -1,9 +1,8 @@
 import sys
-import random
 import requests
 import json
 import mysql.connector
-#from random import seed
+from random import seed, random, choice 
 #from random import random
 
 # curl -d "grant_type=client_credentials&client_id=w47BEjTrqDXNg0WDEqVCpmQtiYUWaIrhmg9HenATYrbSKWFmr4&client_secret=X7KbzXt1VN8TeXTOhat6LAaGvDLmrMtwNZ3a8AyW" https://api.petfinder.com/v2/oauth2/token
