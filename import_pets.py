@@ -23,6 +23,11 @@ except:
 
 def get_data(breed_id, breed_name):
     global count
+    ######
+    if count > 100:
+        break
+    #####
+
     api_url = api_url_base + '/animals?breed=' + breed_name
     print(api_url)
     response = requests.get(api_url, headers=headers)
@@ -32,11 +37,6 @@ def get_data(breed_id, breed_name):
         print(len(pet_list))
         insert_query = "INSERT INTO pet VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
         for x in pet_list:
-
-            ######
-            if count > 100:
-                break
-            #####
 
             age = round(random() * 15, 1)
 
