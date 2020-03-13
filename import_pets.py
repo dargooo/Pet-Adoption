@@ -7,7 +7,7 @@ from random import random
 from random import choice
 
 # curl -d "grant_type=client_credentials&client_id=w47BEjTrqDXNg0WDEqVCpmQtiYUWaIrhmg9HenATYrbSKWFmr4&client_secret=X7KbzXt1VN8TeXTOhat6LAaGvDLmrMtwNZ3a8AyW" https://api.petfinder.com/v2/oauth2/token
-api_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJ3NDdCRWpUcnFEWE5nMFdERXFWQ3BtUXRpWVVXYUlyaG1nOUhlbkFUWXJiU0tXRm1yNCIsImp0aSI6IjFmNzEyZmZkZWY4NjQwZmJmNWE4Nzk1MjhhY2MzZDU5MzZhYzRlMTYwNjRiZTljYzU5Y2ZmNDYxMzQ4NjNiMjhhNmMyNGVhMjY1MzRjNzA4IiwiaWF0IjoxNTg0MDc3Mjk2LCJuYmYiOjE1ODQwNzcyOTYsImV4cCI6MTU4NDA4MDg5Niwic3ViIjoiIiwic2NvcGVzIjpbXX0.w0aHDFxx0DRQonSx8-ygP0gxaa_DCE1yycku8PP6DkH9105KeaLUXfWIeN8SURLnnybDFcebbdV1Gl0JCAj8RoBZlq8N9PEywG3T2TYqnvUhe8m99gug6qW8p3nY7Q72bOcBN_zGpzgMpDeJAci94Dwmx_VPoUQQrlkNC5p0h-IA6W-6zVZvDepIs_UUqQ-_VzyqkzIdsi68vvuHd1QeDDC_YRHBPLCmh3s_2NETQGMJsgxr3eCxxw5uC2heMlmO8pM1ulx9Xr2o4Cgrp-fHukF1vy5EbsgIjNhHJrmg_vmM4MtHZGgUESnybdo9Pe2ouYPG0F2WTY_U8AccoH89-w'
+api_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJ3NDdCRWpUcnFEWE5nMFdERXFWQ3BtUXRpWVVXYUlyaG1nOUhlbkFUWXJiU0tXRm1yNCIsImp0aSI6IjA3NTViYzIyYzdiMmU5YTkwNGE0ZTlkZDVkZTBhZWE0M2NjNGRhMzg4MjJlMDhmOWRmYjQ5NmFjNzIwNTlkMWJiNWZiYmZmNTBkMGU4NWMwIiwiaWF0IjoxNTg0MDgwOTYxLCJuYmYiOjE1ODQwODA5NjEsImV4cCI6MTU4NDA4NDU2MSwic3ViIjoiIiwic2NvcGVzIjpbXX0.cOpRhBry2w_DTW6Mf3kax4tHRn4FguXxOGqTGIgfdYwftnsvcNozehIgl10rqARD3MSkGUMoJlCOstyf2_IUwVoIcqvfLCYgQcWs0B3S9FK5nRj8YPGDSpIz52G6Zf3AuJIX60GsS8vLkgPRUqtwlUkSG9X6WacMNgwwIzsxE4NOzSxBSnXNAuBAd2T6TdC26aahyBBvgComilnFC9WcvC7-N2n5GgOKwyXUejU8K9vmAFg0HSt2kTOyEMRmQaQYPawKDv104E1CLTkA7RrRVb56nmyxI7Kb8wa8y38lyi-LVfWV0KB2eq7tXDvcAlFtw_Ydm7gThHevnIycWBjgIA'
 api_url_base = 'https://api.petfinder.com/v2'
 headers = {'Content-Type': 'application/json',
            'Authorization': 'Bearer {0}'.format(api_token)}
@@ -25,7 +25,7 @@ def get_data(breed_id, breed_name):
     global count
     ######
     if count > 100:
-        break
+        return
     #####
 
     api_url = api_url_base + '/animals?breed=' + breed_name
