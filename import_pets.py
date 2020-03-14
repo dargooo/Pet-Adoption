@@ -12,7 +12,7 @@ api_url_base = 'https://api.petfinder.com/v2'
 headers = {'Content-Type': 'application/json',
            'Authorization': 'Bearer {0}'.format(api_token)}
 breeds = ['cockapoo', 'Siberian','tiger', 'Persian']
-count = 1
+count = 9062
 
 try:
     cnx = mysql.connector.connect(user='coasttocoast_yijun', password='sql41149.',
@@ -23,9 +23,6 @@ except:
 
 def get_data(breed_id, breed_name):
     global count
-
-    if count > 200:
-        return
 
     pages = [1, 2, 3, 4, 5]
     for page in pages:
@@ -76,7 +73,8 @@ def main(argv):
     cursor.execute(select_query)
     result = cursor.fetchall()
     for (breed_id, breed_name) in result:
-        get_data(breed_id, breed_name)
+        if breed_id > 180:
+            get_data(breed_id, breed_name)
     cnx.commit()
     cursor.close()
     cnx.close()
