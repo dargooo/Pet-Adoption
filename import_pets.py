@@ -29,8 +29,7 @@ def get_data(breed_id, breed_name):
 
     pages = [1, 2, 3, 4, 5]
     for page in pages:
-        #api_url = api_url_base + '/animals?breed=' + breed_name + '\&page=' + str(page)
-        api_url = 'https://api.petfinder.com/v2/animals?breed=Affenpinscher\&page=1'
+        api_url = api_url_base + '/animals?breed=' + breed_name + '&page=' + str(page)
         print(api_url)
         response = requests.get(api_url, headers=headers)
         if response.status_code == 200:
