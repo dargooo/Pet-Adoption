@@ -11,8 +11,7 @@ api_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJ3NDdCRWpUcnFEWE5nMF
 api_url_base = 'https://api.petfinder.com/v2'
 headers = {'Content-Type': 'application/json',
            'Authorization': 'Bearer {0}'.format(api_token)}
-breeds = ['cockapoo', 'Siberian','tiger', 'Persian']
-count = 16865
+count = 1
 
 try:
     cnx = mysql.connector.connect(user='coasttocoast_yijun', password='sql41149.',
@@ -24,7 +23,7 @@ except:
 def get_data(breed_id, breed_name):
     global count
 
-    pages = [6, 7, 8, 9, 10]
+    pages = [1, 2, 3, 4, 5]
     for page in pages:
         api_url = api_url_base + '/animals?breed=' + breed_name + '&page=' + str(page)
         print(api_url)
