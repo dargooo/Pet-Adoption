@@ -12,7 +12,7 @@ api_url_base = 'https://api.petfinder.com/v2'
 headers = {'Content-Type': 'application/json',
            'Authorization': 'Bearer {0}'.format(api_token)}
 breeds = ['cockapoo', 'Siberian','tiger', 'Persian']
-count = 16866
+count = 16865
 
 try:
     cnx = mysql.connector.connect(user='coasttocoast_yijun', password='sql41149.',
@@ -33,8 +33,7 @@ def get_data(breed_id, breed_name):
             seed(1)
             pet_list = json.loads(response.content.decode('utf-8'))['animals']
             print(len(pet_list))
-            if len(pet_list) < 20:
-                break
+
             insert_query = "INSERT INTO pet VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
             for x in pet_list:
     
@@ -66,6 +65,9 @@ def get_data(breed_id, breed_name):
                 query_data = (count, x['name'], age, gender[0], weight, x['status'], personality, color, photo, hair, breed_id, "NULL", "NULL")
                 count += 1
                 cursor.execute(insert_query, query_data)
+            
+            if len(pet_list) < 20:
+                break
         else:
             print("Failed to connect to " + api_url)
 
@@ -75,8 +77,7 @@ def main(argv):
     cursor.execute(select_query)
     result = cursor.fetchall()
     for (breed_id, breed_name) in result:
-        if breed_id > 180:
-            get_data(breed_id, breed_name)
+        get_data(breed_id, breed_name)
     cnx.commit()
     cursor.close()
     cnx.close()
