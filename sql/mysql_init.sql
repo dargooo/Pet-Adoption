@@ -1,29 +1,29 @@
-CREATE TABLE species (
+CREATE TABLE IF NOT EXISTS species (
     id INT PRIMARY KEY,
     name VARCHAR(40)
 );
 
-CREATE TABLE breed (
+CREATE TABLE IF NOT EXISTS breed (
     id INT PRIMARY KEY,
-    species_id INT,
+    species_id INT NOT NULL,
     name VARCHAR(40),
     KEY `breed_species_id` (`species_id`),
     CONSTRAINT `breed_species_id` FOREIGN KEY (`species_id`) REFERENCES `species`(`id`) 
 );
 
-CREATE TABLE user (
-    username VARCHAR(20),
-    password VARCHAR(20),
+CREATE TABLE IF NOT EXISTS user (
+    username VARCHAR(20) PRIMARY KEY,
+    password VARCHAR(20) NOT NULL,
     name VARCHAR(40),
     avatar VARCHAR(255),
     email VARCHAR(40),
     address VARCHAR(60),
     zipcode INT,
     preference VARCHAR(125),
-    is_person BOOLEAN
+    is_person BOOLEAN NOT NULL
 );
 
-CREATE TABLE pets(
+CREATE TABLE IF NOT EXISTS pet (
     id INT PRIMARY KEY,
     name VARCHAR(20),
     age DOUBLE,
@@ -36,18 +36,19 @@ CREATE TABLE pets(
     hair VARCHAR(6),
     breed_id INT,
     adopt_user VARCHAR(20),
-    adopt_time DATETIME,
-    KEY `adopt_username` (`adopt_user`),
-    CONSTRAINT `adopt_username` FOREIGN KEY (`adopt_user`) REFERENCES `user`(`username`)
+    adopt_time DATETIME
+--    KEY `adopt_username` (`adopt_user`),
+--    CONSTRAINT `adopt_username` FOREIGN KEY (`adopt_user`) REFERENCES `user`(`username`)
 );
 
-CREATE TABLE posts (
-    pet_id INT PRIMARY KEY,
-    username VARCHAR(20) PRIMARY KEY,
-    title VARCHAR(40),
-    open_time DATETIME,
+CREATE TABLE IF NOT EXISTS posts (
+    pet_id INT,
+    username VARCHAR(20),
+    title VARCHAR(40) NOT NULL,
+    open_time DATETIME DEFAULT CURRENT_TIMESTAMP,
     close_time DATETIME,
-    description DATETIME(500)
+    description VARCHAR(500),
+    PRIMARY KEY (pet_id, username)
 );
 
 INSERT INTO species VALUES (1, 'dog');
