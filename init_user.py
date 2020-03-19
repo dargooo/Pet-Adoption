@@ -12,24 +12,26 @@ except:
 
 u_reader = open("datafile/38650-username-sktorrent.txt", "rb")
 p_reader = open("datafile/38650-password-sktorrent.txt", "rb")
-n_reader = open("datafile/facebook-names.txt", "rt")
 a_reader = open("datafile/53962-address.csv", "rt") 
+n_reader = open("datafile/30000-user.csv", "rt")
 
 def init_user(i):
-    insert_query = "INSERT INTO user VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    insert_query = "INSERT INTO user VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
 
     username = u_reader.readline().split()[0]
     password = p_reader.readline().split()[0]
-
-    firstname = n_reader.readline().split()[0]
-    lastname  = n_reader.readline().split()[0]
-    name = firstname + ' ' + lastname
 
     addr_line = a_reader.readline().split(',')
     zipcode = addr_line[0]
     city    = addr_line[2]
     state   = addr_line[3]
-    addr = city + ", " + state
+
+    mix_line = n_reader.readline().rstrip('\n').split(',')
+    street   = mix_line[0]
+    fullname = mix_line[1]
+    email    = mix_line[2]
+
+    addr = street + ", " + city + ", " + state
 
     # possibility - person : shelter = 5 : 1
     num = randint(1, 7)
@@ -38,7 +40,7 @@ def init_user(i):
     else:
         is_person = False
     
-    query_data = (username, password, name, None, None, addr, zipcode, None, is_person)
+    query_data = (username, password, fullname, None, email, addr, zipcode, is_person)
     cursor.execute(insert_query, query_data)
 
 

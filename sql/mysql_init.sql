@@ -19,7 +19,6 @@ CREATE TABLE IF NOT EXISTS user (
     email VARCHAR(40),
     address VARCHAR(60),
     zipcode INT,
-    preference VARCHAR(125),
     is_person BOOLEAN NOT NULL
 );
 
