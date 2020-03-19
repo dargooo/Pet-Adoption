@@ -50,5 +50,5 @@ CREATE TABLE IF NOT EXISTS posts (
     PRIMARY KEY (pet_id, username)
 );
 
-INSERT INTO species VALUES (1, 'dog');
-INSERT INTO species VALUES (2, 'cat');
+INSERT INTO species VALUES (0, 'dog');
+INSERT INTO species VALUES (1, 'cat');
