@@ -1,5 +1,4 @@
 import sys
-import csv
 import mysql.connector
 from random import randint
 
@@ -14,6 +13,7 @@ except:
 u_reader = open("datafile/38650-username-sktorrent.txt", "rb")
 p_reader = open("datafile/38650-password-sktorrent.txt", "rb")
 n_reader = open("datafile/facebook-names.txt", "rt")
+a_reader = open("datafile/53962-address.csv", "rt") 
 
 def init_user(i):
     insert_query = "INSERT INTO user VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
@@ -25,6 +25,12 @@ def init_user(i):
     lastname  = n_reader.readline().split()[0]
     name = firstname + ' ' + lastname
 
+    addr_line = a_reader.readline().split(',')
+    zipcode = addr_line[0]
+    city    = addr_line[2]
+    state   = addr_line[3]
+    addr = city + ", " + state
+
     # possibility - person : shelter = 5 : 1
     num = randint(1, 7)
     if (num < 6):
@@ -32,7 +38,7 @@ def init_user(i):
     else:
         is_person = False
     
-    query_data = (username, password, name, None, None, None, None, None, is_person)
+    query_data = (username, password, name, None, None, addr, zipcode, None, is_person)
     cursor.execute(insert_query, query_data)
 
 
