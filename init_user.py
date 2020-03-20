@@ -21,7 +21,9 @@ def init_user(i):
 
     username = u_reader.readline().split()[0]
     password = p_reader.readline().split()[0]
-    if (not all(c in string.printable for c in username)) or (not all(c in string.printable for c in password)): return
+    for c in username: if c not in string.printable: return
+    for c in password: if c not in string.printable: return
+
 
     num = randint(1, 101)
     avatar = "ava" + str(num) + ".png"
