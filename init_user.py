@@ -54,7 +54,7 @@ def init_user(i):
 
 
 def main(argv):
-    for i in range(1, 20000):
+    for i in range(1, 25000):
         init_user(i)
     cnx.commit()
     cursor.close()
