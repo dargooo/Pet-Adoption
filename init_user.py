@@ -22,11 +22,9 @@ def init_user(i):
     username = u_reader.readline().split()[0]
     password = p_reader.readline().split()[0]
     for c in username: 
-        if c not in string.printable: 
-            return
+        if not chr(c) in string.printable: return
     for c in password: 
-        if c not in string.printable: 
-            return
+        if not chr(c) in string.printable: return
 
 
     num = randint(1, 101)
