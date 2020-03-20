@@ -1,10 +1,11 @@
 import sys
+import string
 import mysql.connector
 from random import randint
 
 try:
-#    cnx = mysql.connector.connect(user='coasttocoast_yijun', password='sql41149.',
-    cnx = mysql.connector.connect(user='root', password='Ms41149.',
+#    cnx = mysql.connector.connect(user='root', password='Ms41149.',
+    cnx = mysql.connector.connect(user='coasttocoast_yijun', password='sql41149.',
                                   host='localhost', database='coasttocoast_petadoptionapp')
     cursor = cnx.cursor()
 except:
@@ -20,6 +21,7 @@ def init_user(i):
 
     username = u_reader.readline().split()[0]
     password = p_reader.readline().split()[0]
+    if set(username).difference(printable) or set(password).difference(printable): return
 
     num = randint(1, 101)
     avatar = "ava" + str(num) + ".png"
@@ -48,7 +50,7 @@ def init_user(i):
 
 
 def main(argv):
-    for i in range(1, 20):
+    for i in range(1, 20000):
         init_user(i)
     cnx.commit()
     cursor.close()
