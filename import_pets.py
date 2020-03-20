@@ -7,15 +7,15 @@ from random import random
 from random import choice
 
 # curl -d "grant_type=client_credentials&client_id=w47BEjTrqDXNg0WDEqVCpmQtiYUWaIrhmg9HenATYrbSKWFmr4&client_secret=X7KbzXt1VN8TeXTOhat6LAaGvDLmrMtwNZ3a8AyW" https://api.petfinder.com/v2/oauth2/token
-api_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJ3NDdCRWpUcnFEWE5nMFdERXFWQ3BtUXRpWVVXYUlyaG1nOUhlbkFUWXJiU0tXRm1yNCIsImp0aSI6ImIxZjkyODYwYWI1MzY1Y2JkYmE4NzdmOTUxNjQ0ZjU2ZDI5MmFlN2I1MGY5YmU4ODIxZjgzZjhmNWU1ZGFkOWU2NGQyODY1NjljYjdmNjE5IiwiaWF0IjoxNTg0NTkyODcxLCJuYmYiOjE1ODQ1OTI4NzEsImV4cCI6MTU4NDU5NjQ3MSwic3ViIjoiIiwic2NvcGVzIjpbXX0.s3C8UtXR9o5hei8c7QEQIGdvnqNHmmUsLy_8iAX5w664iIVrjSb-EOgSKEmWq9A_0PCIdTcNwv-CDuZUp5ACtk7_IQH327oXfSHdarTn8KA6eAoMVT-yzksyDROTxNhMZqdC_z8rfZCXLYavUnc1W3ibzxt8QWpIYJ1qqQZQznMT3Lp8P67yUp-xzX8SdHDe6o93U17nLG2Fh5vcG9soz91v7WNGgqv8P03eF4gWWsPhSf-FMEqVQlhjqq9eFJ2ScXoI3RYQFc9R2LmZJ_xw-3b2HYZzXTXN1W5ALfgO_t0cuVPgo59dBpuTdfvXYCrw3yVYu2H16fApfEBRFdG4vg'
+api_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJ3NDdCRWpUcnFEWE5nMFdERXFWQ3BtUXRpWVVXYUlyaG1nOUhlbkFUWXJiU0tXRm1yNCIsImp0aSI6ImYyM2JjZDJlYWFkY2FkZGQ1M2Y0NWY5ODMzN2M0YjNkM2RkYTM4NTljNGYxYTNmYmMwYTdiYzk2MTMzYjI2NjhiNzU5ZjM4Mjk2ODUyNTk1IiwiaWF0IjoxNTg0NjczNjk4LCJuYmYiOjE1ODQ2NzM2OTgsImV4cCI6MTU4NDY3NzI5OCwic3ViIjoiIiwic2NvcGVzIjpbXX0.kuZAHbPTfB7dfEkU2OwaLMVfUeKRingaD59-yW9SnABKJBvBqdW8ZfvLZyV4ZeqV7fAH55rnZOXPiOkSEfKfghv0H6HFN3NFI5Scb2Na-7frhm8OtY6JSuP5o5zr6hzIOMtPWZuW4MIVy9yoxJl2qdTJl2rYi8sW-kUVO72l-HuNJkc_C7VoMXja3AxDc7MGXDCwRGGQENGJOdHN_wKp_3xU6up_iSmFBz3Pn2QkpVwYRwuASWBGDDkj-gfLbEaQNAEqeUXti1cKb3Rnu3X3sGPfLoDSWe7WTwwGp7GwdIoQUHrq3RmEy6Ry-1CVi5i6qmgII5eEbESU_g0k1EW1Hg'
 api_url_base = 'https://api.petfinder.com/v2'
 headers = {'Content-Type': 'application/json',
            'Authorization': 'Bearer {0}'.format(api_token)}
 count = 1
 
 try:
-#    cnx = mysql.connector.connect(user='coasttocoast_yijun', password='sql41149.',
-    cnx = mysql.connector.connect(user='root', password='Ms41149.',
+#    cnx = mysql.connector.connect(user='root', password='Ms41149.',
+    cnx = mysql.connector.connect(user='coasttocoast_yijun', password='sql41149.',
                                   host='localhost', database='coasttocoast_petadoptionapp')
     cursor = cnx.cursor()
 except:
@@ -27,8 +27,8 @@ writer = open("datafile/post_info.txt", "a")
 def get_data(breed_id, breed_name):
     global count
 
-    #pages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    pages = [1]
+    pages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+#    pages = [1]
     for page in pages:
         api_url = api_url_base + '/animals?breed=' + breed_name + '&page=' + str(page)
         print(api_url)
@@ -64,7 +64,7 @@ def get_data(breed_id, breed_name):
                 hair = x['coat']
                 if not hair: hair = choice(hair_list)
  
-                # write open_time, description into post_info.txt
+                # write open_time, title, description into post_info.txt
                 open_time = x['published_at']
                 if open_time is None:
                     open_time = '0000-00-00 00:00:00'
@@ -73,10 +73,14 @@ def get_data(breed_id, breed_name):
                     time = open_time.split("T")[1].split("+")[0]
                     open_time = date + " " + time
 
+                title_list = ['Cute %s!', 'Come to %s', '%s loves you!', 'Best pet ever - %s', '%s is waiting for you!', '%s does not want to be alone.', '%s wants to be with you', 'Poor %s looking for new owner', 'Say hello to %s', '%s']
+                title = choice(title_list) % (name)
+
                 description = x['description']
                 if description is None: description = "No description."
                 else:                   description = description.split("\n")[0]
-                writer.write(str(count) + "|" + open_time + "|" + description + "\n")
+
+                writer.write(str(count) + "|" + open_time + "|" + title + "|" + description + "\n")
     
                 query_data = (count, name, age, gender[0], weight, x['status'], personality, color, photo, hair, breed_id, None, None)
                 cursor.execute(insert_query, query_data)

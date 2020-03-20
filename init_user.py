@@ -21,6 +21,9 @@ def init_user(i):
     username = u_reader.readline().split()[0]
     password = p_reader.readline().split()[0]
 
+    num = randint(1, 101)
+    avatar = "ava" + str(num) + ".png"
+
     addr_line = a_reader.readline().split(',')
     zipcode = addr_line[0]
     city    = addr_line[2]
@@ -40,7 +43,7 @@ def init_user(i):
     else:
         is_person = False
     
-    query_data = (username, password, fullname, None, email, addr, zipcode, is_person)
+    query_data = (username, password, fullname, avatar, email, addr, zipcode, is_person)
     cursor.execute(insert_query, query_data)
 
 
