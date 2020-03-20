@@ -12,7 +12,7 @@ api_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJOOEJMT1E2clRQbWx2Sn
 api_url_base = 'https://api.petfinder.com/v2'
 headers = {'Content-Type': 'application/json',
            'Authorization': 'Bearer {0}'.format(api_token)}
-count = 1
+count = 822
 
 try:
 #    cnx = mysql.connector.connect(user='root', password='Ms41149.',
@@ -101,7 +101,8 @@ def main(argv):
     cursor.execute(select_query)
     result = cursor.fetchall()
     for (breed_id, breed_name) in result:
-        get_data(breed_id, breed_name)
+        if breed_id > 8:
+            get_data(breed_id, breed_name)
     cursor.close()
     cnx.close()
  
