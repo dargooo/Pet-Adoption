@@ -91,6 +91,7 @@ def get_data(breed_id, breed_name):
             if len(pet_list) < 20: break
         else:
             print("Failed to connect to " + api_url)
+            exit(0)
 
 
 def main(argv):
