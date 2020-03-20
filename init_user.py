@@ -16,7 +16,7 @@ a_reader = open("datafile/53962-address.csv", "rt")
 n_reader = open("datafile/30000-user.csv", "rt")
 
 def init_user(i):
-    insert_query = "INSERT INTO user VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+    insert_query = "INSERT IGNORE INTO user VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
 
     username = u_reader.readline().split()[0]
     password = p_reader.readline().split()[0]
