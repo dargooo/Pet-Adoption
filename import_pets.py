@@ -8,11 +8,11 @@ from random import choice
 
 # curl -d "grant_type=client_credentials&client_id=w47BEjTrqDXNg0WDEqVCpmQtiYUWaIrhmg9HenATYrbSKWFmr4&client_secret=X7KbzXt1VN8TeXTOhat6LAaGvDLmrMtwNZ3a8AyW" https://api.petfinder.com/v2/oauth2/token
 # curl -d "grant_type=client_credentials&client_id=N8BLOQ6rTPmlvJzWQqE7uI7u2kyAI27R1D8xUpYLJ4xU3VM69J&client_secret=rwluttBir6FAtwUHlvesD6a8rhOfx33kXb9r6whp" https://api.petfinder.com/v2/oauth2/token
-api_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJOOEJMT1E2clRQbWx2SnpXUXFFN3VJN3Uya3lBSTI3UjFEOHhVcFlMSjR4VTNWTTY5SiIsImp0aSI6IjlkMmYyZWUxOTk4Yjc5ZDE3MTRkOWJlNTNkNWY0YWI2MDI1NTdkNTY0ZTdlZWQ5OGEwN2MxMjUyODQ2ZjNiNmMxYjYxZTk2NzgzNTlmNzM2IiwiaWF0IjoxNTg0Njc1MzY2LCJuYmYiOjE1ODQ2NzUzNjYsImV4cCI6MTU4NDY3ODk2Niwic3ViIjoiIiwic2NvcGVzIjpbXX0.KKTWI_bB9y6vOAd_y0Za4dDh7CixD6z1ktqHS0S5a5pDajeMk1BVjVABdNVZd2ioVzrYBUKeWyhtnt9chPjlRPj_jC8Qkxwjh0OOZswp97hzRGFukWs3URrdPb-4_MK5izz7uuWVR3r1AdCGT-aVqgLI09wxLsn18kUgtKRGRAlf7skqT3YLBsmc9PRHPJi7eOhf7uZXijXZL-WW82_szvWH_2-owGE0OabQMmhjGsJHWn4pwTGKDnnSA7mNEBNmgVdQKZdB7Paz8DKqBwOIaKjgwNDpPXTKtORbMSRy3WpidApZFebjGgI84SVxUQV0uYLTUk_WvNi2w4_21FgLOg'
+api_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJ3NDdCRWpUcnFEWE5nMFdERXFWQ3BtUXRpWVVXYUlyaG1nOUhlbkFUWXJiU0tXRm1yNCIsImp0aSI6IjVhMzFmODc2YTQ0NDkyNmQ0YjE0MmNmMzRlMjhlYTYxZTdlOWRlZGQxYmQxNjc2MmY2YmUyMTEyNjM4YWUwYzYzZWExMzhkMWI2Yjg5MmUyIiwiaWF0IjoxNTg0NzU1MDk2LCJuYmYiOjE1ODQ3NTUwOTYsImV4cCI6MTU4NDc1ODY5Niwic3ViIjoiIiwic2NvcGVzIjpbXX0.lmTtEjGIwvy4nQ-xLv0pNj-8Dq-Is2xraw5dvTl3NFVyDR31brj9luCrZzDhgyuvspG4mbnaDp6WfTjxpoc_cLHLH6Zmee4Idt5Oc1nN3BZqdMkpe3ggCuySjh6Co1Q8fj1fuLFRlatDil6HD-m9hsKTJisj0Ht_yNQUDe93uHmcXDpb0mlS7D22NuosJ37WNGYPE-XH1Rlk5TeBbXMw09gbX1_eBhz1T4Gg5f7LCK808Lk8_GzEZdZRPEMBp1iW81Ish09ZYF7Wk6l5UjYYOROfxVuiL9ZqkOsOYQ-gkfuhs-0k-56icnBhbrCTfSeYBPuMButW23hDJ-RVIYE7Zw'
 api_url_base = 'https://api.petfinder.com/v2'
 headers = {'Content-Type': 'application/json',
            'Authorization': 'Bearer {0}'.format(api_token)}
-count = 822
+count = 17877
 
 try:
 #    cnx = mysql.connector.connect(user='root', password='Ms41149.',
@@ -101,7 +101,7 @@ def main(argv):
     cursor.execute(select_query)
     result = cursor.fetchall()
     for (breed_id, breed_name) in result:
-        if breed_id > 8:
+        if breed_id > 223:
             get_data(breed_id, breed_name)
     cursor.close()
     cnx.close()
