@@ -12,7 +12,7 @@ api_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJ3NDdCRWpUcnFEWE5nMF
 api_url_base = 'https://api.petfinder.com/v2'
 headers = {'Content-Type': 'application/json',
            'Authorization': 'Bearer {0}'.format(api_token)}
-count = 17877
+count = 27219
 
 try:
 #    cnx = mysql.connector.connect(user='root', password='Ms41149.',
@@ -28,8 +28,8 @@ writer = open("datafile/post_info.txt", "a")
 def get_data(breed_id, breed_name):
     global count
 
-    pages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-#    pages = [1]
+#    pages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    pages = [11, 12, 13, 14, 15]
     for page in pages:
         api_url = api_url_base + '/animals?breed=' + breed_name + '&page=' + str(page)
         print(api_url)
@@ -101,7 +101,7 @@ def main(argv):
     cursor.execute(select_query)
     result = cursor.fetchall()
     for (breed_id, breed_name) in result:
-        if breed_id > 223:
+        if breed_id > 0:
             get_data(breed_id, breed_name)
     cursor.close()
     cnx.close()
