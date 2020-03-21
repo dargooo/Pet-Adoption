@@ -14,14 +14,14 @@ Base.prepare(db.engine, reflect=True)
 species = Base.classes.species
 breed = Base.classes.breed
 user = Base.classes.user
-pets = Base.classes.pets
+pet = Base.classes.pet
 posts = Base.classes.posts
 
 admin.add_view(ModelView(species, db.session))
 admin.add_view(ModelView(breed, db.session))
-# admin.add_view(ModelView(user, db.session))
-admin.add_view(ModelView(pets, db.session))
-# admin.add_view(ModelView(posts, db.session))
+admin.add_view(ModelView(user, db.session))
+admin.add_view(ModelView(pet, db.session))
+admin.add_view(ModelView(posts, db.session))
 
 @app.route('/')
 def main():
