@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS pet (
 CREATE TABLE IF NOT EXISTS posts (
     pet_id INT,
     username VARCHAR(20),
-    title VARCHAR(40) NOT NULL,
+    title VARCHAR(60) NOT NULL,
     open_time DATETIME DEFAULT CURRENT_TIMESTAMP,
     close_time DATETIME,
     description VARCHAR(500),
