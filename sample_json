@@ -1,9 +1,11 @@
 
 
 
+curl -H Accept:application/json -X GET http://127.0.0.1:5000/pet/dist/61822/5
 
 
 # GET pet
+curl -H Accept:application/json -X GET http://127.0.0.1:5000/pet -d "id=18"
 curl -H Accept:application/json -X GET http://127.0.0.1:5000/pet -d "breed_id=1" -d "gender=M" -d "max_age=4" -d "min_age=1" -d "personality='brave','stubborn'" -d "color=orange" -d "hair=long"
 
 # POST pet

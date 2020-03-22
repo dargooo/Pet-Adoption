@@ -3,12 +3,13 @@ from flask_restful import Resource, Api, reqparse
 from datetime import datetime
 import mysql.connector
 import json
+import requests
 
 app = Flask(__name__)
 api = Api(app)
 try:
-#    cnx = mysql.connector.connect(user='root', password='Ms41149.',
-    cnx = mysql.connector.connect(user='coasttocoast_yijun', password='sql41149.',
+    cnx = mysql.connector.connect(user='root', password='Ms41149.',
+#    cnx = mysql.connector.connect(user='coasttocoast_yijun', password='sql41149.',
                                   host='localhost', database='coasttocoast_petadoptionapp')
     cursor = cnx.cursor()
 except: print("Log in mysql db failed!")
@@ -28,6 +29,7 @@ class Pet(Resource):
     def get(self):
         # | id | name | age | gender | weight | adopt_status | personality | color | image | hair | breed_id | adopt_user | adopt_time |
         parser = reqparse.RequestParser()
+        parser.add_argument('id',          type=int)
         parser.add_argument('min_age',     type=float)
         parser.add_argument('max_age',     type=float)
         parser.add_argument('gender',      type=str)
@@ -40,6 +42,9 @@ class Pet(Resource):
 
         query = "SELECT * FROM pet"
         where = " WHERE "
+        if args['id']:
+            query = query + where + "id = " + str(args['id'])
+            where = " AND "
         if args['min_age']:
             print(str(args['min_age']))
             query = query + where + "age >= " + str(args['min_age'])
@@ -101,6 +106,25 @@ class Pet(Resource):
         cursor.execute(insert_query, query_data)
         cnx.commit()
 ###########################  Pet  ###########################
+
+###########################  PetByUser  ###########################
+class PetByUser(Resource):
+    def get(self, username):
+        cursor.execute("SELECT * FROM pet WHERE id IN (SELECT pet_id FROM posts WHERE username = \'" + username + "\')")
+        return sql_2_json(cursor)
+###########################  PetByUser  ###########################
+
+###########################  PetByDist  ###########################
+class PetByDist(Resource):
+    def get(self, zipcode, miles):
+        result = requests.get("https://www.zipcodeapi.com/rest/vwSzdKMwlIg2Mm31JZlw0pICoikGhxvXOxQmQBmCFAup2JfvoLKfzCgOlqF4c2f4/radius.csv/%s/%s/miles?minimal" % (zipcode, miles))
+        zip_list = result.text.split("\n")
+        zip_list.remove('zip_code')
+        zip_list.remove('')
+        zip_list = list(map(int, zip_list))
+        cursor.execute("SELECT * FROM pet WHERE id IN (%s)" % str(zip_list).strip('[]'))
+        return sql_2_json(cursor)
+###########################  PetByDist  ###########################
 
 ########################### User  ###########################
 class User(Resource):

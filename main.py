@@ -6,7 +6,8 @@ from flask_admin.contrib.sqla import ModelView
 from sqlalchemy.ext.automap import automap_base
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://coasttocoast_admin:EwFDKfkwfnyh@localhost/coasttocoast_petadoptionapp'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://coasttocoast_admin:EwFDKfkwfnyh@localhost/coasttocoast_petadoptionapp'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Ms41149.@localhost/coasttocoast_petadoptionapp'
 db = SQLAlchemy(app)
 admin = Admin(app)
 
@@ -26,6 +27,8 @@ admin.add_view(ModelView(posts, db.session))
 
 api = Api(app)
 api.add_resource(Pet, '/pet')
+api.add_resource(PetByUser, '/pet/user/<string:username>')
+api.add_resource(PetByDist, '/pet/dist/<string:zipcode>/<string:miles>')
 api.add_resource(User, '/user')
 api.add_resource(Breed, '/breed')
 api.add_resource(Status, '/status')
