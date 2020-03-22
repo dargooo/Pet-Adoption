@@ -11,7 +11,8 @@ curl -H Accept:application/json -X GET http://coasttocoast.web.illinois.edu/pet/
 # GET pet
 curl -H Accept:application/json -X GET http://127.0.0.1:5000/pet -d "species_id=0" -d "id=18"
 curl -H Accept:application/json -X GET http://127.0.0.1:5000/pet -d "species_id=1" -d "breed_id=1" -d "gender=M" -d "max_age=4" -d "min_age=1" -d "personality='brave','stubborn'" -d "color=orange" -d "hair=long"
-curl -H Accept:application/json -X GET http://127.0.0.1:5000/pet -d "species_id=0" -d "zip_code=61822" -d "miles=200"
+curl -H Accept:application/json -X GET http://127.0.0.1:5000/pet -d "species_id=0" -d "zipcode=61822" -d "miles=200"
+curl -H Accept:application/json -X GET http://coasttocoast.web.illinois.edu/pet -d "species_id=0" -d "zipcode=61822" -d "miles=200"
 
 # POST pet
 curl -H Content-Type:application/json -X POST http://127.0.0.1:5000/pet -d '{"name":"haha", "age":2.2, "gender":"M", "weight":4.4, "personality":"stubborn", "color":"orange", "hair":"long", "species_id":1, "breed_id":2, "username":"ywang14", "title":"aaa"}'

@@ -58,7 +58,7 @@ class Pet(Resource):
             zip_list.remove('zip_code')
             zip_list.remove('')
             zip_list = list(map(int, zip_list))
-            query = query + " AND id IN (%s)" % str(zip_list).strip('[]')
+            query = query + " AND id IN (SELECT pet_id FROM posts WHERE username IN (SELECT username FROM user WHERE zipcode IN (%s)))" % str(zip_list).strip('[]')
         print(query)
         cursor.execute(query)
         return sql_2_json(cursor)
