@@ -1,3 +1,4 @@
+from api import *
 from flask import Flask, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
@@ -22,6 +23,12 @@ admin.add_view(ModelView(breed, db.session))
 admin.add_view(ModelView(user, db.session))
 admin.add_view(ModelView(pet, db.session))
 admin.add_view(ModelView(posts, db.session))
+
+api = Api(app)
+api.add_resource(Pet, '/pet')
+api.add_resource(User, '/user')
+api.add_resource(Breed, '/breed')
+api.add_resource(Status, '/status')
 
 @app.route('/')
 def main():

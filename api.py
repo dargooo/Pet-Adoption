@@ -7,8 +7,8 @@ import json
 app = Flask(__name__)
 api = Api(app)
 try:
-    cnx = mysql.connector.connect(user='root', password='Ms41149.',
-#    cnx = mysql.connector.connect(user='coasttocoast_yijun', password='sql41149.',
+#    cnx = mysql.connector.connect(user='root', password='Ms41149.',
+    cnx = mysql.connector.connect(user='coasttocoast_yijun', password='sql41149.',
                                   host='localhost', database='coasttocoast_petadoptionapp')
     cursor = cnx.cursor()
 except: print("Log in mysql db failed!")
@@ -172,12 +172,6 @@ class Status(Resource):
         cnx.commit()
 ########################### Status ###########################
 
-
-
-api.add_resource(Pet, '/pet')
-api.add_resource(User, '/user')
-api.add_resource(Breed, '/breed')
-api.add_resource(Status, '/status')
 
 if __name__ == '__main__':
     app.run(debug=True)
