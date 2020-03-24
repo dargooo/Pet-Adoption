@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from sqlalchemy.ext.automap import automap_base
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://coasttocoast_admin:EwFDKfkwfnyh@localhost/coasttocoast_petadoptionapp'
@@ -26,6 +27,7 @@ admin.add_view(ModelView(pet, db.session))
 admin.add_view(ModelView(posts, db.session))
 
 api = Api(app)
+CORS(app)
 api.add_resource(Pet, '/pet')
 api.add_resource(PetByUser, '/pet/user/<string:username>')
 api.add_resource(User, '/user')

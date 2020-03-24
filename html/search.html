@@ -93,6 +93,7 @@
         <div class="wrapper wrapper--w900">
             <div class="card card-4">
                 <div class="card-body">
+			<p id="result"></p>
                     <ul class="tab-list">
                         <li class="tab-list__item active">
                             <a class="tab-list__link" href="#tab1" data-toggle="tab">filters</a>
@@ -104,12 +105,12 @@
                                     <div class="col-2">
 					<div class="input-group">
                                             <label class="label">zipcode</label>
-                                            <input class="input--style-1" type="text" name="zipcode" placeholder="00000" id="input-start">
+                                            <input class="input--style-1" type="text" name="zipcode" placeholder="00000" id="zipcode">
                                         </div>
 					<div class="input-group-select">
 					    <label class="label">breed</label>
 					    <div class="input-group-icon rs-select2 js-select-simple select--no-search">
-					    <select name="breed">
+					    <select name="breed" id="breed">
 					        <option selected="selected">breed_1</option>
 					        <option>breed_2</option>
 					    </select>
@@ -119,7 +120,7 @@
 					<div class="input-group-select">
                                             <label class="label">gender</label>
                                             <div class="input-group-icon rs-select2 js-select-simple select--no-search">
-                                            <select name="gender">
+                                            <select name="gender" id="gender">
                                                 <option selected="selected">M</option>
                                                 <option>F</option>
                                             </select>
@@ -128,14 +129,14 @@
                                         </div>
 					<div class="input-group">
                                             <label class="label">age</label>
-                                            <input class="input--style-1" type="text" name="age" placeholder="MIN" id="input-start">
+                                            <input class="input--style-1" type="text" name="age" placeholder="MIN" id="minAge">
 					    <label class="label">-</label>
-					    <input class="input--style-1" type="text" name="age" placeholder="MAX" id="input-start">
+					    <input class="input--style-1" type="text" name="age" placeholder="MAX" id="maxAge">
                                         </div>
 					<div class="input-group-select">
                                             <label class="label">Color</label>
                                             <div class="input-group-icon rs-select2 js-select-simple select--no-search">
-                                            <select name="breed">
+                                            <select name="color" id="color">
                                                 <option>c_2</option>
                                             </select>
                                             <div class="select-dropdown"></div>
@@ -144,7 +145,7 @@
 					<div class="input-group-select">
                                             <label class="label">Hair</label>
                                             <div class="input-group-icon rs-select2 js-select-simple select--no-search">
-                                            <select name="breed">
+                                            <select name="hair" id="hair">
                                                 <option style="background-color: Black;">h_2</option>
                                             </select>
                                             <div class="select-dropdown"></div>
@@ -153,7 +154,7 @@
                                     	<div class="input-group-select">
 					    <label class="label">Personalities</label>
                                             <div class="input-group-icon rs-select2 js-select-simple select--no-search">
-                                            <select name="breed">
+                                            <select name="personality" id="personality">
                                                 <option>p_2</option>
                                             </select>
                                             <div class="select-dropdown"></div>
@@ -161,7 +162,7 @@
                                         </div>
 	                    </div>
                                     <div class="col-2">
-                                        <button class="btn-submit" type="submit">search</button>
+                                        <button id="btn-search" class="btn-submit" type="submit">search</button>
                                     </div>
                             </form>
                         </div>
@@ -217,6 +218,10 @@ function toggleFunction() {
 }
 </script>
 
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<!--script src='js/search.js' language='javascript'></script-->
+<script src='js/a.js' language='javascript'></script>
 
 </body>
 </html>
