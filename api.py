@@ -21,10 +21,10 @@ def sql_2_json(cursor):
     json_data = []
     for row in result:
         json_data.append(dict(zip(fields, row)))
-    json_list = {}
-    json_list['list'] = json_data
-    #return json.dumps(json_data)
-    return jsonify(json_list)
+    #json_list = {}
+    #json_list['list'] = json_data
+    return jsonify(json_data)
+    #return jsonify(json_list)
 
 
 ##########################  Pet  ###########################

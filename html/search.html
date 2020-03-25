@@ -26,7 +26,8 @@
 	  color: #777;
 	  line-height: 1.8;
 	}
-	
+	.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
+	.w3-half img:hover{opacity:1}	
 	/* First image (Logo. Full height) */
 	.bgimg-1 {
 	  background-image: url('adopt-me.jpg');
@@ -88,17 +89,10 @@
 
 <!------ Include the above in your HEAD tag ---------->
 
-<body>
-    <div class="page-wrapper bgimg-1 p-t-100 p-b-120">
-        <div class="wrapper wrapper--w900">
-            <div class="card card-4">
-                <div class="card-body">
-			<p id="result"></p>
-                    <ul class="tab-list">
-                        <li class="tab-list__item active">
-                            <a class="tab-list__link" href="#tab1" data-toggle="tab">filters</a>
-                        </li>
-                    </ul>
+
+    <div class="page-wrapper p-t-100 p-b-120" style="background-color:rgb(230,249,255);">
+
+<nav class="w3-sidebar-r card-4 w3-collapse w3-top w3-large w3-padding-small" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab1">
                             <form method="POST" action="#">
@@ -160,16 +154,46 @@
                                             <div class="select-dropdown"></div>
                                             </div>
                                         </div>
-	                    </div>
+	                    	    </div>
                                     <div class="col-2">
                                         <button id="btn-search" class="btn-submit" type="submit">search</button>
                                     </div>
                             </form>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
+</nav>
+
+<div class="w3-main" style="margin-left:40px;margin-right:340px" id="display-grid">
+
+	  <!-- First Photo Grid-->
+  <!--div class="w3-row-padding w3-padding-16 w3-center" id="food">
+    <div class="w3-quarter">
+      <img src="adopt-me.jpg" alt="Pasta and Wine" style="width:100%">
+      <h3>Once Again, Robust Wine and Vegetable Pasta</h3>
+      <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+    </div>
+  </div-->
+
+
+
+  <!-- Modal for full size images on click-->
+  <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
+    <span class="w3-button w3-black w3-xxlarge w3-display-topright">×</span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+      <img id="img01" class="w3-image">
+      <p id="caption"></p>
+    </div>
+  </div>
+
+
+
+
+
+<!-- End page content -->
+</div>
+
+
+      </div>
     </div>
 
     <!-- Jquery JS-->
@@ -216,12 +240,29 @@ function toggleFunction() {
         x.className = x.className.replace(" w3-show", "");
     }
 }
+// Script to open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
 </script>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-<!--script src='js/search.js' language='javascript'></script-->
-<script src='js/a.js' language='javascript'></script>
+<script src='js/search.js' language='javascript'></script>
+<!--script src='js/a.js' language='javascript'></script-->
 
 </body>
 </html>
