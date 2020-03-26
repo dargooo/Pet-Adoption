@@ -53,7 +53,7 @@ class Pet(Resource):
         if args['hair']:        query = query + " AND hair = \'" + args['hair'] + "\'"
         if args['breed_id']:    query = query + " AND breed_id = " + str(args['breed_id'])
         if args['zipcode']:
-            result = requests.get("https://www.zipcodeapi.com/rest/vwSzdKMwlIg2Mm31JZlw0pICoikGhxvXOxQmQBmCFAup2JfvoLKfzCgOlqF4c2f4/radius.csv/%s/%s/miles?minimal" % (args['zipcode'], args['miles']))
+            result = requests.get("https://www.zipcodeapi.com/rest/E0qEOVCYnRYEULDxd91QRlUIhIgUOWcwLSScW4TxXsM6bDLKPnkqQvFfmTYFrcVo/radius.csv/%s/%s/miles?minimal" % (args['zipcode'], args['miles']))
             zip_list = result.text.split("\n")
             zip_list.remove('zip_code')
             zip_list.remove('')
