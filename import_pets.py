@@ -51,7 +51,7 @@ def get_data(breed_id, breed_name):
                 if age < 1: weight = round(age * (3.5 + random()) + 2, 1)
                 else:       weight = round(age * (0.8 + random() * 0.4) + 5, 1)
     
-                personality_list = ['sweet', 'stubborn', 'proud', 'quite', 'cute', 'rotal', 'independent', 'happy', 'shy', 'adaptable', 'intelligent', 'anxious', 'brave', 'crazy', 'wild', 'needy']
+                personality_list = ['sweet', 'stubborn', 'proud', 'quite', 'cute', 'royal', 'independent', 'happy', 'shy', 'adaptable', 'intelligent', 'anxious', 'brave', 'crazy', 'wild', 'needy']
                 personality = choice(personality_list)
     
                 color_list = ['white', 'brown', 'black', 'orange', 'gray', 'mix']

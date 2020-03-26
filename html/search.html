@@ -97,68 +97,103 @@
                         <div class="tab-pane active" id="tab1">
                             <form method="POST" action="#">
                                     <div class="col-2">
+					
 					<div class="input-group">
                                             <label class="label">zipcode</label>
-                                            <input class="input--style-1" type="text" name="zipcode" placeholder="00000" id="zipcode">
+                                            <input class="input--style-1" type="text" placeholder="00000" id="zipcode">
+					    <label class="label">-</label>
+                                            <input class="input--style-1" type="text" placeholder="50" id="miles">
                                         </div>
+
 					<div class="input-group-select">
 					    <label class="label">breed</label>
 					    <div class="input-group-icon rs-select2 js-select-simple select--no-search">
 					    <select name="breed" id="breed">
-					        <option selected="selected">breed_1</option>
-					        <option>breed_2</option>
+						<option></option>
 					    </select>
 					    <div class="select-dropdown"></div>
 					    </div>
 					</div>
+					
 					<div class="input-group-select">
                                             <label class="label">gender</label>
                                             <div class="input-group-icon rs-select2 js-select-simple select--no-search">
-                                            <select name="gender" id="gender">
-                                                <option selected="selected">M</option>
-                                                <option>F</option>
-                                            </select>
-                                            <div class="select-dropdown"></div>
+                                            	<div class="select-dropdown">
+                                            	    <select name="gender" id="gender">
+					    	    	<option></option>
+                                            	    	<option value="M">M</option>
+                                            	    	<option>F</option>
+                                            	    </select>
+						</div>
                                             </div>
                                         </div>
+					
 					<div class="input-group">
                                             <label class="label">age</label>
                                             <input class="input--style-1" type="text" name="age" placeholder="MIN" id="minAge">
 					    <label class="label">-</label>
 					    <input class="input--style-1" type="text" name="age" placeholder="MAX" id="maxAge">
                                         </div>
+					
 					<div class="input-group-select">
                                             <label class="label">Color</label>
                                             <div class="input-group-icon rs-select2 js-select-simple select--no-search">
                                             <select name="color" id="color">
-                                                <option>c_2</option>
+						<option></option>
+						<option>white</option>
+						<option>brown</option>
+						<option>black</option>
+						<option>orange</option>
+						<option>gray</option>
+						<option>mix</option>
                                             </select>
                                             <div class="select-dropdown"></div>
                                             </div>
                                         </div>
+					
 					<div class="input-group-select">
                                             <label class="label">Hair</label>
                                             <div class="input-group-icon rs-select2 js-select-simple select--no-search">
                                             <select name="hair" id="hair">
-                                                <option style="background-color: Black;">h_2</option>
+						<option></option>
+						<option>long</option>
+						<option>medium</option>
+						<option>short</option>
+						<option>none</option>
                                             </select>
                                             <div class="select-dropdown"></div>
                                         </div>
 					</div>
-                                    	<div class="input-group-select">
+                                    	
+					<div class="input-group-select">
 					    <label class="label">Personalities</label>
                                             <div class="input-group-icon rs-select2 js-select-simple select--no-search">
                                             <select name="personality" id="personality">
-                                                <option>p_2</option>
+						<option></option>
+						<option>sweet</option>
+						<option>stubborn</option>
+						<option>proud</option>
+						<option>quite</option>
+						<option>cute</option>
+						<option>royal</option>
+						<option>independent</option>
+						<option>happy</option>
+						<option>shy</option>
+						<option>adaptable</option>
+						<option>intelligent</option>
+						<option>anxious</option>
+						<option>brave</option>
+						<option>crazy</option>
+						<option>wild</option>
+						<option>needy</option>
                                             </select>
                                             <div class="select-dropdown"></div>
                                             </div>
                                         </div>
+
 	                    	    </div>
-                                    <div class="col-2">
-                                        <button id="btn-search" class="btn-submit" type="submit">search</button>
-                                    </div>
                             </form>
+                            <button id="btn-search" class="btn-submit" type="submit">search</button>
                         </div>
                     </div>
 </nav>
@@ -195,6 +230,7 @@
 
       </div>
     </div>
+    <button id="haha">haha</button>
 
     <!-- Jquery JS-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -258,6 +294,7 @@ function onClick(element) {
   captionText.innerHTML = element.alt;
 }
 </script>
+
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
