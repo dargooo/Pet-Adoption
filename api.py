@@ -38,7 +38,7 @@ class Pet(Resource):
         parser.add_argument('personality', type=str)
         parser.add_argument('color',       type=str)
         parser.add_argument('hair',        type=str)
-        parser.add_argument('breed_id',    type=int)
+        parser.add_argument('breed',       type=str)
         parser.add_argument('zipcode',     type=int)
         parser.add_argument('miles',       type=int)
         args = parser.parse_args()
@@ -51,7 +51,7 @@ class Pet(Resource):
         if args['personality']: query = query + " AND personality IN (" + args['personality'] + ")"
         if args['color']:       query = query + " AND color = \'" + args['color'] + "\'"
         if args['hair']:        query = query + " AND hair = \'" + args['hair'] + "\'"
-        if args['breed_id']:    query = query + " AND breed_id = " + str(args['breed_id'])
+        if args['breed']:       query = query + " AND breed_id = (SELECT id FROM breed WHERE name = \'%s\')" % args['breed']
         if args['zipcode']:
             result = requests.get("https://www.zipcodeapi.com/rest/E0qEOVCYnRYEULDxd91QRlUIhIgUOWcwLSScW4TxXsM6bDLKPnkqQvFfmTYFrcVo/radius.csv/%s/%s/miles?minimal" % (args['zipcode'], args['miles']))
             zip_list = result.text.split("\n")
