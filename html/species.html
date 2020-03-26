@@ -16,7 +16,7 @@
 	
 	/* First image (Logo. Full height) */
 	.bgimg-1 {
-	  background-image: url('adopt-me.jpg');
+	  background-image: url('images/adopt-me.jpg');
 	  background-attachment: fixed;
 	  background-position: center;
 	  background-repeat: no-repeat;
@@ -43,63 +43,66 @@
 		color: black;
 	}
 	a.ex1:hover, a.ex1:active {color: grey;}
+
 </style>
 <body>
 
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
-  <div class="w3-bar" id="myNavbar">
-    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
-      <i class="fa fa-bars"></i>
-    </a>
-    <a href="home.html" class="w3-bar-item w3-button">HOME</a>
-    <a href="#portfolio" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> POST</a>
-    <a href="species.html" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> EXPLORE</a>
-    <a href="#contact" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-envelope"></i> CONTACT</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
-      <i class="fa fa-search"></i>
-    </a>
-  </div>
+    <div class="w3-bar" id="myNavbar">
+        <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);"
+           onclick="toggleFunction()" title="Toggle Navigation Menu">
+            <i class="fa fa-bars"></i>
+        </a>
+        <a href="home.html" class="w3-bar-item w3-button">HOME</a>
+        <a href="#portfolio" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> POST</a>
+        <a href="species.html" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> FIND</a>
+        <a href="#contact" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-envelope"></i> CONTACT</a>
+        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
+            <i class="fa fa-search"></i>
+        </a>
+    </div>
 
-  <!-- Navbar on small screens -->
-  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
-    <a href="home.html" class="w3-bar-item w3-button" onclick="toggleFunction()">HOME</a>
-    <a href="#portfolio" class="w3-bar-item w3-button" onclick="toggleFunction()">POST</a>
-    <a href="species.html" class="w3-bar-item w3-button" onclick="toggleFunction()">EXPLORE</a>
-    <a href="#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a>
-    <a href="#" class="w3-bar-item w3-button">LOG IN</a>
-  </div>
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+        <a href="home.html" class="w3-bar-item w3-button" onclick="toggleFunction()">HOME</a>
+        <a href="#portfolio" class="w3-bar-item w3-button" onclick="toggleFunction()">POST</a>
+        <a href="species.html" class="w3-bar-item w3-button" onclick="toggleFunction()">FIND</a>
+        <a href="#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a>
+        <a href="#" class="w3-bar-item w3-button">LOG IN</a>
+    </div>
 </div>
 
 <!-- POST & ADOPT in the middle -->
 <div class="bgimg-1 w3-display-container w3-opacity-min" id="PostAdopt">
-  <div class="w3-display-middle" style="padding-top:150px; white-space:nowrap;">
-	<span><a class="lg_btn_font ex1">CAT</a></span>
-	<span><a class="lg_btn_font ex1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></span>
-	<span><a class="lg_btn_font ex1">DOG</a></span>
-  </div>
-</div>  
-
-
-<div class="w3-row w3-center w3-padding-15 w3-bottom"  style="color:black;background-color:rgb(3,198,252);">
-  <div class="w3-quarter w3-section">
-    <span class="w3-xlarge">33000+</span><br>
-    Adoptable Pets
-  </div>
-  <div class="w3-quarter w3-section">
-    <span class="w3-xlarge">7000+</span><br>
-    Users
-  </div>
-  <div class="w3-quarter w3-section">
-    <span class="w3-xlarge">2800+</span><br>
-    Shelters
-  </div>
-  <div class="w3-quarter w3-section">
-    <span class="w3-xlarge">0+</span><br>
-    Adoptions
-  </div>
+    <div class="w3-display-middle" style="padding-top:150px; white-space:nowrap;">
+        <span onclick="window.location.href='cat.html';"><a class="lg_btn_font ex1">CAT</a></span>
+        <span><a
+                class="lg_btn_font ex1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></span>
+        <span onclick="window.location.href='dog.html';"><a class="lg_btn_font ex1">DOG</a></span>
+    </div>
 </div>
- 
+
+
+<div class="w3-row w3-center w3-padding-15 w3-bottom" style="color:black;background-color:rgb(3,198,252);">
+    <div class="w3-quarter w3-section">
+        <span class="w3-xlarge">33000+</span><br>
+        Adoptable Pets
+    </div>
+    <div class="w3-quarter w3-section">
+        <span class="w3-xlarge">7000+</span><br>
+        Users
+    </div>
+    <div class="w3-quarter w3-section">
+        <span class="w3-xlarge">2800+</span><br>
+        Shelters
+    </div>
+    <div class="w3-quarter w3-section">
+        <span class="w3-xlarge">0+</span><br>
+        Adoptions
+    </div>
+</div>
+
 <script>
 // Modal Image Gallery
 function onClick(element) {
@@ -129,6 +132,7 @@ function toggleFunction() {
         x.className = x.className.replace(" w3-show", "");
     }
 }
+
 </script>
 
 </body>
