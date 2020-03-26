@@ -33,6 +33,8 @@ api.add_resource(PetByUser, '/pet/user/<string:username>')
 api.add_resource(User, '/user')
 api.add_resource(Breed, '/breed')
 api.add_resource(Status, '/status')
+api.add_resource(CountPet, '/count/pet')
+api.add_resource(CountUser, '/count/user')
 
 @app.route('/')
 def main():

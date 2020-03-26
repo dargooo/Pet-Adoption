@@ -175,6 +175,25 @@ class Status(Resource):
         cnx.commit()
 ########################### Status ###########################
 
+########################### CountPet ###########################
+class CountPet(Resource):
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('status', type=str, required=True)
+        args = parser.parse_args()
+        cursor.execute("SELECT COUNT(*) AS count FROM pet WHERE adopt_status = " + args['status'])
+        return sql_2_json(cursor)
+########################### CountPet ###########################
+
+########################### CountUser ###########################
+class CountUser(Resource):
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('is_person', type=bool, required=True)
+        args = parser.parse_args()
+        cursor.execute("SELECT COUNT(*) AS count FROM user WHERE is_person = " + str(args['is_person']))
+        return sql_2_json(cursor)
+########################### CountPet ###########################
 
 if __name__ == '__main__':
     app.run(debug=True)
