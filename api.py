@@ -181,7 +181,7 @@ class CountPet(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument('status', type=str, required=True)
         args = parser.parse_args()
-        cursor.execute("SELECT COUNT(*) AS count FROM pet WHERE adopt_status = " + args['status'])
+        cursor.execute("SELECT COUNT(*) AS count FROM pet WHERE adopt_status IS " + args['status'])
         return sql_2_json(cursor)
 ########################### CountPet ###########################
 
@@ -191,7 +191,7 @@ class CountUser(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument('is_person', type=bool, required=True)
         args = parser.parse_args()
-        cursor.execute("SELECT COUNT(*) AS count FROM user WHERE is_person = " + str(args['is_person']))
+        cursor.execute("SELECT COUNT(*) AS count FROM user WHERE is_person IS " + str(args['is_person']))
         return sql_2_json(cursor)
 ########################### CountPet ###########################
 
