@@ -1,5 +1,5 @@
 from api import *
-from flask import Flask, abort
+from flask import Flask, abort, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
@@ -39,7 +39,7 @@ api.add_resource(CountUser, '/count/user')
 
 @app.route('/')
 def main():
-    abort(403)
+    return render_template('home.html')
 
 if __name__ == '__main__':
     app.run()
