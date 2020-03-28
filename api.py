@@ -16,6 +16,8 @@ try:
     cursor = cnx.cursor()
 except: print("Log in mysql db failed!")
 
+imgPath = ''
+
 # convert mysql result to json
 def sql_2_json(cursor):
     fields = [x[0] for x in cursor.description]
@@ -23,7 +25,6 @@ def sql_2_json(cursor):
     json_data = []
     for row in result:
         json_data.append(dict(zip(fields, row)))
-    return jsonify(json_data)
     return jsonify(json_data)
 
 
@@ -91,7 +92,7 @@ class Pet(Resource):
         cursor.execute("SELECT id FROM breed WHERE name = \"%s\"" % args['breed'])
         breed_id = cursor.fetchone()[0] 
         insert_query = "INSERT INTO pet VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-        query_data = (pet_id, args['name'], args['age'], args['gender'], args['weight'], 'adoptable', args['personality'], args['color'], args['title'], args['hair'], breed_id, None, None)
+        query_data = (pet_id, args['name'], args['age'], args['gender'], args['weight'], 'adoptable', args['personality'], args['color'], imgPath, args['hair'], breed_id, None, None)
         cursor.execute(insert_query, query_data)
 
         # insert into posts table
@@ -105,16 +106,16 @@ class Pet(Resource):
 ###########################  Image  ###########################
 class Image(Resource):
     def post(self):
+        global imgPath
         parser = reqparse.RequestParser()
         parser.add_argument('image', type=werkzeug.datastructures.FileStorage, location='files')
         args = parser.parse_args()
         imgFile = args['image']
-        print(str(imgFile))
        # DIR = '/home/coasttocoast/cs411-uiuc-project/uploads'
         DIR = '/Users/ywang14/CS411/cs411-uiuc-project/files'
         count = len([name for name in os.listdir(DIR) if os.path.isfile(os.path.join(DIR, name))])
-        path = DIR + "/img-%s.jpg" % str(count+1)
-        imgFile.save(path)
+        imgPath = DIR + "/img-%s.jpg" % str(count+1)
+        imgFile.save(imgPath)
 ###########################  Image  ###########################
 
 ###########################  PetByUser  ###########################

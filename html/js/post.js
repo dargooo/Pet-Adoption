@@ -11,12 +11,11 @@ if (btnCat) {
     btnCat.addEventListener('click', function(){ postPet(1); }, false);
 }
 
-var site = 'http://coasttocoast.web.illinois.edu';
 
     /* set up breed list */
 function setUp(species_id) {
-    var url = site + '/breed?species_id=' + species_id;
-    fetch(url)
+	var url = 'http://coasttocoast.web.illinois.edu';
+    fetch(url + '/breed?species_id=' + species_id)
         .then(res => {
                 return res.json()
         })
@@ -38,7 +37,9 @@ const handleImageUpload = event => {
   const formData = new FormData();
   formData.append('image', files[0]);
 
-  fetch(site + '/image', {
+	var url = "http://127.0.0.1:5000"
+ // var url = 'http://coasttocoast.web.illinois.edu';
+  fetch(url + '/image', {
     method: 'POST',
     body: formData
   })
@@ -84,7 +85,9 @@ function postPet(species_id) {
 		"description":  description,
 	}
 
-	  fetch(site + "/pet", {
+	var url = "http://127.0.0.1:5000"
+	//var url = 'http://coasttocoast.web.illinois.edu';
+	fetch(url + "/pet", {
 	    method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 	    body: JSON.stringify(json)
