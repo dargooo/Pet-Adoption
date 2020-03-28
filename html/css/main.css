@@ -688,6 +688,48 @@ button {
   padding: 12px 0;
 }
 
+
+.input--style-2 {
+  font-size: 18px;
+  padding-top: 10px;
+  color: #666;
+  font-family: inherit;
+  min-height: 160px;
+}
+
+.input--style-2::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #ccc;
+}
+
+.input--style-2:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #ccc;
+  opacity: 1;
+}
+
+.input--style-2::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #ccc;
+  opacity: 1;
+}
+
+.input--style-2:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #ccc;
+}
+
+.input--style-2:-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #ccc;
+}
+
+.input--style-2-small {
+  font-size: 16px;
+  padding: 12px 0;
+}
+
+
 /* CHECKBOX */
 /* Radio button */
 .radio-row {

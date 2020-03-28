@@ -4,6 +4,8 @@ from datetime import datetime
 import mysql.connector
 import json
 import requests
+import werkzeug
+import os, os.path
 
 app = Flask(__name__)
 api = Api(app)
@@ -76,7 +78,6 @@ class Pet(Resource):
         parser.add_argument('weight',      type=float, required=True)
         parser.add_argument('personality', type=str)
         parser.add_argument('color',       type=str,   required=True)
-        parser.add_argument('image',       type=str)
         parser.add_argument('hair',        type=str,   required=True)
         parser.add_argument('breed_id',    type=int,   required=True)
         # | pet_id | username | title | open_time | close_time | description |
@@ -90,7 +91,7 @@ class Pet(Resource):
         cursor.execute("SELECT MAX(id) FROM pet")
         pet_id      = cursor.fetchone()[0] + 1
         insert_query = "INSERT INTO pet VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-        query_data = (pet_id, args['name'], args['age'], args['gender'], args['weight'], 'adoptable', args['personality'], args['color'], args['image'], args['hair'], args['breed_id'], None, None)
+        query_data = (pet_id, args['name'], args['age'], args['gender'], args['weight'], 'adoptable', args['personality'], args['color'], title, args['hair'], args['breed_id'], None, None)
         cursor.execute(insert_query, query_data)
 
         # insert into posts table
@@ -100,6 +101,19 @@ class Pet(Resource):
         cursor.execute(insert_query, query_data)
         cnx.commit()
 ###########################  Pet  ###########################
+
+###########################  Image  ###########################
+class Image(Resource):
+    def post(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('image', type=werkzeug.datastructures.FileStorage, location='files')
+        args = parser.parse_args()
+        imgFile = args['image']
+       # DIR = '/home/coasttocoast/cs411-uiuc-project/uploads'
+        DIR = '/Users/ywang14/CS411/cs411-uiuc-project/files'
+        count = len([name for name in os.listdir(DIR) if os.path.isfile(os.path.join(DIR, name))])
+        imgFile.save(DIR + "/img-%s.jpg" % str(count+1))
+###########################  Image  ###########################
 
 ###########################  PetByUser  ###########################
 class PetByUser(Resource):
