@@ -11,9 +11,10 @@ if (btnCat) {
     btnCat.addEventListener('click', function(){ postPet(1); }, false);
 }
 
+var site = 'http://coasttocoast.web.illinois.edu';
+
+    /* set up breed list */
 function setUp(species_id) {
-    var site = 'http://coasttocoast.web.illinois.edu';
-    // breed list
     var url = site + '/breed?species_id=' + species_id;
     fetch(url)
         .then(res => {
@@ -31,9 +32,31 @@ function setUp(species_id) {
         .catch(error => console.log('ERROR'))
 }
 
+	/* post image */
+const handleImageUpload = event => {
+  const files = event.target.files;
+  const formData = new FormData();
+  formData.append('image', files[0]);
 
+  fetch(site + '/image', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    //console.log(data.path)
+  })
+  .catch(error => {
+    console.error(error)
+  });
+}
+
+document.querySelector('#upload').addEventListener('change', event => {
+  handleImageUpload(event)
+});
+
+	/* post pet */
 function postPet(species_id) {
-
     var name     	= document.getElementById("post-name").value;
     var breed   	= document.getElementById("post-breed").value;
     var gender  	= document.getElementById("post-gender").value;
@@ -44,12 +67,8 @@ function postPet(species_id) {
     var personality = document.getElementById("post-personality").value;
     var title	 	= document.getElementById("post-title").value;
     var description = document.getElementById("post-description").value;
-    var image   	= document.getElementById("post-image").src;
 
 	//alert(name+breed+gender+age+color+hair+weight+personality+image);
-
-//	var url = 'http://coasttocoast.web.illinois.edu';
-	var url = 'http://127.0.0.1:5000';
 
 	var json = {
 		"name": 	    name,
@@ -65,7 +84,7 @@ function postPet(species_id) {
 		"description":  description,
 	}
 
-	  fetch(url + "/pet", {
+	  fetch(site + "/pet", {
 	    method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 	    body: JSON.stringify(json)
@@ -75,20 +94,6 @@ function postPet(species_id) {
 	  }).then(function(data) {
 	      //console.log('Created Gist:', data.html_url);
 	  });
-
-
-	fetch(url + "/image", {
-        method: 'POST',
-        headers: { 'Content-Type':'multipart/form-data' },
-        body: { image }
-    })
-        .then((response) => response.json())
-        .then((data)=>{
-            this.setState({images: data.images, isLoading: false});
-            this.props.updateImages(data.images);
-        })
-        .catch(error => this.setState({ error, isLoading: false}));
-
 }
 
 

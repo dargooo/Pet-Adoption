@@ -77,7 +77,7 @@ class Pet(Resource):
         parser.add_argument('personality', type=str)
         parser.add_argument('color',       type=str,   required=True)
         parser.add_argument('hair',        type=str,   required=True)
-        parser.add_argument('breed_id',    type=int,   required=True)
+        parser.add_argument('breed',    type=str,   required=True)
         # | pet_id | username | title | open_time | close_time | description |
         parser.add_argument('username',    type=str,   required=True)
         parser.add_argument('title',       type=str,   required=True)
@@ -87,9 +87,11 @@ class Pet(Resource):
 
         # insert into pet table
         cursor.execute("SELECT MAX(id) FROM pet")
-        pet_id      = cursor.fetchone()[0] + 1
+        pet_id = cursor.fetchone()[0] + 1
+        cursor.execute("SELECT id FROM breed WHERE name = \"%s\"" % args['breed'])
+        breed_id = cursor.fetchone()[0] 
         insert_query = "INSERT INTO pet VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-        query_data = (pet_id, args['name'], args['age'], args['gender'], args['weight'], 'adoptable', args['personality'], args['color'], title, args['hair'], args['breed_id'], None, None)
+        query_data = (pet_id, args['name'], args['age'], args['gender'], args['weight'], 'adoptable', args['personality'], args['color'], args['title'], args['hair'], breed_id, None, None)
         cursor.execute(insert_query, query_data)
 
         # insert into posts table
@@ -107,10 +109,12 @@ class Image(Resource):
         parser.add_argument('image', type=werkzeug.datastructures.FileStorage, location='files')
         args = parser.parse_args()
         imgFile = args['image']
+        print(str(imgFile))
        # DIR = '/home/coasttocoast/cs411-uiuc-project/uploads'
         DIR = '/Users/ywang14/CS411/cs411-uiuc-project/files'
         count = len([name for name in os.listdir(DIR) if os.path.isfile(os.path.join(DIR, name))])
-        imgFile.save(DIR + "/img-%s.jpg" % str(count+1))
+        path = DIR + "/img-%s.jpg" % str(count+1)
+        imgFile.save(path)
 ###########################  Image  ###########################
 
 ###########################  PetByUser  ###########################
