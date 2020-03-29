@@ -7,8 +7,8 @@ from sqlalchemy.ext.automap import automap_base
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://coasttocoast_admin:EwFDKfkwfnyh@localhost/coasttocoast_petadoptionapp'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Ms41149.@localhost/coasttocoast_petadoptionapp'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://coasttocoast_admin:EwFDKfkwfnyh@localhost/coasttocoast_petadoptionapp'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Ms41149.@localhost/coasttocoast_petadoptionapp'
 db = SQLAlchemy(app)
 admin = Admin(app)
 
@@ -46,11 +46,11 @@ def find():
     return render_template('find.html')
 
 @app.route('/post')
-def find():
+def post():
     return render_template('post.html')
 
 @app.route('/search-dog')
-def find():
+def search_dog():
     return render_template('search-dog.html')
 
 
