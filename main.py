@@ -41,6 +41,11 @@ api.add_resource(CountUser, '/count/user')
 def main():
     return render_template('home.html')
 
+@app.route('/species')
+def main():
+    return render_template('species.html')
+
+
 if __name__ == '__main__':
     app.run()
 
