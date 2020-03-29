@@ -37,7 +37,7 @@ api.add_resource(Status, '/status')
 api.add_resource(CountPet, '/count/pet')
 api.add_resource(CountUser, '/count/user')
 
-@app.route('/')
+@app.route('/home')
 def main():
     return render_template('home.html')
 
