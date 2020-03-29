@@ -54,7 +54,7 @@ def post():
     return render_template('post.html')
 
 @app.route('/post-dog')
-def post():
+def post_dog():
     return render_template('post-dog.html')
 
 if __name__ == '__main__':
