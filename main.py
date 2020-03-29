@@ -45,14 +45,17 @@ def main():
 def find():
     return render_template('find.html')
 
+@app.route('/find-dog')
+def find_dog():
+    return render_template('find-dog.html')
+
 @app.route('/post')
 def post():
     return render_template('post.html')
 
-@app.route('/search-dog')
-def search_dog():
-    return render_template('search-dog.html')
-
+@app.route('/post-dog')
+def post():
+    return render_template('post-dog.html')
 
 if __name__ == '__main__':
     app.run()
