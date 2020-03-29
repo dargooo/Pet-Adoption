@@ -111,7 +111,7 @@ class Image(Resource):
         parser.add_argument('image', type=werkzeug.datastructures.FileStorage, location='files')
         args = parser.parse_args()
         imgFile = args['image']
-        DIR = '/home/coasttocoast/cs411-uiuc-project/uploads'
+        DIR = '/home/coasttocoast/cs411-uiuc-project/static/uploads'
         #DIR = '/Users/ywang14/CS411/cs411-uiuc-project/files'
         count = len([name for name in os.listdir(DIR) if os.path.isfile(os.path.join(DIR, name))])
         imgPath = DIR + "/img-%s.jpg" % str(count+1)
