@@ -4,7 +4,10 @@ from main import app
 bundles = {
     'present_css': Bundle(
         'css/present.css',
-        output='gen/present.css')
+        output='gen/present.css'),
+    'present_js': Bundle(
+        'js/present.js',
+        output='gen/present.js')
 }
 
 assets = Environment(app)
