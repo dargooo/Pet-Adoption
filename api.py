@@ -48,7 +48,7 @@ class Pet(Resource):
         args = parser.parse_args()
         print(args)
         query = "SELECT *, pet.name AS name, breed.name AS breed FROM breed, pet WHERE breed.id = pet.breed_id AND breed_id IN (SELECT id FROM breed WHERE species_id = %s)" % str(args['species_id']);
-        if args['id']:          query = query + " AND id = " + str(args['id'])
+        if args['id']:          query = query + " AND pet.id = " + str(args['id'])
         if args['min_age']:     query = query + " AND age >= " + str(args['min_age'])
         if args['max_age']:     query = query + " AND age <= " + str(args['max_age'])
         if args['gender']:      query = query + " AND gender = \'" + args['gender'] + "\'"
