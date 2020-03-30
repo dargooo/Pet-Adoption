@@ -38,22 +38,29 @@
   margin-left: 30px;
 }
 
+.content-table { display: table; border-collapse: separate; border-spacing: 0 0;}
+.content-row   { display: table-row;}
+.column        { display: table-cell;}
+.sidebar       { width: 450px;}
+
 .wrap-img {
   width: 900px;
   min-height: 850px;
   border-radius: 10px;
   padding: 30px 60px 33px 60px;
   background-color:  rgb(117, 214, 255);
+  text-align: center;
 }
-
-.content-table { display: table; border-collapse: separate; border-spacing: 0 0;}
-.content-row   { display: table-row;}
-.column        { display: table-cell;}
-.sidebar       { width: 450px;}
 
 .wrap-form {
   border-radius: 10px;
   padding: 30px 60px 33px 60px;
-  top: 211px;
   background-color:  rgb(117, 214, 255);
+}
+
+.outline {
+    min-width: 1200px;
+    top: 150px;
+    left: 20%;
+    transform: translate(-15%);
 }
