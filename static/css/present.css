@@ -1,7 +1,7 @@
 .present-group {
     position: relative;
     min-height: 60px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     background: #ffffff;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -24,9 +24,8 @@
   color: gray;
   text-transform: capitalize;
   display: block;
-  font-weight: 700;
+  font-weight: 400;
   white-space: nowrap;
-  margin-left: 30px;
 }
 
 .label-heavy {
@@ -36,5 +35,16 @@
   display: block;
   font-weight: 700;
   white-space: nowrap;
-  margin-right: 30px;
+  margin-left: 30px;
+}
+
+.wrap-img {
+  width: 700px;
+  border-radius: 10px;
+  padding: 30px 60px 33px 60px;
+  position: absolute;
+  left: 35%;
+  top: 211px;
+  transform: translate(-50%);
+  background-color:  rgb(117, 214, 255);
 }
