@@ -61,6 +61,11 @@ def post():
 def post_dog():
     return render_template('post-dog.html')
 
+@app.route('/present-dog')
+def present_dog():
+    return render_template('present-dog.html')
+
+
 if __name__ == '__main__':
     app.run()
 
