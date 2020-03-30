@@ -1,4 +1,5 @@
 from api import *
+from assets import *
 from flask import Flask, abort, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
