@@ -648,6 +648,16 @@ button {
   margin-right: 30px;
 }
 
+.label-2 {
+  font-size: 18px;
+  color: gray;
+  text-transform: capitalize;
+  display: block;
+  font-weight: 700;
+  white-space: nowrap;
+  margin-right: 30px;
+}
+
 .input--style-1 {
   font-size: 18px;
   padding: 0 0;
