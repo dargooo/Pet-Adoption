@@ -50,4 +50,13 @@
   background-color:  rgb(117, 214, 255);
 }
 
-
+.flex-container{
+    min-height: 850px;
+    display: -webkit-flex; /* Safari */     
+    display: flex; /* Standard syntax */
+}
+.flex-container .column{
+    -webkit-flex: 1; /* Safari */
+    -ms-flex: 1; /* IE 10 */
+    flex: 1; /* Standard syntax */
+}
