@@ -617,6 +617,27 @@ button {
   width: 100%;
 }
 
+.present-group {
+  position: relative;
+  min-height: 40px;
+  margin-bottom: 20px;
+  background: #ffffff;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 20px;
+}
+
 .input-icon {
   font-size: 24px;
   color: #808080;
