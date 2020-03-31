@@ -14,12 +14,11 @@
 <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
       rel="stylesheet">
 <!-- Vendor CSS-->
-<link href="static/vendor/select2/select2.min.css" rel="stylesheet" media="all">
-<link href="static/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
-
-<link href="static/css/main.css" rel="stylesheet" media="all">
-<link href="static/css/main-2.css" rel="stylesheet" media="all">
-<link href="static/css/present.css" rel="stylesheet" media="all">
+<link href="/static/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+<link href="/static/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+<link href="/static/css/main.css" rel="stylesheet" media="all">
+<link href="/static/css/main-2.css" rel="stylesheet" media="all">
+<link href="/static/css/present.css" rel="stylesheet" media="all">
 <style>
 	body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
 	body, html {
@@ -133,20 +132,20 @@
     </div>
 </div>
 
-<script>getPet({{ pet_id }});</script>
-
 <!-- Vendor JS-->
-<script src="static/vendor/jquery/jquery.min.js"></script>
-<script src="static/vendor/select2/select2.min.js"></script>
-<script src="static/vendor/jquery-validate/jquery.validate.min.js"></script>
-<script src="static/vendor/bootstrap-wizard/bootstrap.min.js"></script>
-<script src="static/vendor/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
-<script src="static/vendor/datepicker/moment.min.js"></script>
-<script src="static/js/global.js"></script>
-<script src='static/js/usage.js' language='javascript'></script>
-<script src='static/js/post.js' language='javascript'></script>
-<script src='static/js/present.js' language='javascript'></script>
+<script src="/static/vendor/jquery/jquery.min.js"></script>
+<script src="/static/vendor/select2/select2.min.js"></script>
+<script src="/static/vendor/jquery-validate/jquery.validate.min.js"></script>
+<script src="/static/vendor/bootstrap-wizard/bootstrap.min.js"></script>
+<script src="/static/vendor/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+<script src="/static/vendor/datepicker/moment.min.js"></script>
+<script src="/static/js/global.js"></script>
+<script src='/static/js/usage.js' language='javascript'></script>
+<script src='/static/js/post.js' language='javascript'></script>
+<script src='/static/js/present.js' language='javascript'></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script>getPet({{ pet_id }});</script>
 
 </body>
 </html>
