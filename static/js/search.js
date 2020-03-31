@@ -79,6 +79,7 @@ function getPet(species_id){
 
 			var div = document.createElement("div");                       
 			div.setAttribute("class", "w3-quarter");
+			div.setAttribute("href", "http://coasttocoast.web.illinois.edu/present-dog/" + obj.id);
 
 			var img = document.createElement("IMG");  
 			img.setAttribute("src", obj.image);
