@@ -104,7 +104,7 @@ class Pet(Resource):
 
         # return pet_id
         r = {}
-        r["pet_id"] = pet_id
+        r["id"] = pet_id
         return json.dumps(r, ensure_ascii=False)
 ###########################  Pet  ###########################
 
