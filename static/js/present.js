@@ -33,8 +33,8 @@ function getPet(){
         data.forEach(obj => {
             document.getElementById("present-title").innerHTML       = obj.title;
             document.getElementById("present-description").innerHTML = obj.description;
-            document.getElementById("present-postby").innerHTML      = "Post By: " + obj.postby;
-            document.getElementById("present-posttime").innerHTML    = obj.posttime;
+            document.getElementById("present-postby").innerHTML      = "Post By: " + obj.username;
+            document.getElementById("present-posttime").innerHTML    = obj.open_time;
         });
     })
 
