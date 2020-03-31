@@ -214,5 +214,16 @@ class CountUser(Resource):
         return sql_2_json(cursor)
 ########################### CountPet ###########################
 
+########################### Posts ###########################
+class Posts(Resource):
+    def get(self):
+        # | pet_id | username | title | open_time | close_time | description |
+        parser = reqparse.RequestParser()
+        parser.add_argument('pet_id', type=int, required=True)
+        args = parser.parse_args()
+        cursor.execute("SELECT * FROM posts WHERE pet_id=" + str(args['pet_id']))
+        return sql_2_json(cursor)
+########################### Posts  ###########################
+
 if __name__ == '__main__':
     app.run(debug=True)

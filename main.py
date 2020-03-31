@@ -37,6 +37,7 @@ api.add_resource(Breed, '/breed')
 api.add_resource(Status, '/status')
 api.add_resource(CountPet, '/count/pet')
 api.add_resource(CountUser, '/count/user')
+api.add_resource(Posts, '/posts')
 
 @app.route('/')
 def main():
