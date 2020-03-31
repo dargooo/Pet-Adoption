@@ -1,7 +1,5 @@
-getPet();
-function getPet(){
+function getPet(pet_id){
 	//var url = 'http://127.0.0.1:5000/pet?species_id=0';
-	var pet_id=15;
 	var site = 'http://coasttocoast.web.illinois.edu';
 
 	// from pet
