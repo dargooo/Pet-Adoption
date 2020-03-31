@@ -92,7 +92,7 @@ class Pet(Resource):
         cursor.execute("SELECT id FROM breed WHERE name = \"%s\"" % args['breed'])
         breed_id = cursor.fetchone()[0] 
         insert_query = "INSERT INTO pet VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-        query_data = (pet_id, args['name'], args['age'], args['gender'], args['weight'], 'adoptable', args['personality'], args['color'], imgPath, args['hair'], breed_id, None, None)
+        query_data = (pet_id, args['name'], args['age'], args['gender'], args['weight'], 'adoptable', args['personality'], args['color'], "/" + imgPath, args['hair'], breed_id, None, None)
         cursor.execute(insert_query, query_data)
 
         # insert into posts table
@@ -116,7 +116,7 @@ class Image(Resource):
         parser.add_argument('image', type=werkzeug.datastructures.FileStorage, location='files')
         args = parser.parse_args()
         imgFile = args['image']
-        DIR = '/static/img/uploads'
+        DIR = 'static/img/uploads'
         count = len([name for name in os.listdir(DIR) if os.path.isfile(os.path.join(DIR, name))])
         imgPath = DIR + "/img-%s.jpg" % str(count+1)
         imgFile.save(imgPath)
