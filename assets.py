@@ -2,6 +2,9 @@ from flask_assets import Bundle, Environment
 from main import app
 
 bundles = {
+    'post_js': Bundle(
+        'js/post.js',
+        output='gen/post.js'),
     'search_js': Bundle(
         'js/search.js',
         output='gen/search.js'),
