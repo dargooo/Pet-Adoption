@@ -89,7 +89,7 @@ function getPet(species_id){
 			a.setAttribute("href", "http://coasttocoast.web.illinois.edu/present-dog/" + obj.id);
 			var t = document.createTextNode(obj.name);
 			a.appendChild(t);
-			a.setAttribute("style", "font-size: 25px; color: black;");
+			a.setAttribute("style", "font-size: 25px; color:rgb(94,94,94);");
 			div.appendChild(a);    
 
 			//var p = document.createElement("p");
