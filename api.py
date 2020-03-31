@@ -101,6 +101,11 @@ class Pet(Resource):
         query_data = (pet_id, args['username'], args['title'], open_time, None, args['description'])
         cursor.execute(insert_query, query_data)
         cnx.commit()
+
+        # return pet_id
+        r = {}
+        d["pet_id"] = pet_id
+        return json.dumps(r, ensure_ascii=False)
 ###########################  Pet  ###########################
 
 ###########################  Image  ###########################

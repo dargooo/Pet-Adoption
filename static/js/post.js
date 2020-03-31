@@ -98,11 +98,10 @@ function postPet(species_id) {
           console.log(data);
           data.forEach(obj => {
 			  pet_id = obj.id;
-        });
-        })
-        .catch(error => console.log('ERROR'));
+           });
+       }).catch(error => console.log('ERROR'));
 	
-	window.location(url + "/present-dog/" + pet_id);
+	window.location = url + "/present-dog/" + pet_id;
 }
 
 
