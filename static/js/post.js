@@ -100,8 +100,7 @@ function postPet(species_id) {
 			  pet_id = obj.id;
         });
         })
-        .catch(error => console.log('ERROR'))
-	  });
+        .catch(error => console.log('ERROR'));
 	
 	window.location(url + "/present-dog/" + pet_id);
 }
