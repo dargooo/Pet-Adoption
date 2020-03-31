@@ -77,9 +77,10 @@ function getPet(species_id){
 				document.getElementById("display-grid").appendChild(row);
 			}
 
+			var a = document.createElement("a");
+			a.setAttribute("href", "http://coasttocoast.web.illinois.edu/present-dog/" + obj.id);
 			var div = document.createElement("div");                       
 			div.setAttribute("class", "w3-quarter");
-			div.setAttribute("href", "http://coasttocoast.web.illinois.edu/present-dog/" + obj.id);
 
 			var img = document.createElement("IMG");  
 			img.setAttribute("src", obj.image);
@@ -96,7 +97,8 @@ function getPet(species_id){
                         p.appendChild(tt);
                         div.appendChild(p);
 
-			document.getElementById("row-" + (count/4 | 0)).appendChild(div);
+			a.p.appendChild(div);
+			document.getElementById("row-" + (count/4 | 0)).appendChild(a);
 			count++;
 		});
 	})
