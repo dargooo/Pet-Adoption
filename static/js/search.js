@@ -77,9 +77,6 @@ function getPet(species_id){
 				document.getElementById("display-grid").appendChild(row);
 			}
 
-			var a = document.createElement("a");
-			a.setAttribute("href", "http://coasttocoast.web.illinois.edu/present-dog/" + obj.id);
-
 			var div = document.createElement("div");                       
 			div.setAttribute("class", "w3-quarter");
 
@@ -88,18 +85,19 @@ function getPet(species_id){
   			img.setAttribute("style", "width:100%");
 			div.appendChild(img);                                          
 
-			var h3 = document.createElement("h3"); 
+			var a = document.createElement("a");
+			a.setAttribute("href", "http://coasttocoast.web.illinois.edu/present-dog/" + obj.id);
 			var t = document.createTextNode(obj.name);
-			h3.appendChild(t);
-			div.appendChild(h3);    
+			a.appendChild(t);
+			a.setAttribute("style", "font-size: 25px; color: black;");
+			div.appendChild(a);    
 
-			var p = document.createElement("p");
-                        var tt = document.createTextNode(obj.personality);
-                        p.appendChild(tt);
-                        div.appendChild(p);
+			//var p = document.createElement("p");
+            //var tt = document.createTextNode(obj.personality);
+            //p.appendChild(tt);
+            //div.appendChild(p);
 
-			a.appendChild(div);
-			document.getElementById("row-" + (count/4 | 0)).appendChild(a);
+			document.getElementById("row-" + (count/4 | 0)).appendChild(div);
 			count++;
 		});
 	})
