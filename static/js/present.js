@@ -1,9 +1,9 @@
-function getPet(pet_id){
-	//var url = 'http://127.0.0.1:5000/pet?species_id=0';
+function getPet(pet_id) {
 	var site = 'http://coasttocoast.web.illinois.edu';
 
 	// from pet
 	var url = site + '/pet?id=' + pet_id + '\&species_id=0';
+	console.log(url);
 	fetch(url)
 	.then(res => res.json())
 	.then(data => {
