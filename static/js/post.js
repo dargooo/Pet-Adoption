@@ -86,6 +86,7 @@ function postPet(species_id) {
 
 //	var url = "http://127.0.0.1:5000"
 	var url = 'http://coasttocoast.web.illinois.edu';
+	var pet_id;
 	fetch(url + "/pet", {
 	    method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
@@ -93,9 +94,16 @@ function postPet(species_id) {
 	  }).then(function(response) {
 		  console.log(JSON.stringify(json));
 	      return response.json();
-	  }).then(function(data) {
-	      //console.log('Created Gist:', data.html_url);
+	  }) .then(data => {
+          console.log(data);
+          data.forEach(obj => {
+			  pet_id = obj.id;
+        });
+        })
+        .catch(error => console.log('ERROR'))
 	  });
+	
+	window.location(url + "/present-dog/" + pet_id);
 }
 
 
