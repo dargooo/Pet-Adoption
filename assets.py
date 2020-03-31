@@ -2,6 +2,9 @@ from flask_assets import Bundle, Environment
 from main import app
 
 bundles = {
+    'img': Bundle(
+        'img',
+        output='gen/img'),
     'post_js': Bundle(
         'js/post.js',
         output='gen/post.js'),
