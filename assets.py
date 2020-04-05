@@ -16,7 +16,7 @@ bundles = {
         output='gen/present.css'),
     'present_js': Bundle(
         'js/present.js',
-        output='gen/present.js')
+        output='gen/present.js'),
     'user_css': Bundle(
         'css/user.css',
         output='gen/user.css'),
