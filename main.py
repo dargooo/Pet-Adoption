@@ -67,6 +67,11 @@ def post_dog():
 def present_dog(pet_id):
     return render_template('present-dog.html', pet_id=pet_id)
 
+@app.route('/user/<str:username>')
+def user_page(username):
+    return render_template('user.html', username=username)
+
+
 
 if __name__ == '__main__':
     app.run()
