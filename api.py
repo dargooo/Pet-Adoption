@@ -203,9 +203,13 @@ class Status(Resource):
 class CountPet(Resource):
     def get(self):
         parser = reqparse.RequestParser()
-        parser.add_argument('status', type=str, required=True)
+        parser.add_argument('status',   type=str)
+        parser.add_argument('username', type=str)
         args = parser.parse_args()
-        cursor.execute("SELECT COUNT(*) AS count FROM pet WHERE adopt_status = " + args['status'])
+        query = "SELECT COUNT(*) AS count FROM pet, posts WHERE pet.id = posts.pet_id"
+        if args['status']:      query = query + " AND adopt_status = " + args['status']
+        if args['username']:    query = query + " AND username = " + args['username']
+        cursor.execute(query)
         return sql_2_json(cursor)
 ########################### CountPet ###########################
 

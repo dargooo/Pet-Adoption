@@ -79,23 +79,23 @@
 
     <!-- Header -->
     <header class="w3-container w3-center" style="margin:20px 32px;" id="header">
-        <p class="" style="text-align:right; margin:0px; margin-bottom:20px;">username</p>
+        <p style="text-align:right; margin:0px; margin-bottom:20px;" id="user-username">username</p>
 		<div class="w3-row w3-center w3-section w3-white" style="border-radius: 10px; margin:0;">
             <div class="w3-quarter w3-section" style="color:rgb(117, 214, 255);">
-                <span class="w3-xlarge">11</span><br>
+                <span class="w3-xlarge" id="user-c-posted">11</span><br>
                 Post Pets
             </div>
             <div class="w3-quarter w3-section" style="color:rgb(117, 214, 255);">
-                <span class="w3-xlarge">5</span><br>
+                <span class="w3-xlarge" id="user-c-adopted">5</span><br>
                 Adopted Pets
             </div>
 			<div class="w3-quarter w3-section" style="color:rgb(117, 214, 255);">
-                <span class="w3-xlarge">9</span><br>
+                <span class="w3-xlarge" id="user-c-reviews">9</span><br>
                 Reviews
             </div>
 
             <div class="w3-quarter w3-section" style="color:rgb(117, 214, 255);">
-                <span class="w3-xlarge">7</span><br>
+                <span class="w3-xlarge" id="user-c-reviews-good">7</span><br>
                 Happy Reviews
             </div>
         </div>
@@ -107,14 +107,15 @@
 		<p style="font-size:30px; margin-bottom: 0px; margin-top:0;"><b>My Posts</b></p>
     	<hr class="horz-line" style="margin-top: 10px;" class="w3-opacity">
 
-    	<div class="w3-content w3-justify w3-padding-16" id="user-post-container">
-    	    <div class="w3-row-padding w3-center">
-    	        <div class="w3-quarter">
+    	<div class="w3-content w3-justify w3-padding-16">
+    	    <div class="w3-row-padding w3-center" id="user-post-container">
+				<div class="w3-quarter">
     	            <img src="dog-ex.jpg" alt="Sandwich" style="width:100%;">
-					<p style="margin:0;">Simba</p>
-    	            <p style="margin:0;">adoptable</p>
+					<p style="margin:0;">Simba &#183; adoptable</p>
     	        </div>
+
     	    </div>
+
     	</div>
     </div>
 	
