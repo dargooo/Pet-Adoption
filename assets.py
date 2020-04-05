@@ -17,6 +17,12 @@ bundles = {
     'present_js': Bundle(
         'js/present.js',
         output='gen/present.js')
+    'user_css': Bundle(
+        'css/user.css',
+        output='gen/user.css'),
+    'user_js': Bundle(
+        'js/user.js',
+        output='gen/user.js')
 }
 
 assets = Environment(app)
