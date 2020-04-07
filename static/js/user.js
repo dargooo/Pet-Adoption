@@ -9,12 +9,12 @@ function getUser(username) {
 	.then(data => {
 		console.log(data);
 		data.forEach(obj => {
-			document.getElementById("user-username").innerHTML	 = obj.username;
 			var is_person = obj.is_person;
 			if (is_person) { document.getElementById("user-name").innerHTML       = obj.name + ' &#183; individual'; }
 			else 		   { document.getElementById("user-name").innerHTML       = obj.name + ' &#183; shelter'; }
-			document.getElementById("user-addr").innerHTML		 = obj.address + " " + obj.zipcode;
-			document.getElementById("user-email").innerHTML		 = obj.email;
+			document.getElementById("user-name").innerHTML	= obj.name;
+			document.getElementById("user-addr").innerHTML	= obj.address + " " + obj.zipcode;
+			document.getElementById("user-email").innerHTML = obj.email;
 			//document.getElementById("user-avatar").setAttribute("src", obj.avatar);
 		});
 	})
