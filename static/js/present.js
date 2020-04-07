@@ -31,7 +31,8 @@ function getPet(pet_id) {
         data.forEach(obj => {
             document.getElementById("present-title").innerHTML       = obj.title;
             document.getElementById("present-description").innerHTML = obj.description;
-            document.getElementById("present-postby").innerHTML      = "Post By: " + obj.username;
+            document.getElementById("present-postby").innerHTML      = obj.username;
+			document.getElementById("present-postby").setAttribute("href", "http://coasttocoast.web.illinois.edu/userpage/" + obj.username);
             document.getElementById("present-posttime").innerHTML    = obj.open_time;
         });
     })
