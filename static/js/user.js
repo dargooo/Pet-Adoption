@@ -2,7 +2,7 @@ function getUser(username) {
 	var site = 'http://coasttocoast.web.illinois.edu';
 
 	// user info
-	var url = site + '/user?username=' + username;
+	var url = site + '/user?username=\"' + username + '\"';
 	console.log(url);
 	fetch(url)
 	.then(res => res.json())
@@ -19,7 +19,7 @@ function getUser(username) {
     .catch(error => console.log('ERROR'));
 
 	// counts - posted
-    var url = site + '/count/pet?username=' + username;
+    var url = site + '/count/pet?username=\"' + username + '\"';
     fetch(url)
         .then(res => {
                 return res.json()
@@ -33,7 +33,7 @@ function getUser(username) {
         .catch(error => console.log('ERROR'))
 
 	// counts - adopted
-    var url = site + '/count/pet?username=' + username + '\&status=\'adopted\'';
+    var url = site + '/count/pet?username=\"' + username + '\"\&status=\'adopted\'';
     fetch(url)
         .then(res => {
                 return res.json()
