@@ -72,7 +72,8 @@ function getUser(username) {
             var a = document.createElement("a");
             a.setAttribute("href", "http://coasttocoast.web.illinois.edu/present-dog/" + obj.id);
 			a.setAttribute("style", "margin:0;");
-            var t = document.createTextNode(obj.name + ' &#183; ' + obj.adopt_status);
+			var text = obj.name + ' &#183; ' + obj.adopt_status;
+			var t = document.createTextNode(text);
             a.appendChild(t);
             div.appendChild(a);
 
