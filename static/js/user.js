@@ -10,8 +10,8 @@ function getUser(username) {
 		console.log(data);
 		data.forEach(obj => {
 			var is_person = obj.is_person;
-			if (is_person) { document.getElementById("user-username").innerHTML       = obj.name + ' &#183; individual'; }
-			else 		   { document.getElementById("user-username").innerHTML       = obj.name + ' &#183; shelter'; }
+			if (is_person) { document.getElementById("user-username").innerHTML       = obj.username + ' &#183; individual'; }
+			else 		   { document.getElementById("user-username").innerHTML       = obj.username + ' &#183; shelter'; }
 			document.getElementById("user-name").innerHTML	= obj.name;
 			document.getElementById("user-addr").innerHTML	= obj.address + " " + obj.zipcode;
 			document.getElementById("user-email").innerHTML = obj.email;
@@ -72,7 +72,7 @@ function getUser(username) {
             var a = document.createElement("a");
             a.setAttribute("href", "http://coasttocoast.web.illinois.edu/present-dog/" + obj.id);
 			a.setAttribute("style", "margin:0;");
-			var text = obj.name + ' &#183; ' + obj.adopt_status;
+			var text = obj.name + ' - ' + obj.adopt_status;
 			var t = document.createTextNode(text);
             a.appendChild(t);
             div.appendChild(a);
