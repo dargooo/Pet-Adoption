@@ -44,7 +44,7 @@ function getUser(username) {
                 document.getElementById("user-c-adopted").innerHTML=obj.count;
         });
         })
-        .catch(error => console.log('ERROR'))
+        .catch(error => console.log('ERROR'));
 
 	// posted pets list
 	var url = site + '/pet/user/' + username;
@@ -78,7 +78,7 @@ function getUser(username) {
             count++;
         });
     })
-    .catch(error => console.log('ERROR'))
+    .catch(error => console.log('ERROR'));
 
 }
 
