@@ -90,12 +90,12 @@ function getUser(username) {
 
 	// reviews list
 	var url = site + '/reviews?reviewee=\"' + username + '\"';
+    var count = 0, good = 0;
 	console.log(url);
 	fetch(url)
     .then(res => res.json())
     .then(data => {
         console.log(data);
-        var count = 0;
         data.forEach(obj => {
             console.log(count);
             var p = document.createElement("p");
@@ -103,10 +103,12 @@ function getUser(username) {
 			p.innerHTML = b.bold() + ": " + obj.content;
             document.getElementById("user-reviews-list").appendChild(p);
             count++;
+			if (obj.recommand) { good++; }
         });
     })
     .catch(error => console.log('ERROR'));
 
+	document.getElementById("user-score").setAttribute("style", "width:" + string(good/count));
 
 }
 
