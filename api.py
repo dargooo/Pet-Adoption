@@ -234,5 +234,17 @@ class Posts(Resource):
         return sql_2_json(cursor)
 ########################### Posts  ###########################
 
+########################### Reviews ###########################
+class Reviews(Resource):
+    def get(self):
+        # | id | reviewer | reviewee | content | recommand |
+        parser = reqparse.RequestParser()
+        parser.add_argument('reviewee', type=str, required=True)
+        args = parser.parse_args()
+        cursor.execute("SELECT * FROM review WHERE reviewee=" + args['reviewee'])
+        return sql_2_json(cursor)
+########################### Reviews  ###########################
+
+
 if __name__ == '__main__':
     app.run(debug=True)
