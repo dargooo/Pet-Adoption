@@ -100,7 +100,16 @@ function getUser(username) {
             console.log(count);
             var p = document.createElement("p");
 			var b = obj.reviewer;
-			p.innerHTML = b.bold() + ": " + obj.content;
+			if (obj.recommand) { 
+				var face = "&#9786;"; 
+				face.fontcolor("#a5db42;");
+			}
+			else { 
+				var face = "&#9785;"; 
+				face.fontcolor("#fc682d;");
+			}
+			face.fontsize("5.5px");
+			p.innerHTML = face + " " + b.bold() + ": " + obj.content;
             document.getElementById("user-reviews-list").appendChild(p);
             count++;
 			if (obj.recommand) { good++; }
@@ -108,6 +117,8 @@ function getUser(username) {
 			var score = good * 100 / count;
     		console.log(score);
     		document.getElementById("user-score").setAttribute("style", "height:28px; width:" + score + "%");
+			document.getElementById("user-c-reviews").innerHTML		 = count;
+			document.getElementById("user-c-reviews-good").innerHTML = good;
         });
     })
     .catch(error => console.log('ERROR'));
