@@ -108,7 +108,8 @@ function getUser(username) {
     })
     .catch(error => console.log('ERROR'));
 
-	document.getElementById("user-score").setAttribute("style", "width:" + string(good/count));
+	var score = good/count;
+	document.getElementById("user-score").setAttribute("style", "width:" + score);
 
 }
 
