@@ -70,8 +70,8 @@ function getUser(username) {
             div.setAttribute("class", "w3-quarter");
 
             var img = document.createElement("IMG");
-            img.setAttribute("src", obj.image);
-            img.setAttribute("alt", "/static/img/nophoto-dog.png");
+			if (obj.image == null) { img.setAttribute("src", "/static/img/nophoto-dog.png"); }
+			else 				   { img.setAttribute("src", obj.image); }
             img.setAttribute("style", "width:100%;");
             div.appendChild(img);
 
