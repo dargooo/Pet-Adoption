@@ -5,8 +5,8 @@ from random import randint
 from random import choice
 
 try:
-    cnx = mysql.connector.connect(user='root', password='Ms41149.',
-#    cnx = mysql.connector.connect(user='coasttocoast_yijun', password='sql41149.',
+#    cnx = mysql.connector.connect(user='root', password='Ms41149.',
+    cnx = mysql.connector.connect(user='coasttocoast_yijun', password='sql41149.',
                                   host='localhost', database='coasttocoast_petadoptionapp')
     cursor = cnx.cursor()
 except:
