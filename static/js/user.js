@@ -70,7 +70,7 @@ function getUser(username) {
             div.setAttribute("class", "w3-quarter");
 
             var img = document.createElement("IMG");
-			if (obj.image == null) { img.setAttribute("src", "/static/img/nophoto-dog.png"); }
+			if (obj.image == 'NULL') { img.setAttribute("src", "/static/img/nophoto-dog.png"); }
 			else 				   { img.setAttribute("src", obj.image); }
             img.setAttribute("style", "width:100%;");
             div.appendChild(img);
@@ -87,6 +87,28 @@ function getUser(username) {
         });
     })
     .catch(error => console.log('ERROR'));
+
+	// reviews list
+	var url = site + '/reviews?reviewee=\"' + username + '\"';
+	console.log(url);
+	fetch(url)
+    .then(res => res.json())
+    .then(data => {
+        console.log(data);
+        var count = 0;
+        data.forEach(obj => {
+            console.log(count);
+            var p = document.createElement("p");
+            var b = document.createElement("b");
+			b.innerHTML = obj.reviewer;
+            p.appendChild(b);
+			p.innerHTML = obj.content;
+            document.getElementById("user-reviews-list").appendChild(p);
+            count++;
+        });
+    })
+    .catch(error => console.log('ERROR'));
+
 
 }
 
