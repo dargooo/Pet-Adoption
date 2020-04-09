@@ -62,6 +62,7 @@ function getUser(username) {
                 var row = document.createElement("div");
                 row.setAttribute("class", "w3-row-padding w3-padding-8 w3-center");
                 row.setAttribute("id", "row-" + (count/4 | 0));
+				row.setAttribute("style", "margin-top:30px;"); 
                 document.getElementById("user-post-container").appendChild(row);
             }
 
@@ -70,9 +71,8 @@ function getUser(username) {
 
             var img = document.createElement("IMG");
             img.setAttribute("src", obj.image);
-            img.setAttribute("alt", "Sandwich");
+            img.setAttribute("alt", "/static/img/nophoto-dog.png");
             img.setAttribute("style", "width:100%;");
-            //if (count > 4) {  img.setAttribute("style", "margin-top:30px;"); }
             div.appendChild(img);
 
             var a = document.createElement("a");
