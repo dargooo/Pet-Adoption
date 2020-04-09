@@ -100,7 +100,7 @@ function getUser(username) {
             console.log(count);
             var p = document.createElement("p");
 			var b = obj.reviewer;
-			var face = "&#9826;"; 
+			var face = "&#9830;"; 
 			face.fontsize("6px");
 			if (obj.recommand) { 
 				p.innerHTML = face.fontcolor("#a5db42") + " " + b.bold() + ": " + obj.content;
@@ -120,5 +120,38 @@ function getUser(username) {
         });
     })
     .catch(error => console.log('ERROR'));
+}
+
+
+document.getElementById('btn-submit').addEventListener('click', function(){ postReview(); }, false);
+
+ /* post review */
+function postReview() {
+    var reviewer  = "sb1";
+    var reviewee  = "sb2";
+    var content   = document.getElementById("user-review-content").value;
+    var recommand = document.getElementById("togBtn").value;
+
+    var json = {
+		"reviewer": reviewer,
+		"reviewee": reviewee,
+		"content": content,
+		"recommand": recommand
+    }
+
+//  var url = "http://127.0.0.1:5000"
+    var url = 'http://coasttocoast.web.illinois.edu';
+    fetch(url + "/reviews", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(json)
+      }).then(function(response) {
+          console.log(JSON.stringify(json));
+          return response.json();
+      }) .then(data => {
+          //console.log(data);
+          //var obj = JSON.parse(data);
+       }).catch(error => console.log('ERROR'));
+
 }
 

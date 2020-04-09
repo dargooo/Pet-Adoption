@@ -243,6 +243,22 @@ class Reviews(Resource):
         args = parser.parse_args()
         cursor.execute("SELECT * FROM review WHERE reviewee=" + args['reviewee'])
         return sql_2_json(cursor)
+
+    def post(self):
+        # | id | reviewer | reviewee | content | recommand |
+        parser = reqparse.RequestParser()
+        parser.add_argument('reviewer',  type=str,  required=True)
+        parser.add_argument('reviewee',  type=str,  required=True)
+        parser.add_argument('content',   type=str,  required=True)
+        parser.add_argument('recommand', type=bool, required=True)
+        args = parser.parse_args()
+
+        cursor.execute("SELECT MAX(id) FROM review")
+        review_id      = cursor.fetchone()[0] + 1
+        insert_query = "INSERT INTO review VALUES (%s, %s, %s, %s, %s)"
+        query_data = (review_id, args['reviewer'], args['reviewee'], args['content'], args['recommand']) 
+        cursor.execute(insert_query, query_data)
+        cnx.commit()
 ########################### Reviews  ###########################
 
 
