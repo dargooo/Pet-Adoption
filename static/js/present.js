@@ -17,7 +17,8 @@ function getPet(pet_id) {
 			document.getElementById("present-hair").innerHTML		 = obj.hair;
 			document.getElementById("present-weight").innerHTML 	 = obj.weight;
 			document.getElementById("present-personality").innerHTML = obj.personality;
-			document.getElementById("present-img").setAttribute("src", obj.image);
+            if (obj.image == null) { document.getElementById("present-img").setAttribute("src", "/static/img/nophoto-dog.png"); }
+            else                   { document.getElementById("present-img").setAttribute("src", obj.image); }
 		});
 	})
         .catch(error => console.log('ERROR'));
