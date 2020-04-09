@@ -58,6 +58,12 @@ function getUser(username) {
         var count = 0;
         data.forEach(obj => {
             console.log(count);
+			if (count % 4 == 0) {
+                var row = document.createElement("div");
+                row.setAttribute("class", "w3-row-padding w3-padding-8 w3-center");
+                row.setAttribute("id", "row-" + (count/4 | 0));
+                document.getElementById("user-post-container").appendChild(row);
+            }
 
             var div = document.createElement("div");
             div.setAttribute("class", "w3-quarter");
@@ -66,7 +72,7 @@ function getUser(username) {
             img.setAttribute("src", obj.image);
             img.setAttribute("alt", "Sandwich");
             img.setAttribute("style", "width:100%;");
-            if (count > 4) {  img.setAttribute("style", "margin-top:30px;"); }
+            //if (count > 4) {  img.setAttribute("style", "margin-top:30px;"); }
             div.appendChild(img);
 
             var a = document.createElement("a");
@@ -76,8 +82,7 @@ function getUser(username) {
 			var t = document.createTextNode(text);
             a.appendChild(t);
             div.appendChild(a);
-
-            document.getElementById("user-post-container").appendChild(div);
+            document.getElementById("row-" + (count/4 | 0)).appendChild(div);
             count++;
         });
     })
