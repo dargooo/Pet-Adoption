@@ -99,10 +99,8 @@ function getUser(username) {
         data.forEach(obj => {
             console.log(count);
             var p = document.createElement("p");
-            var b = document.createElement("b");
-			b.innerHTML = obj.reviewer;
-            p.appendChild(b);
-			p.innerHTML = obj.content;
+			var b = obj.reviewer;
+			p.innerHTML = b.bold() + ": " + obj.content;
             document.getElementById("user-reviews-list").appendChild(p);
             count++;
         });
