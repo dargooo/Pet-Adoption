@@ -100,16 +100,14 @@ function getUser(username) {
             console.log(count);
             var p = document.createElement("p");
 			var b = obj.reviewer;
+			var face = "&#9826;"; 
+			face.fontsize("6px");
 			if (obj.recommand) { 
-				var face = "&#9826;"; 
-				face.fontcolor("#a5db42");
+				p.innerHTML = face.fontcolor("#a5db42") + " " + b.bold() + ": " + obj.content;
 			}
 			else { 
-				var face = "&#9826;"; 
-				face.fontcolor("#fc682d");
+				p.innerHTML = face.fontcolor("#fc682d") + " " + b.bold() + ": " + obj.content;
 			}
-			face.fontsize("6px");
-			p.innerHTML = face + " " + b.bold() + ": " + obj.content;
             document.getElementById("user-reviews-list").appendChild(p);
             count++;
 			if (obj.recommand) { good++; }
