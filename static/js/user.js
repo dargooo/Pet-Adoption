@@ -101,14 +101,14 @@ function getUser(username) {
             var p = document.createElement("p");
 			var b = obj.reviewer;
 			if (obj.recommand) { 
-				var face = "&#9786;"; 
-				face.fontcolor("#a5db42;");
+				var face = "&#9826;"; 
+				face.fontcolor("#a5db42");
 			}
 			else { 
-				var face = "&#9785;"; 
-				face.fontcolor("#fc682d;");
+				var face = "&#9826;"; 
+				face.fontcolor("#fc682d");
 			}
-			face.fontsize("5.5px");
+			face.fontsize("6px");
 			p.innerHTML = face + " " + b.bold() + ": " + obj.content;
             document.getElementById("user-reviews-list").appendChild(p);
             count++;
