@@ -48,6 +48,10 @@ def main():
 def home():
     return render_template('home.html')
 
+@app.route('/home/<login>')
+def home(login):
+    return render_template('home.html', login=login)
+
 @app.route('/find')
 def find():
     return render_template('find.html')
@@ -75,11 +79,6 @@ def user_page(username):
 @app.route('/login')
 def login():
     return render_template('login.html')
-
-@app.route('/login2')
-def login2():
-    return render_template('login2.html')
-
 
 
 if __name__ == '__main__':
