@@ -76,6 +76,10 @@ def user_page(username):
 def login():
     return render_template('login.html')
 
+@app.route('/login2')
+def login2():
+    return render_template('login2.html')
+
 
 
 if __name__ == '__main__':
