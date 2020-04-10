@@ -73,7 +73,7 @@ def user_page(username):
     return render_template('user.html', username=username)
 
 @app.route('/login')
-def main():
+def login():
     return render_template('login.html')
 
 

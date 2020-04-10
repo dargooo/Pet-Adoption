@@ -5,6 +5,12 @@ bundles = {
     'img': Bundle(
         'img',
         output='gen/img'),
+    'login_css': Bundle(
+        'css/login.css',
+        output='gen/login.css'),
+    'login_js': Bundle(
+        'js/login.js',
+        output='gen/login.js'),
     'post_js': Bundle(
         'js/post.js',
         output='gen/post.js'),
