@@ -97,7 +97,8 @@ function postPet(species_id) {
           console.log(data);
 		  var obj = JSON.parse(data);
 		  var pet_id = obj.id;
-		  window.location = url + "/present-dog/" + pet_id;
+		  if ("{{ login }}" != "") { window.location = url + "/present-dog/" + pet_id + "/login/{{ login }}"; }
+		  else { 					 window.location = url + "/present-dog/" + pet_id; }
        }).catch(error => console.log('ERROR'));
 	
 }
