@@ -62,11 +62,3 @@ function setUp() {
 
 }
 
-if ("{{ login }}" != "") {
-    document.getElementById("mid-post").setAttribute("onclick", "window.location.href='/post/login/{{ login }}'");
-    document.getElementById("mid-find").setAttribute("onclick", "window.location.href='/find/login/{{ login }}'");
-    document.getElementById("mid-find-cat").setAttribute("onclick", "window.location.href='/find-cat/login/{{ login }}'");
-    document.getElementById("mid-find-dog").setAttribute("onclick", "window.location.href='/find-dog/login/{{ login }}'");
-    document.getElementById("mid-post-cat").setAttribute("onclick", "window.location.href='/post-cat/login/{{ login }}'");
-    document.getElementById("mid-post-dog").setAttribute("onclick", "window.location.href='/post-dog/login/{{ login }}'");
-}
