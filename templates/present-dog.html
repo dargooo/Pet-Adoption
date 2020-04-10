@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<title>PRESENT DOG</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Icons font CSS-->
+<link href="/static/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+<link href="/static/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+<!-- Font special for pages-->
+<link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet">
+<!-- Vendor CSS-->
+<link href="/static/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+<link href="/static/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+<link href="/static/css/main.css" rel="stylesheet" media="all">
+<link href="/static/css/main-2.css" rel="stylesheet" media="all">
+<link href="/static/css/present.css" rel="stylesheet" media="all">
+<style>
+	body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+	body, html {
+	  height: 100%;
+	  color: #777;
+	  line-height: 1.8;
+	}
+	.w3-wide {letter-spacing: 10px;}
+	.w3-hover-opacity {cursor: pointer;}
+	.cute_font {
+		font-family: "Comic Sans MS", "Comic Sans", cursive;
+		font-size: 40px;
+		color: white;
+	}
+	.cute_font_sm {
+        font-family: "Comic Sans MS", "Comic Sans", cursive;
+        font-size: 20px;
+        color: white;
+    }
+</style>
+<body style="background-color:rgb(230,249,255);">
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+    <div class="w3-bar" id="myNavbar">
+        <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+            <i class="fa fa-bars"></i>
+        </a>
+        <a href="/home" class="w3-bar-item w3-button"><i class="fa fa-th-large"></i> HOME</a>
+        <a href="/post" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-file-o"></i> POST</a>
+        <a href="/find" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-link"></i> FIND</a>
+        <a href="/account" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-camera"></i> ACCOUNT</a>
+        <a href="/login" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red" id="login"><i class="fa fa-user"></i> LOG IN  </a>
+    </div>
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+        <a href="/home" class="w3-bar-item w3-button" onclick="toggleFunction()">HOME</a>
+        <a href="/post" class="w3-bar-item w3-button" onclick="toggleFunction()">POST</a>
+        <a href="/find" class="w3-bar-item w3-button" onclick="toggleFunction()">FIND</a>
+        <a href="/account" class="w3-bar-item w3-button" onclick="toggleFunction()">ACCOUNT</a>
+        <a href="#" class="w3-bar-item w3-button">LOG IN</a>
+    </div>
+</div>
+
+<!--div class="container-contact100"-->
+<div class="container outline">
+    <div class="content-table">
+        <div class="content-row">
+
+            <div class="column wrap-img">
+            <span class="cute_font contact100-form-title" style="text-align: center;" id="present-title"></span>
+            <img id="present-img" style="margin-top: 5px;"></img>
+            <span class="cute_font_sm contact100-form-title" id="present-description" style="text-align: center; margin-top: 30px; padding-bottom: 20px;"></span>
+            <span class="cute_font_sm contact100-form-title" style="text-align: center; padding-bottom: 20px;">
+				Post By:
+				<a style="color:rgb(0, 119, 255);" id="present-postby"></a>
+			</span>
+            <span class="cute_font_sm contact100-form-title" id="present-posttime" style="text-align: center; padding-bottom: 0;"></span>
+            </div>
+
+            <div class="column sidebar wrap-form">
+            <span class="cute_font contact100-form-title">About Me</span>
+                <div class="col-2">
+
+                    <div class="present-group" style="margin-bottom: 25px;">
+                        <label class="label-light">Name</label>
+						<label class="label-heavy" id="present-name">Simba</label>
+                    </div>
+
+                    <div class="present-group" style="margin-bottom: 25px;">
+                        <label class="label-light">Breed</label>
+                        <label class="label-heavy" id="present-breed">Bull</label>
+                    </div>
+
+                    <div class="present-group" style="margin-bottom: 25px;">
+                        <label class="label-light">gender</label>
+                        <label class="label-heavy" id="present-gender">M</label>
+                    </div>
+
+                    <div class="present-group" style="margin-bottom: 25px;">
+                        <label class="label-light">Age</label>
+                        <label class="label-heavy" id="present-age">12</label>
+                    </div>
+
+                    <div class="present-group" style="margin-bottom: 25px;">
+                        <label class="label-light">Color</label>
+                        <label class="label-heavy" id="present-color">Orange</label>
+                    </div>
+
+                    <div class="present-group" style="margin-bottom: 25px;">
+                        <label class="label-light">Hair</label>
+                        <label class="label-heavy" id="present-hair">long</label>
+                    </div>
+
+
+                    <div class="present-group" style="margin-bottom: 25px;">
+                        <label class="label-light">Weight</label>
+                        <label class="label-heavy" id="present-weight">6.8</label>
+                    </div>
+
+                    <div class="present-group" style="margin-bottom: 25px;">
+                        <label class="label-light">Personality</label>
+                        <label class="label-heavy" id="present-personality">Sweet</label>
+                    </div>
+                </div>
+            </div>
+            <!--/div-->
+        </div>
+    </div>
+</div>
+
+<!-- Vendor JS-->
+<script src="/static/vendor/jquery/jquery.min.js"></script>
+<script src="/static/vendor/select2/select2.min.js"></script>
+<script src="/static/vendor/jquery-validate/jquery.validate.min.js"></script>
+<script src="/static/vendor/bootstrap-wizard/bootstrap.min.js"></script>
+<script src="/static/vendor/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+<script src="/static/vendor/datepicker/moment.min.js"></script>
+<script src="/static/js/global.js"></script>
+<script src='/static/js/usage.js' language='javascript'></script>
+<script src='/static/js/present.js' language='javascript'></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script> if ("{{ login }}" != "") { document.getElementById("login").innerHTML="{{ login }}"; } </script>
+
+<script>getPet({{ pet_id }});</script>
+
+
+</body>
+</html>
+

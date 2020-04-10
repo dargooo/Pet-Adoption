@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<title>FIND DOG</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Icons font CSS-->
+<link href="/static/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+<link href="/static/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+<!-- Font special for pages-->
+<link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<!-- Vendor CSS-->
+<link href="/static/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+<link href="/static/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+<!-- Main CSS-->
+<link href="/static/css/main.css" rel="stylesheet" media="all">
+<style>
+	body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+	body, html {
+	  height: 100%;
+	  color: #777;
+	  line-height: 1.8;
+	}
+</style>
+
+<body>
+<!-- ######################################## TOP BAR ########################################### -->
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+    <div class="w3-bar" id="myNavbar">
+        <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+            <i class="fa fa-bars"></i>
+        </a>
+        <a href="/home" class="w3-bar-item w3-button"><i class="fa fa-th-large"></i> HOME</a>
+        <a href="/post" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-file-o"></i> POST</a>
+        <a href="/find" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-link"></i> FIND</a>
+        <a href="/account" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-camera"></i> ACCOUNT</a>
+        <a href="/login" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red" id="login"><i class="fa fa-user"></i> LOG IN  </a>
+    </div>
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+        <a href="/home" class="w3-bar-item w3-button" onclick="toggleFunction()">HOME</a>
+        <a href="/post" class="w3-bar-item w3-button" onclick="toggleFunction()">POST</a>
+        <a href="/find" class="w3-bar-item w3-button" onclick="toggleFunction()">FIND</a>
+        <a href="/account" class="w3-bar-item w3-button" onclick="toggleFunction()">ACCOUNT</a>
+        <a href="#" class="w3-bar-item w3-button">LOG IN</a>
+    </div>
+</div>
+
+<div class="page-wrapper p-t-100 p-b-120" style="background-color:rgb(230,249,255);">
+
+<!-- ########################################## FILTER BAR ########################################## -->
+    <nav class="w3-sidebar-r card-4 w3-collapse w3-top w3-large" style="z-index:3;width:325px;font-weight:bold;" id="mySidebar">
+		<img src="static/img/dog-1.png"></img>
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab1">
+                <form method="POST" action="#">
+                    <div class="col-2">
+
+                        <div class="input-group">
+                            <label class="label">zipcode</label>
+                            <input class="input--style-1" type="text" placeholder="00000" id="zipcode">
+                        </div>
+						
+						<div class="input-group">
+                            <label class="label">around</label>
+                            <input class="input--style-1" type="text" placeholder="100" id="miles">
+                            <label class="label">miles</label>
+                        </div>
+
+                        <div class="input-group-select">
+                            <label class="label">breed</label>
+                            <div class="input-group-icon rs-select2 js-select-simple select--no-search">
+                                <select name="breed" id="breed">
+                                    <option></option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+                        <div class="input-group-select">
+                            <label class="label">gender</label>
+                            <div class="input-group-icon rs-select2 js-select-simple select--no-search">
+                                <div class="select-dropdown">
+                                    <select name="gender" id="gender">
+                                        <option></option>
+                                        <option>M</option>
+                                        <option>F</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label class="label">age</label>
+                            <input class="input--style-1" type="text" name="age" placeholder="MIN" id="minAge">
+                            <label class="label">-</label>
+                            <input class="input--style-1" type="text" name="age" placeholder="MAX" id="maxAge">
+                        </div>
+
+                        <div class="input-group-select">
+                            <label class="label">Color</label>
+                            <div class="input-group-icon rs-select2 js-select-simple select--no-search">
+                                <select name="color" id="color">
+                                    <option></option>
+                                    <option>white</option>
+                                    <option>brown</option>
+                                    <option>black</option>
+                                    <option>orange</option>
+                                    <option>gray</option>
+                                    <option>mix</option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+
+                        <div class="input-group-select">
+                            <label class="label">Hair</label>
+                            <div class="input-group-icon rs-select2 js-select-simple select--no-search">
+                                <select name="hair" id="hair">
+                                    <option></option>
+                                    <option>long</option>
+                                    <option>medium</option>
+                                    <option>short</option>
+                                    <option>none</option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+
+                        <div class="input-group-select">
+                            <label class="label">Personalities</label>
+                            <div class="input-group-icon rs-select2 js-select-simple select--no-search">
+                                <select name="personality" id="personality" multiple>
+                                    <option></option>
+                                    <option>sweet</option>
+                                    <option>stubborn</option>
+                                    <option>proud</option>
+                                    <option>quite</option>
+                                    <option>cute</option>
+                                    <option>royal</option>
+                                    <option>independent</option>
+                                    <option>happy</option>
+                                    <option>shy</option>
+                                    <option>adaptable</option>
+                                    <option>intelligent</option>
+                                    <option>anxious</option>
+                                    <option>brave</option>
+                                    <option>crazy</option>
+                                    <option>wild</option>
+                                    <option>needy</option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+                <button id="btn-search-dog" class="btn-submit" type="submit">search</button>
+            </div>
+        </div>
+    </nav>
+
+<!-- ########################################## MAIN GRID ########################################## -->
+    <div class="w3-main" style="margin-left:40px;margin-right:340px" id="display-grid">
+        <!-- Modal for full size images on click-->
+        <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
+            <span class="w3-button w3-black w3-xxlarge w3-display-topright">×</span>
+            <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+                <img id="img01" class="w3-image">
+                <p id="caption"></p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ########################################## SCRIPTS ########################################## -->
+<!-- Vendor JS-->
+<script src="/static/vendor/jquery/jquery.min.js"></script>
+<script src="/static/vendor/select2/select2.min.js"></script>
+<script src="/static/vendor/jquery-validate/jquery.validate.min.js"></script>
+<script src="/static/vendor/bootstrap-wizard/bootstrap.min.js"></script>
+<script src="/static/vendor/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+<script src="/static/vendor/datepicker/moment.min.js"></script>
+<script src="/static/js/global.js"></script>
+<script src="/static/js/usage.js"></script>
+<script src='/static/js/search.js' language='javascript'></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script> if ("{{ login }}" != "") { document.getElementById("login").innerHTML="{{ login }}"; } </script>
+
+
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<title>POST DOG</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Icons font CSS-->
+<link href="/static/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+<link href="/static/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+<!-- Font special for pages-->
+<link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet">
+<!-- Vendor CSS-->
+<link href="/static/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+<link href="/static/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+<link href="/static/css/main.css" rel="stylesheet" media="all">
+<link href="/static/css/main-2.css" rel="stylesheet" media="all">
+<style>
+	body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+	body, html {
+	  height: 100%;
+	  color: #777;
+	  line-height: 1.8;
+	}
+	.w3-wide {letter-spacing: 10px;}
+	.w3-hover-opacity {cursor: pointer;}
+	.cute_font {
+		font-family: "Comic Sans MS", "Comic Sans", cursive;
+		font-size: 40px;
+		color: white;
+	}
+
+</style>
+<body style="background-color:rgb(230,249,255);">
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+    <div class="w3-bar" id="myNavbar">
+        <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+            <i class="fa fa-bars"></i>
+        </a>
+        <a href="/home" class="w3-bar-item w3-button"><i class="fa fa-th-large"></i> HOME</a>
+        <a href="/post" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-file-o"></i> POST</a>
+        <a href="/find" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-link"></i> FIND</a>
+        <a href="/account" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-camera"></i> ACCOUNT</a>
+        <a href="/login" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red" id="login"><i class="fa fa-user"></i> LOG IN  </a>
+    </div>
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+        <a href="/home" class="w3-bar-item w3-button" onclick="toggleFunction()">HOME</a>
+        <a href="/post" class="w3-bar-item w3-button" onclick="toggleFunction()">POST</a>
+        <a href="/find" class="w3-bar-item w3-button" onclick="toggleFunction()">FIND</a>
+        <a href="/account" class="w3-bar-item w3-button" onclick="toggleFunction()">ACCOUNT</a>
+        <a href="#" class="w3-bar-item w3-button">LOG IN</a>
+    </div>
+</div>
+
+<!-- POST & ADOPT in the middle -->
+
+<img src="static/img/dog-post.png" class="center"></img>
+
+<div class="container-contact100">
+    <div class="wrap-contact100">
+        <form method="POST" action="#">
+
+            <span class="cute_font contact100-form-title">
+                Post a dog now !
+            </span>
+
+            <div class="col-2">
+
+                <div class="input-group" style="margin-bottom: 25px;">
+                    <label class="label">Name</label>
+                    <input class="input--style-1" type="text" id="post-name">
+                </div>
+
+                <div class="input-group-select" style="margin-bottom: 25px;">
+                    <label class="label">breed</label>
+                    <div class="input-group-icon rs-select2 js-select-simple select--no-search">
+                        <select name="breed" id="post-breed">
+                            <option></option>
+                        </select>
+                        <div class="select-dropdown"></div>
+                    </div>
+                </div>
+
+                <div class="input-group-select" style="margin-bottom: 25px;">
+                    <label class="label">gender</label>
+                    <div class="input-group-icon rs-select2 js-select-simple select--no-search">
+                        <div class="select-dropdown">
+                            <select name="gender" id="post-gender">
+                                <option></option>
+                                <option>M</option>
+                                <option>F</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group" style="margin-bottom: 25px;">
+                    <label class="label">Age</label>
+                    <input class="input--style-1" type="text" id="post-age">
+                </div>
+
+                <div class="input-group-select" style="margin-bottom: 25px;">
+                    <label class="label">Color</label>
+                    <div class="input-group-icon rs-select2 js-select-simple select--no-search">
+                        <select name="color" id="post-color">
+                            <option></option>
+                            <option>white</option>
+                            <option>brown</option>
+                            <option>black</option>
+                            <option>orange</option>
+                            <option>gray</option>
+                            <option>mix</option>
+                        </select>
+                        <div class="select-dropdown"></div>
+                    </div>
+                </div>
+
+                <div class="input-group-select" style="margin-bottom: 25px;">
+                    <label class="label">Hair</label>
+                    <div class="input-group-icon rs-select2 js-select-simple select--no-search">
+                        <select name="hair" id="post-hair">
+                            <option></option>
+                            <option>long</option>
+                            <option>medium</option>
+                            <option>short</option>
+                            <option>none</option>
+                        </select>
+                        <div class="select-dropdown"></div>
+                    </div>
+                </div>
+
+
+                <div class="input-group" style="margin-bottom: 25px;">
+                    <label class="label">Weight</label>
+                    <input class="input--style-1" type="text" id="post-weight">
+                    <label class="label">lbs</label>
+                </div>
+
+                <div class="input-group-select" style="margin-bottom: 25px;">
+                    <label class="label">Personality</label>
+                    <div class="input-group-icon rs-select2 js-select-simple select--no-search">
+                        <select name="personality" id="post-personality">
+                            <option></option>
+                            <option>sweet</option>
+                            <option>stubborn</option>
+                            <option>proud</option>
+                            <option>quite</option>
+                            <option>cute</option>
+                            <option>royal</option>
+                            <option>independent</option>
+                            <option>happy</option>
+                            <option>shy</option>
+                            <option>adaptable</option>
+                            <option>intelligent</option>
+                            <option>anxious</option>
+                            <option>brave</option>
+                            <option>crazy</option>
+                            <option>wild</option>
+                            <option>needy</option>
+                        </select>
+                        <div class="select-dropdown"></div>
+                    </div>
+                </div>
+            </div>
+
+                <div class="input-group" style="margin-bottom: 25px;">
+                    <label class="label">Title</label>
+                    <input class="input--style-1" type="text" placeholder="Think out a title for your post!" id="post-title">
+                </div>
+
+                <div class="input-group" style="margin-bottom: 25px;">
+                    <label class="label" style="margin-top: -108px;">Description</label>
+                    <textarea class="input--style-2" type="text" placeholder="Anything else to share about the pet?" id="post-description"></textarea>
+                </div>
+
+                <div class=" btn-submit input-group-img">
+                    <!--input id="upload" type="file" accept="image/*" onchange="postPet(0);" class="form-control border-0"-->
+                    <input id="upload" type="file" accept="image/*" class="form-control border-0">
+					<label id="upload-label" for="upload" class="label">Upload image</label>
+                </div>
+                <div class="image-area mt-4"><img id="post-image" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
+
+
+        </form>
+        <button id="btn-post-dog" class="btn-submit" type="submit" style="margin-top: 50px; margin-bottom: 30px;">Post</button>
+    </div>
+</div>
+
+
+<!-- Vendor JS-->
+<script src="/static/vendor/jquery/jquery.min.js"></script>
+<script src="/static/vendor/select2/select2.min.js"></script>
+<script src="/static/vendor/jquery-validate/jquery.validate.min.js"></script>
+<script src="/static/vendor/bootstrap-wizard/bootstrap.min.js"></script>
+<script src="/static/vendor/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+<script src="/static/vendor/datepicker/moment.min.js"></script>
+<script src="/static/js/global.js"></script>
+<script src='/static/js/usage.js' language='javascript'></script>
+<script src='/static/js/post.js' language='javascript'></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script> if ("{{ login }}" != "") { document.getElementById("login").innerHTML="{{ login }}"; } </script>
+
+
+</body>
+</html>
+

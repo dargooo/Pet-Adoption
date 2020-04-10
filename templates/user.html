@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<title>User</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="/static/css/user.css" rel="stylesheet" media="all">
+<style>
+	body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+	.w3-row-padding img {margin-bottom: 12px}
+	.w3-sidebar {width: 120px;background: #222;}
+	#main {margin-left: 120px}
+    .cute_font_sm {
+        font-family: "Comic Sans MS", "Comic Sans", cursive;
+        font-size: 20px;
+        color: white;
+    }
+</style>
+
+<body style="background-color: rgb(230,249,255);">
+
+<!-- ############################# Navbar (sit on top) ############################# -->
+<div class="w3-top"  style="color:grey;">
+    <div class="w3-bar" id="myNavbar">
+        <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);"
+           onclick="toggleFunction()" title="Toggle Navigation Menu">
+            <i class="fa fa-bars"></i>
+        </a>
+        <a href="/home" class="w3-bar-item w3-button"><i class="fa fa-th-large"></i> HOME</a>
+        <a href="/post" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-file-o"></i> POST</a>
+        <a href="/find" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-link"></i> FIND</a>
+        <a href="/account" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-camera"></i> ACCOUNT</a>
+        <a href="/login" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red" id="login"><i class="fa fa-user"></i> LOG IN  </a>
+    </div>
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+        <a href="/home" class="w3-bar-item w3-button" onclick="toggleFunction()">HOME</a>
+        <a href="/post" class="w3-bar-item w3-button" onclick="toggleFunction()">POST</a>
+        <a href="/find" class="w3-bar-item w3-button" onclick="toggleFunction()">FIND</a>
+        <a href="/account" class="w3-bar-item w3-button" onclick="toggleFunction()">ACCOUNT</a>
+        <a href="#" class="w3-bar-item w3-button">LOG IN</a>
+    </div>
+</div>
+
+<!-- ############################# Icon Bar (Sidebar - hidden on small screens) ############################# -->
+<nav class="user-sidebar w3-bar-block w3-small w3-hide-small w3-center" style="color:rgb(117, 214, 255); ">
+    <!-- Avatar image in top left corner -->
+    <a href="#posts" class="w3-bar-item w3-button w3-padding-large w3-hover-blue-2">
+        <i class="fa fa-eye w3-xxlarge"></i>
+        <p>POSTS</p>
+    </a>
+    <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hover-blue-2">
+        <i class="fa fa-envelope w3-xxlarge"></i>
+        <p>CONTACT</p>
+    </a>
+	<a href="#review" class="w3-bar-item w3-button w3-padding-large w3-hover-blue-2">
+        <i class="fa fa-user w3-xxlarge"></i>
+        <p>REVIEW</p>
+    </a>
+
+</nav>
+
+<!-- Navbar on small screens (Hidden on medium and large screens) -->
+<div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+    <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
+        <a href="#" class="w3-bar-item w3-button" style="width:25% !important">LIST</a>
+        <a href="#review" class="w3-bar-item w3-button" style="width:25% !important">REVIEW</a>
+        <a href="#info" class="w3-bar-item w3-button" style="width:25% !important">INFO</a>
+    </div>
+</div>
+
+<!-- ############################# Page Content ############################# -->
+<div class="w3-padding-small cute_font_sm" style="border-radius: 10px; margin-top:100px; margin-left:200px; margin-right:200px; background-color: rgb(117, 214, 255);" id="main">
+
+    <!-- Header -->
+    <header class="w3-container w3-center" style="margin:20px 32px;" id="header">
+        <p style="text-align:right; margin:0px; margin-bottom:20px;" id="user-username">username</p>
+		<div class="w3-row w3-center w3-section w3-white" style="border-radius: 10px; margin:0;">
+            <div class="w3-quarter w3-section" style="color:rgb(117, 214, 255);">
+                <span class="w3-xlarge" id="user-c-posted">11</span><br>
+                Post Pets
+            </div>
+            <div class="w3-quarter w3-section" style="color:rgb(117, 214, 255);">
+                <span class="w3-xlarge" id="user-c-adopted">5</span><br>
+                Adopted Pets
+            </div>
+			<div class="w3-quarter w3-section" style="color:rgb(117, 214, 255);">
+                <span class="w3-xlarge" id="user-c-reviews">9</span><br>
+                Reviews
+            </div>
+
+            <div class="w3-quarter w3-section" style="color:rgb(117, 214, 255);">
+                <span class="w3-xlarge" id="user-c-reviews-good">7</span><br>
+                Happy Reviews
+            </div>
+        </div>
+    </header>
+
+	<!-- Posts Section -->
+    <div class="w3-content w3-justify w3-padding-32" id="posts">
+    	<hr class="horz-line" style="margin-bottom: 10px;" class="w3-opacity">
+		<p style="font-size:30px; margin-bottom: 0px; margin-top:0;"><b>My Posts</b></p>
+    	<hr class="horz-line" style="margin-top: 10px; margin-bottom: 20px;" class="w3-opacity">
+
+    	<div class="w3-content w3-justify w3-padding-16" id="user-post-container">
+    	</div>
+    </div>
+	
+    <!-- Contact Section -->
+    <div class="w3-padding-32 w3-justify w3-content" id="contact">
+    	<hr class="horz-line" style="margin-bottom: 10px;" class="w3-opacity">
+		<p style="font-size:30px; margin-bottom: 0px; margin-top:0;"><b>Contact Me</b></p>
+        <hr class="horz-line" style="margin-top: 10px;" class="w3-opacity">
+
+        <div class="w3-section">
+            <p class="cute_font_sm contact100-form-title" style="padding-bottom: 0px;">
+                <i class="fa fa-phone fa-fw w3-text-white w3-xxlarge w3-margin-right"></i>
+				<label id="user-name">First Last</label>
+            </p>
+            <p class="cute_font_sm contact100-form-title" style="padding-bottom: 0px;">
+                <i class="fa fa-map-marker fa-fw w3-text-white w3-xxlarge w3-margin-right"></i>
+                <label id="user-addr">Chicago, US 62100</label>
+            </p>
+            <p class="cute_font_sm contact100-form-title" style="padding-bottom: 0px;">
+                <i class="fa fa-envelope fa-fw w3-text-white w3-xxlarge w3-margin-right"></i>
+                <label id="user-email">mail@mail.com</label>
+            </p>
+        </div>
+    </div>
+
+    <!-- Review Section - 1 -->
+    <div class="w3-content w3-justify w3-padding-32" id="review">
+        <hr class="horz-line" style="margin-bottom: 10px;" class="w3-opacity">
+		<p style="font-size:30px; margin-bottom: 0px; margin-top:0;"><b>Review Me</b></p>
+        <hr class="horz-line" style="margin-top: 10px; margin-bottom: 35px;" class="w3-opacity">
+
+		<div class="input-group" style="margin-bottom: 25px;">
+            <textarea class="comment" type="text" placeholder="Any comments about me?" id="user-review-content"></textarea>
+        </div>
+
+		<div style="margin-top:0px; margin-bottom: 30px; text-align:center;">
+		<label class="switch"><input type="checkbox" id="togBtn">
+			<div class="slider round">
+				<span class="on">Recommand</span>
+				<span class="off">Not Recommand</span>
+			</div>
+		</label>
+		<br>
+		<button class="btn-submit" type="submit" style="margin-top:20px;" id="btn-submit">Submit</button>
+        </div>
+    </div>
+
+    <!-- Review Section - 2 -->
+    <div class="w3-content w3-justify w3-padding-32">
+        <hr class="horz-line" style="margin-bottom: 10px;" class="w3-opacity">
+        <p style="font-size:30px; margin-bottom: 0px; margin-top:0;"><b>My Reviews</b></p>
+        <hr class="horz-line" style="margin-top: 10px; margin-bottom: 35px;" class="w3-opacity">
+
+        <div class="" style="margin-bottom:0px; border:white 1px solid">
+            <div class="w3-white" style="height:28px;width:80%" id="user-score"></div>
+        </div>
+        <p style="margin-bottom: 10px; margin-top:5px; text-align:right;">100%</p>
+		<div id="user-reviews-list">
+        </div>
+    </div>
+
+	<br>
+	<br>
+</div>
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+<script src='/static/js/user.js' language='javascript'></script>
+<script> if ("{{ login }}" != "") { document.getElementById("login").innerHTML="{{ login }}"; } </script>
+
+<script>getUser('{{ username }}');</script>
+<script>document.getElementById('btn-submit').addEventListener('click', function(){ postReview('{{ username }}'); }, false);</script>
+
+</body>
+</html>
+

@@ -4,15 +4,19 @@ from datetime import datetime
 import mysql.connector
 import json
 import requests
+import werkzeug
+import os, os.path
 
 app = Flask(__name__)
 api = Api(app)
 try:
-    cnx = mysql.connector.connect(user='root', password='Ms41149.',
-#    cnx = mysql.connector.connect(user='coasttocoast_yijun', password='sql41149.',
+#    cnx = mysql.connector.connect(user='root', password='Ms41149.',
+    cnx = mysql.connector.connect(user='coasttocoast_yijun', password='sql41149.',
                                   host='localhost', database='coasttocoast_petadoptionapp')
     cursor = cnx.cursor()
 except: print("Log in mysql db failed!")
+
+imgPath = ''
 
 # convert mysql result to json
 def sql_2_json(cursor):
@@ -43,8 +47,8 @@ class Pet(Resource):
         parser.add_argument('miles',       type=int)
         args = parser.parse_args()
         print(args)
-        query = "SELECT * FROM pet WHERE breed_id IN (SELECT id FROM breed WHERE species_id = %s)" % str(args['species_id']);
-        if args['id']:          query = query + " AND id = " + str(args['id'])
+        query = "SELECT *, pet.name AS name, breed.name AS breed FROM breed, pet WHERE breed.id = pet.breed_id AND breed_id IN (SELECT id FROM breed WHERE species_id = %s)" % str(args['species_id']);
+        if args['id']:          query = query + " AND pet.id = " + str(args['id'])
         if args['min_age']:     query = query + " AND age >= " + str(args['min_age'])
         if args['max_age']:     query = query + " AND age <= " + str(args['max_age'])
         if args['gender']:      query = query + " AND gender = \'" + args['gender'] + "\'"
@@ -73,9 +77,8 @@ class Pet(Resource):
         parser.add_argument('weight',      type=float, required=True)
         parser.add_argument('personality', type=str)
         parser.add_argument('color',       type=str,   required=True)
-        parser.add_argument('image',       type=str)
         parser.add_argument('hair',        type=str,   required=True)
-        parser.add_argument('breed_id',    type=int,   required=True)
+        parser.add_argument('breed',    type=str,   required=True)
         # | pet_id | username | title | open_time | close_time | description |
         parser.add_argument('username',    type=str,   required=True)
         parser.add_argument('title',       type=str,   required=True)
@@ -85,9 +88,11 @@ class Pet(Resource):
 
         # insert into pet table
         cursor.execute("SELECT MAX(id) FROM pet")
-        pet_id      = cursor.fetchone()[0] + 1
+        pet_id = cursor.fetchone()[0] + 1
+        cursor.execute("SELECT id FROM breed WHERE name = \"%s\"" % args['breed'])
+        breed_id = cursor.fetchone()[0] 
         insert_query = "INSERT INTO pet VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-        query_data = (pet_id, args['name'], args['age'], args['gender'], args['weight'], 'adoptable', args['personality'], args['color'], args['image'], args['hair'], args['breed_id'], None, None)
+        query_data = (pet_id, args['name'], args['age'], args['gender'], args['weight'], 'adoptable', args['personality'], args['color'], "/" + imgPath, args['hair'], breed_id, None, None)
         cursor.execute(insert_query, query_data)
 
         # insert into posts table
@@ -96,7 +101,26 @@ class Pet(Resource):
         query_data = (pet_id, args['username'], args['title'], open_time, None, args['description'])
         cursor.execute(insert_query, query_data)
         cnx.commit()
+
+        # return pet_id
+        r = {}
+        r["id"] = pet_id
+        return json.dumps(r, ensure_ascii=False)
 ###########################  Pet  ###########################
+
+###########################  Image  ###########################
+class Image(Resource):
+    def post(self):
+        global imgPath
+        parser = reqparse.RequestParser()
+        parser.add_argument('image', type=werkzeug.datastructures.FileStorage, location='files')
+        args = parser.parse_args()
+        imgFile = args['image']
+        DIR = 'static/img/uploads'
+        count = len([name for name in os.listdir(DIR) if os.path.isfile(os.path.join(DIR, name))])
+        imgPath = DIR + "/img-%s.jpg" % str(count+1)
+        imgFile.save(imgPath)
+###########################  Image  ###########################
 
 ###########################  PetByUser  ###########################
 class PetByUser(Resource):
@@ -179,9 +203,13 @@ class Status(Resource):
 class CountPet(Resource):
     def get(self):
         parser = reqparse.RequestParser()
-        parser.add_argument('status', type=str, required=True)
+        parser.add_argument('status',   type=str)
+        parser.add_argument('username', type=str)
         args = parser.parse_args()
-        cursor.execute("SELECT COUNT(*) AS count FROM pet WHERE adopt_status = " + args['status'])
+        query = "SELECT COUNT(*) AS count FROM pet, posts WHERE pet.id = posts.pet_id"
+        if args['status']:      query = query + " AND adopt_status = " + args['status']
+        if args['username']:    query = query + " AND username = " + args['username']
+        cursor.execute(query)
         return sql_2_json(cursor)
 ########################### CountPet ###########################
 
@@ -194,6 +222,45 @@ class CountUser(Resource):
         cursor.execute("SELECT COUNT(*) AS count FROM user WHERE is_person = " + str(args['is_person']))
         return sql_2_json(cursor)
 ########################### CountPet ###########################
+
+########################### Posts ###########################
+class Posts(Resource):
+    def get(self):
+        # | pet_id | username | title | open_time | close_time | description |
+        parser = reqparse.RequestParser()
+        parser.add_argument('pet_id', type=int, required=True)
+        args = parser.parse_args()
+        cursor.execute("SELECT * FROM posts WHERE pet_id=" + str(args['pet_id']))
+        return sql_2_json(cursor)
+########################### Posts  ###########################
+
+########################### Reviews ###########################
+class Reviews(Resource):
+    def get(self):
+        # | id | reviewer | reviewee | content | recommand |
+        parser = reqparse.RequestParser()
+        parser.add_argument('reviewee', type=str, required=True)
+        args = parser.parse_args()
+        cursor.execute("SELECT * FROM review WHERE reviewee=" + args['reviewee'])
+        return sql_2_json(cursor)
+
+    def post(self):
+        # | id | reviewer | reviewee | content | recommand |
+        parser = reqparse.RequestParser()
+        parser.add_argument('reviewer',  type=str,  required=True)
+        parser.add_argument('reviewee',  type=str,  required=True)
+        parser.add_argument('content',   type=str,  required=True)
+        parser.add_argument('recommand', type=bool, required=True)
+        args = parser.parse_args()
+
+        cursor.execute("SELECT MAX(id) FROM review")
+        review_id      = cursor.fetchone()[0] + 1
+        insert_query = "INSERT INTO review VALUES (%s, %s, %s, %s, %s)"
+        query_data = (review_id, args['reviewer'], args['reviewee'], args['content'], args['recommand']) 
+        cursor.execute(insert_query, query_data)
+        cnx.commit()
+########################### Reviews  ###########################
+
 
 if __name__ == '__main__':
     app.run(debug=True)
