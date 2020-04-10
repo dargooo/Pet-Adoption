@@ -123,12 +123,10 @@ function getUser(username) {
 }
 
 
-document.getElementById('btn-submit').addEventListener('click', function(){ postReview(); }, false);
 
  /* post review */
-function postReview() {
+function postReview(reviewee) {
     var reviewer  = "sb1";
-    var reviewee  = "sb2";
     var content   = document.getElementById("user-review-content").value;
     var recommand = document.getElementById("togBtn").value;
 

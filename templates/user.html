@@ -180,6 +180,7 @@
 <script src='/static/js/user.js' language='javascript'></script>
 
 <script>getUser('{{ username }}');</script>
+<script>document.getElementById('btn-submit').addEventListener('click', function(){ postReview('{{ username }}'); }, false);</script>
 
 </body>
 </html>

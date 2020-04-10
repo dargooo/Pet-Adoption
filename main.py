@@ -72,6 +72,10 @@ def present_dog(pet_id):
 def user_page(username):
     return render_template('user.html', username=username)
 
+@app.route('/login')
+def main():
+    return render_template('login.html')
+
 
 
 if __name__ == '__main__':
