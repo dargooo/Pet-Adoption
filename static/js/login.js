@@ -13,8 +13,7 @@ function login() {
         console.log(data);
         data.forEach(obj => {
 			if (obj.password == password) {
-				alert("success!");
-			// login success
+				window.location = url + "/home/" + username;
 			}
 			else { alert("Username or password wrong !"); }
         });

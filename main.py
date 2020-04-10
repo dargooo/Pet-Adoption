@@ -49,7 +49,7 @@ def home():
     return render_template('home.html')
 
 @app.route('/home/<login>')
-def home(login):
+def home2(login):
     return render_template('home.html', login=login)
 
 @app.route('/find')
