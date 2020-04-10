@@ -84,27 +84,27 @@ def home2(login):
     return render_template('home.html', login=login)
 
 @app.route('/find/login/<login>')
-def find2():
+def find2(login):
     return render_template('find.html', login=login)
 
 @app.route('/find-dog/login/<login>')
-def find_dog2():
+def find_dog2(login):
     return render_template('find-dog.html', login=login)
 
 @app.route('/post/login/<login>')
-def post2():
+def post2(login):
     return render_template('post.html', login=login)
 
 @app.route('/post-dog/login/<login>')
-def post_dog2():
+def post_dog2(login):
     return render_template('post-dog.html', login=login)
 
 @app.route('/present-dog/<int:pet_id>/login/<login>')
-def present_dog2(pet_id):
+def present_dog2(pet_id, login):
     return render_template('present-dog.html', pet_id=pet_id, login=login)
 
 @app.route('/userpage/<username>/login/<login>')
-def user_page2(username):
+def user_page2(username, login):
     return render_template('user.html', username=username, login=login)
 
 if __name__ == '__main__':
