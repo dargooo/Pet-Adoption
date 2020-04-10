@@ -13,14 +13,12 @@ function login() {
         console.log(data);
         data.forEach(obj => {
 			if (obj.password == password) {
-				window.location = url + "/home/" + username;
+				window.location = site + "/home/login/" + username;
 			}
 			else { alert("Username or password wrong !"); }
         });
     })
     .catch(error => console.log('ERROR'));
-
-	alert("Username does not exist !");
 }
 
 document.getElementById('btn-login').addEventListener('click', function(){ login(); }, false);

@@ -48,10 +48,6 @@ def main():
 def home():
     return render_template('home.html')
 
-@app.route('/home/<login>')
-def home2(login):
-    return render_template('home.html', login=login)
-
 @app.route('/find')
 def find():
     return render_template('find.html')
@@ -80,6 +76,36 @@ def user_page(username):
 def login():
     return render_template('login.html')
 
+
+########## user logged in ###########
+
+@app.route('/home/login/<login>')
+def home2(login):
+    return render_template('home.html', login=login)
+
+@app.route('/find/login/<login>')
+def find2():
+    return render_template('find.html', login=login)
+
+@app.route('/find-dog/login/<login>')
+def find_dog2():
+    return render_template('find-dog.html', login=login)
+
+@app.route('/post/login/<login>')
+def post2():
+    return render_template('post.html', login=login)
+
+@app.route('/post-dog/login/<login>')
+def post_dog2():
+    return render_template('post-dog.html', login=login)
+
+@app.route('/present-dog/<int:pet_id>/login/<login>')
+def present_dog2(pet_id):
+    return render_template('present-dog.html', pet_id=pet_id, login=login)
+
+@app.route('/userpage/<username>/login/<login>')
+def user_page2(username):
+    return render_template('user.html', username=username, login=login)
 
 if __name__ == '__main__':
     app.run()
