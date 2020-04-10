@@ -5,6 +5,9 @@ bundles = {
     'img': Bundle(
         'img',
         output='gen/img'),
+    'vendor': Bundle(
+        'vendor',
+        output='gen/vendor'),
     'css': Bundle(
         'css',
         output='gen/css'),
