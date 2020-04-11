@@ -137,7 +137,7 @@
 
                         <div class="input-group-select">
                             <label class="label">Personalities</label>
-                            <select name="personality" id="personality" multiple class="selections">
+                            <select name="personality" id="personality" class="selections">
                                 <option>sweet</option>
                                 <option>stubborn</option>
                                 <option>proud</option>
@@ -199,19 +199,10 @@
 		        data.forEach(obj => {
 		            document.getElementById("name").placeholder      = obj.name;
 		            document.getElementById("breed").placeholder      = obj.breed;
-
-		            var select = document.getElementById("gender");
-					var options = select.options;
-					for (var opt, j = 0; opt = options[j]; j++) {
-   					     if (opt.value == "M") {
-   					         select.selectedIndex = j;
-   					         break;
-   					     }
-   					 }
-
+		            document.getElementById("gender").value = obj.gender;
 		            document.getElementById("age").placeholder      = obj.age;
 		            document.getElementById("color").value      = obj.color;
-		            document.getElementById("hair").placeholder      = obj.hair;
+		            document.getElementById("hair").value      = obj.hair;
 		            document.getElementById("weight").placeholder      = obj.weight;
 		            document.getElementById("personality").placeholder = obj.personality;
 		            if (obj.image == 'NULL') { document.getElementById("present-img").setAttribute("src", "/static/img/nophoto-dog.png"); }
