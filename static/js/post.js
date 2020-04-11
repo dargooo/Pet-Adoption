@@ -68,8 +68,6 @@ function postPet(species_id) {
     var title	 	= document.getElementById("post-title").value;
     var description = document.getElementById("post-description").value;
 
-	//alert(name+breed+gender+age+color+hair+weight+personality+image);
-
 	var json = {
 		"name": 	    name,
 		"breed":     	breed,
@@ -84,7 +82,6 @@ function postPet(species_id) {
 		"description":  description,
 	}
 
-//	var url = "http://127.0.0.1:5000"
 	var url = 'http://coasttocoast.web.illinois.edu';
 	fetch(url + "/pet", {
 	    method: 'POST',
