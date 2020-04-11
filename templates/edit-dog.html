@@ -71,7 +71,10 @@
             <div class="column wrap-img">
             <span class="cute_font contact100-form-title" style="text-align: center;" id="present-title"></span>
             <img id="present-img" style="margin-top: 5px;"></img>
-            <span class="cute_font_sm contact100-form-title" id="present-description" style="text-align: center; margin-top: 30px; padding-bottom: 20px;"></span>
+            <!--span class="cute_font_sm contact100-form-title" style="text-align: center; margin-top: 30px; padding-bottom: 20px;"></span-->
+			<div class="input-group" style="margin-bottom: 25px;">
+            	<textarea class="comment" type="text" id="present-descriptiont"></textarea>
+        	</div>
             <span class="cute_font_sm contact100-form-title" style="text-align: center; padding-bottom: 20px;">
 				Post By:
 				<a style="color:rgb(0, 119, 255);" id="present-postby"></a>
@@ -239,7 +242,7 @@
 		        console.log(data);
 		        data.forEach(obj => {
 		            document.getElementById("present-title").innerHTML       = obj.title;
-		            document.getElementById("present-description").innerHTML = obj.description;
+		            document.getElementById("present-description").placeholder = obj.description;
 		            document.getElementById("present-postby").innerHTML      = obj.username;
 		            if ("{{ login }}" != "") { document.getElementById("present-postby").setAttribute("href", "http://coasttocoast.web.illinois.edu/userpage/" + obj.username + "/login/{{ login }}"); }
 		            else {                     document.getElementById("present-postby").setAttribute("href", "http://coasttocoast.web.illinois.edu/userpage/" + obj.username); }
@@ -251,6 +254,54 @@
     </script>
 
 <script>getPet({{ pet_id }});</script>
+
+    <script>
+            /* post pet */
+        function postPet(species_id) {
+            var name        = document.getElementById("name").value;
+            var breed       = document.getElementById("breed").value;
+            var gender      = document.getElementById("gender").value;
+            var age         = document.getElementById("age").value;
+            var color       = document.getElementById("color").value;
+            var hair        = document.getElementById("hair").value;
+            var weight      = document.getElementById("weight").value;
+            var personality = document.getElementById("personality").value;
+            var title       = document.getElementById("title").value;
+            var description = document.getElementById("description").value;
+
+            var json = {
+                "name":         name,
+                "breed":        breed,
+                "gender":       gender,
+                "age":          age,
+                "color":        color,
+                "hair":         hair,
+                "weight":       weight,
+                "personality":  personality,
+                "username":     "ywang14",
+                "title":        title,
+                "description":  description,
+            }
+			console.log(json);
+
+/*            var url = 'http://coasttocoast.web.illinois.edu';
+            fetch(url + "/pet", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(json)
+              }).then(function(response) {
+                  console.log(JSON.stringify(json));
+                  return response.json();
+              }) .then(data => {
+                  console.log(data);
+                  var obj = JSON.parse(data);
+                  var pet_id = obj.id;
+                  if ("{{ login }}" != "") { window.location = url + "/present-dog/" + pet_id + "/login/{{ login }}"; }
+                  else {                     window.location = url + "/present-dog/" + pet_id; }
+               }).catch(error => console.log('ERROR'));
+			 */
+        }
+    </script>
 
 </body>
 </html>
