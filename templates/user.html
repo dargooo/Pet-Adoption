@@ -176,6 +176,16 @@
         }
     </script>
 	<script>
+		function deletePet(pet_id) {
+			var site = 'http://coasttocoast.web.illinois.edu';
+			var url = site + 'pet?pet_id=' + pet_id;
+			console.log(url);
+			fetch(url, { method: 'delete' })
+            .then(res => res.json())
+			.catch(error => console.log('ERROR'));
+		}
+    </script>
+	<script>
 		function getUser(username) {
 		    var site = 'http://coasttocoast.web.illinois.edu';
 		    // user info
@@ -271,6 +281,7 @@
 						btnDelete.setAttribute("class", "btn-pair");
 						btnDelete.innerHTML = "Delete";
 						btnDelete.setAttribute("style","background:#fc682d");
+						btnDelete.addEventListener('click', function(){ deletePet(obj.id); }, false);
 
 						divBtn.appendChild(btnEdit);
 						divBtn.appendChild(btnDelete);

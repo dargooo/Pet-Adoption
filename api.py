@@ -106,6 +106,14 @@ class Pet(Resource):
         r = {}
         r["id"] = pet_id
         return json.dumps(r, ensure_ascii=False)
+
+    def delete(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('pet_id', type=int, required=True)
+        args = parser.parse_args()
+        cursor.execute("DELETE FROM pet WHERE id = " + str(pet_id))
+        cursor.execute("DELETE FROM posts WHERE pet_id = " + str(pet_id))
+        cnx.commit()
 ###########################  Pet  ###########################
 
 ###########################  Image  ###########################
