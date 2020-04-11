@@ -132,7 +132,6 @@
 <script src="/static/js/global.js"></script>
 <script src='/static/js/usage.js' language='javascript'></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script>getPet({{ pet_id }});</script>
 	<script>
         if ("{{ login }}" != "") {
             document.getElementById("nav-home").setAttribute("href", "/home/login/{{ login }}");
@@ -188,6 +187,7 @@
 		}
     </script>
 
+<script>getPet({{ pet_id }});</script>
 
 </body>
 </html>
