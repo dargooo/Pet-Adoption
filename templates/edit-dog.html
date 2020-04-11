@@ -169,7 +169,7 @@
 
                     </div>
                 </form>
-                <button id="btn-edit-dog" class="btn-submit" type="submit">save</button>
+                <button id="btn-edit-dog" class="btn-submit" type="submit" style="margin-top:40px;margin-bottom:35px;">save</button>
 
                         </div>
             <!--/div-->
@@ -250,8 +250,8 @@
 		    .then(data => {
 		        console.log(data);
 		        data.forEach(obj => {
-		            document.getElementById("present-title").placeholder       = obj.title;
-		            document.getElementById("present-description").placeholder = "" + obj.description;
+		            document.getElementById("present-title").value       = obj.title;
+		            document.getElementById("present-description").value = "" + obj.description;
 		            document.getElementById("present-postby").innerHTML      = obj.username;
 		            if ("{{ login }}" != "") { document.getElementById("present-postby").setAttribute("href", "http://coasttocoast.web.illinois.edu/userpage/" + obj.username + "/login/{{ login }}"); }
 		            else {                     document.getElementById("present-postby").setAttribute("href", "http://coasttocoast.web.illinois.edu/userpage/" + obj.username); }
@@ -265,8 +265,8 @@
 <script>getPet({{ pet_id }});</script>
 
     <script>
-            /* post pet */
-        function postPet(species_id) {
+            /* edit pet */
+        function editPet(species_id) {
             var name        = document.getElementById("name").value;
             var breed       = document.getElementById("breed").value;
             var gender      = document.getElementById("gender").value;
@@ -310,6 +310,8 @@
                }).catch(error => console.log('ERROR'));
 			 */
         }
+
+		document.getElementById('btn-edit-dog').addEventListener('click', function(){ editPet(0); }, false);
     </script>
 
 </body>
