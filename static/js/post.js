@@ -55,50 +55,6 @@ document.querySelector('#upload').addEventListener('change', event => {
   handleImageUpload(event)
 });
 
-	/* post pet */
-function postPet(species_id) {
-    var name     	= document.getElementById("post-name").value;
-    var breed   	= document.getElementById("post-breed").value;
-    var gender  	= document.getElementById("post-gender").value;
-    var age  		= document.getElementById("post-age").value;
-    var color   	= document.getElementById("post-color").value;
-    var hair    	= document.getElementById("post-hair").value;
-    var weight   	= document.getElementById("post-weight").value;
-    var personality = document.getElementById("post-personality").value;
-    var title	 	= document.getElementById("post-title").value;
-    var description = document.getElementById("post-description").value;
-
-	var json = {
-		"name": 	    name,
-		"breed":     	breed,
-    	"gender":       gender,
-    	"age":          age,
-    	"color":        color,
-    	"hair":         hair,
-    	"weight":       weight,
-    	"personality":  personality,
-		"username":		"ywang14",
-		"title":		title,
-		"description":  description,
-	}
-
-	var url = 'http://coasttocoast.web.illinois.edu';
-	fetch(url + "/pet", {
-	    method: 'POST',
-		headers: { 'Content-Type': 'application/json' },
-	    body: JSON.stringify(json)
-	  }).then(function(response) {
-		  console.log(JSON.stringify(json));
-	      return response.json();
-	  }) .then(data => {
-          console.log(data);
-		  var obj = JSON.parse(data);
-		  var pet_id = obj.id;
-		  if ("{{ login }}" != "") { window.location = url + "/present-dog/" + pet_id + "/login/{{ login }}"; }
-		  else { 					 window.location = url + "/present-dog/" + pet_id; }
-       }).catch(error => console.log('ERROR'));
-	
-}
 
 
 
