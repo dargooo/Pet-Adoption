@@ -260,6 +260,19 @@
 		            var t = document.createTextNode(text);
 		            a.appendChild(t);
 		            div.appendChild(a);
+
+					if ("{{ login }}" != "" && "{{ login }}" == "{{ username }}") {
+						var divBtn = document.createElement("div");
+						var btnEdit = document.createElement("button");
+						btnEdit.setAttribute("class", "btns");
+						btnEdit.innerHTML = "Edit";
+
+						var btnDelete = document.createElement("button");
+						btnDelete.setAttribute("class", "btns");
+						btnDelete.innerHTML = "Delete";
+
+					}
+
 		            document.getElementById("row-" + (count/4 | 0)).appendChild(div);
 		            count++;
 		        });
