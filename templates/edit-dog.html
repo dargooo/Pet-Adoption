@@ -40,10 +40,12 @@
     }
 	.selections {
 	    border: none;
-	    width: 200px;
+	    width: 100%;
 	    height: 30px;
 	    background: white;
 	    margin: 0 0;
+		font-size: 19px;
+		color: lightgrey;
 	}
 </style>
 <body style="background-color:rgb(230,249,255);">
@@ -91,9 +93,7 @@
                             <label class="label">breed</label>
                             <div class="input-group-icon rs-select2 js-select-simple select--no-search">
                                 <select name="breed" id="breed" class="selections">
-                                    <option></option>
                                 </select>
-                                <div class="select-dropdown"></div>
                             </div>
                         </div>
                         <div class="input-group-select">
@@ -185,6 +185,28 @@
 			document.getElementById("nav-account").setAttribute("href", "/userpage/{{ login }}/login/{{ login }}");
         }
     </script>
+	<script>
+		function setUp(species_id) {
+            var site = 'http://coasttocoast.web.illinois.edu';
+            // breed list
+            var url = site + '/breed?species_id=' + species_id;
+            fetch(url)
+                .then(res => {
+                        return res.json()
+                })
+                .then(data => {
+                        console.log(data);
+                        data.forEach(obj => {
+                    var opt = document.createElement("option");
+                                var t = document.createTextNode(obj.name);
+                                opt.appendChild(t);
+                    document.getElementById("breed").appendChild(opt);
+                });
+                })
+                .catch(error => console.log('ERROR'))
+        }
+    </script>
+<script>setUp(0);</script>
 	<script>
 		function getPet(pet_id) {
 		    var site = 'http://coasttocoast.web.illinois.edu';
