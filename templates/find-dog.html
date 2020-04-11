@@ -181,7 +181,16 @@
 <script src="/static/js/usage.js"></script>
 <script src='/static/js/search.js' language='javascript'></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="/static/js/share.js"></script>
+	<script>
+        if ("{{ login }}" != "") {
+            document.getElementById("nav-home").setAttribute("href", "/home/login/{{ login }}");
+            document.getElementById("nav-post").setAttribute("href", "/post/login/{{ login }}");
+            document.getElementById("nav-find").setAttribute("href", "/find/login/{{ login }}");
+            document.getElementById("nav-account").setAttribute("href", "/account/login/{{ login }}");
+            document.getElementById("nav-login").setAttribute("href", "/login/login/{{ login }}");
+            document.getElementById("nav-login").innerHTML="{{ login }}";
+        }
+    </script>
 
 
 </body>
