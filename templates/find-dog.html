@@ -191,6 +191,39 @@
         }
     </script>
 	<script>
+		// DOG
+		const btnDog = document.getElementById('btn-search-dog');
+		if (btnDog) {
+		    setUp(0);
+		    btnDog.addEventListener('click', function(){ getPet(0); }, false);
+		}
+		// CAT
+		const btnCat = document.getElementById('btn-search-cat');
+		if (btnCat) {
+		    setUp(1);
+		    btnCat.addEventListener('click', function(){ getPet(1); }, false);
+		}
+		
+		function setUp(species_id) {
+		    var site = 'http://coasttocoast.web.illinois.edu';
+		    // breed list
+		    var url = site + '/breed?species_id=' + species_id;
+		    fetch(url)
+		        .then(res => {
+		                return res.json()
+		        })
+		        .then(data => {
+		                console.log(data);
+		                data.forEach(obj => {
+		            var opt = document.createElement("option");
+		                        var t = document.createTextNode(obj.name);
+		                        opt.appendChild(t);
+		            document.getElementById("breed").appendChild(opt);
+		        });
+		        })
+		        .catch(error => console.log('ERROR'))
+		}
+
 		function getPet(species_id){
 		    var zipcode = document.getElementById("zipcode").value;
 		    var miles   = document.getElementById("miles").value;
@@ -259,8 +292,6 @@
 		
 		}
 	 </script>
-<script src='/static/js/search.js' language='javascript'></script>
-
 
 
 </body>
