@@ -17,6 +17,9 @@ curl -H Accept:application/json -X GET http://coasttocoast.web.illinois.edu/pet 
 # POST pet
 curl -H Content-Type:application/json -X POST http://127.0.0.1:5000/pet -d '{"name":"haha", "age":2.2, "gender":"M", "weight":4.4, "personality":"stubborn", "color":"orange", "hair":"long", "species_id":1, "breed_id":2, "username":"ywang14", "title":"aaa"}'
 
+# DELETE pet
+curl -H Accept:application/json -X DELETE http://127.0.0.1:5000/pet?pet_id=1
+
 # POST user
 curl -H Content-Type:application/json -X POST http://127.0.0.1:5000/user -d '{"username":"yzw0000", "password":"kakaka", "name":"kkk", "avatar":"ava1.png", "email":"aaa@vvv", "zipcode":33333, "is_person":false}'
 
