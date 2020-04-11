@@ -38,6 +38,13 @@
         font-size: 20px;
         color: white;
     }
+	.selections {
+	    border: none;
+	    width: 200px;
+	    height: 30px;
+	    background: white;
+	    margin: 0 0;
+	}
 </style>
 <body style="background-color:rgb(230,249,255);">
 
@@ -83,7 +90,7 @@
                         <div class="input-group-select">
                             <label class="label">breed</label>
                             <div class="input-group-icon rs-select2 js-select-simple select--no-search">
-                                <select name="breed" id="breed">
+                                <select name="breed" id="breed" class="selections">
                                     <option></option>
                                 </select>
                                 <div class="select-dropdown"></div>
@@ -91,15 +98,10 @@
                         </div>
                         <div class="input-group-select">
                             <label class="label">gender</label>
-                            <div class="input-group-icon rs-select2 js-select-simple select--no-search">
-                                <div class="select-dropdown">
-                                    <select name="gender" id="gender">
-                                        <option></option>
-                                        <option id="M">M</option>
-                                        <option id="F">F</option>
-                                    </select>
-                                </div>
-                            </div>
+                            <select name="gender" id="gender" class="selections">
+                                <option id="M">M</option>
+                                <option id="F">F</option>
+                            </select>
                         </div>
 
                         <div class="input-group">
@@ -109,31 +111,23 @@
 
                         <div class="input-group-select">
                             <label class="label">Color</label>
-                            <div class="input-group-icon rs-select2 js-select-simple select--no-search">
-                                <select name="color" id="color">
-                                    <option></option>
-                                    <option>white</option>
-                                    <option>brown</option>
-                                    <option>black</option>
-                                    <option>orange</option>
-                                    <option>gray</option>
-                                    <option>mix</option>
-                                </select>
-                                <div class="select-dropdown"></div>
-                            </div>
+                            <select name="color" id="color" class="selections">
+                                <option>white</option>
+                                <option>brown</option>
+                                <option>black</option>
+                                <option>orange</option>
+                                <option>gray</option>
+                                <option>mix</option>
+                            </select>
                         </div>
                         <div class="input-group-select">
                             <label class="label">Hair</label>
-                            <div class="input-group-icon rs-select2 js-select-simple select--no-search">
-                                <select name="hair" id="hair">
-                                    <option></option>
-                                    <option>long</option>
-                                    <option>medium</option>
-                                    <option>short</option>
-                                    <option>none</option>
-                                </select>
-                                <div class="select-dropdown"></div>
-                            </div>
+                            <select name="hair" id="hair" class="selections">
+                                <option>long</option>
+                                <option>medium</option>
+                                <option>short</option>
+                                <option>none</option>
+                            </select>
                         </div>
 
 						<div class="input-group">
@@ -143,28 +137,24 @@
 
                         <div class="input-group-select">
                             <label class="label">Personalities</label>
-                            <div class="input-group-icon rs-select2 js-select-simple select--no-search">
-                                <select name="personality" id="personality" multiple>
-                                    <option></option>
-                                    <option>sweet</option>
-                                    <option>stubborn</option>
-                                    <option>proud</option>
-                                    <option>quite</option>
-                                    <option>cute</option>
-                                    <option>royal</option>
-                                    <option>independent</option>
-                                    <option>happy</option>
-                                    <option>shy</option>
-                                    <option>adaptable</option>
-                                    <option>intelligent</option>
-                                    <option>anxious</option>
-                                    <option>brave</option>
-                                    <option>crazy</option>
-                                    <option>wild</option>
-                                    <option>needy</option>
-                                </select>
-                                <div class="select-dropdown"></div>
-                            </div>
+                            <select name="personality" id="personality" multiple class="selections">
+                                <option>sweet</option>
+                                <option>stubborn</option>
+                                <option>proud</option>
+                                <option>quite</option>
+                                <option>cute</option>
+                                <option>royal</option>
+                                <option>independent</option>
+                                <option>happy</option>
+                                <option>shy</option>
+                                <option>adaptable</option>
+                                <option>intelligent</option>
+                                <option>anxious</option>
+                                <option>brave</option>
+                                <option>crazy</option>
+                                <option>wild</option>
+                                <option>needy</option>
+                            </select>
                         </div>
 
                     </div>
@@ -220,7 +210,7 @@
    					 }
 
 		            document.getElementById("age").placeholder      = obj.age;
-		            document.getElementById("color").placeholder      = obj.color;
+		            document.getElementById("color").value      = obj.color;
 		            document.getElementById("hair").placeholder      = obj.hair;
 		            document.getElementById("weight").placeholder      = obj.weight;
 		            document.getElementById("personality").placeholder = obj.personality;
