@@ -267,6 +267,7 @@
     <script>
             /* edit pet */
         function editPet(species_id) {
+			var pet_id		= {{ pet_id }};
             var name        = document.getElementById("name").value;
             var breed       = document.getElementById("breed").value;
             var gender      = document.getElementById("gender").value;
@@ -279,6 +280,7 @@
             var description = document.getElementById("description").value;
 
             var json = {
+				"pet_id":		pet_id,
                 "name":         name,
                 "breed":        breed,
                 "gender":       gender,
@@ -287,15 +289,14 @@
                 "hair":         hair,
                 "weight":       weight,
                 "personality":  personality,
-                "username":     "ywang14",
                 "title":        title,
                 "description":  description,
             }
 			console.log(json);
 
-/*            var url = 'http://coasttocoast.web.illinois.edu';
+            var url = 'http://coasttocoast.web.illinois.edu';
             fetch(url + "/pet", {
-                method: 'POST',
+              	method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(json)
               }).then(function(response) {
@@ -303,12 +304,7 @@
                   return response.json();
               }) .then(data => {
                   console.log(data);
-                  var obj = JSON.parse(data);
-                  var pet_id = obj.id;
-                  if ("{{ login }}" != "") { window.location = url + "/present-dog/" + pet_id + "/login/{{ login }}"; }
-                  else {                     window.location = url + "/present-dog/" + pet_id; }
                }).catch(error => console.log('ERROR'));
-			 */
         }
 
 		document.getElementById('btn-edit-dog').addEventListener('click', function(){ editPet(0); }, false);
