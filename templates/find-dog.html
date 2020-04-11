@@ -283,6 +283,8 @@
 		            else                     { a.setAttribute("href", "http://coasttocoast.web.illinois.edu/present-dog/" + obj.id); }
 		            var t = document.createTextNode(obj.name);
 		            a.appendChild(t);
+					a.setAttribute("style", "font-size: 25px; color:rgb(94,94,94);");
+            		div.appendChild(a);
 		
 		            document.getElementById("row-" + (count/4 | 0)).appendChild(div);
 		            count++;
