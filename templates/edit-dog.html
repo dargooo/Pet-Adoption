@@ -69,7 +69,9 @@
         <div class="content-row">
 
             <div class="column wrap-img">
-            <span class="cute_font contact100-form-title" style="text-align: center;" id="present-title"></span>
+			<div class="input-group" style="margin-bottom: 25px; margin-top: 30px;">
+                <textarea class="contact100-form-title" type="text" style="text-align: center;" id="present-title"></textarea>
+            </div>
             <img id="present-img" style="margin-top: 5px;"></img>
 			<div class="input-group" style="margin-bottom: 25px; margin-top: 30px;">
             	<textarea class="comment" type="text" id="present-description"></textarea>
@@ -240,7 +242,7 @@
 		    .then(data => {
 		        console.log(data);
 		        data.forEach(obj => {
-		            document.getElementById("present-title").innerHTML       = obj.title;
+		            document.getElementById("present-title").placeholder       = obj.title;
 		            document.getElementById("present-description").placeholder = "" + obj.description;
 		            document.getElementById("present-postby").innerHTML      = obj.username;
 		            if ("{{ login }}" != "") { document.getElementById("present-postby").setAttribute("href", "http://coasttocoast.web.illinois.edu/userpage/" + obj.username + "/login/{{ login }}"); }
