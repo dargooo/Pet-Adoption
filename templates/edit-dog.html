@@ -169,7 +169,7 @@
 
                     </div>
                 </form>
-                <button id="btn-search-dog" class="btn-submit" type="submit">search</button>
+                <button id="btn-edit-dog" class="btn-submit" type="submit">save</button>
 
                         </div>
             <!--/div-->
@@ -207,14 +207,14 @@
 		    .then(data => {
 		        console.log(data);
 		        data.forEach(obj => {
-		            document.getElementById("name").innerHTML        = obj.name;
-		            document.getElementById("breed").innerHTML       = obj.breed;
-		            document.getElementById("gender").innerHTML      = obj.gender;
-		            document.getElementById("age").innerHTML         = obj.age;
-		            document.getElementById("color").innerHTML       = obj.color;
-		            document.getElementById("hair").innerHTML        = obj.hair;
-		            document.getElementById("weight").innerHTML      = obj.weight;
-		            document.getElementById("personality").innerHTML = obj.personality;
+		            document.getElementById("name").placeholder      = obj.name;
+		            document.getElementById("breed").placeholder      = obj.breed;
+		            document.getElementById("gender").placeholder      = obj.gender;
+		            document.getElementById("age").placeholder      = obj.age;
+		            document.getElementById("color").placeholder      = obj.color;
+		            document.getElementById("hair").placeholder      = obj.hair;
+		            document.getElementById("weight").placeholder      = obj.weight;
+		            document.getElementById("personality").placeholder = obj.personality;
 		            if (obj.image == 'NULL') { document.getElementById("present-img").setAttribute("src", "/static/img/nophoto-dog.png"); }
 		            else                     { document.getElementById("present-img").setAttribute("src", obj.image); }
 		        });
