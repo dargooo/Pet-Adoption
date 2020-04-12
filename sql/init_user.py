@@ -11,10 +11,10 @@ try:
 except:
     print("Log in mysql db failed!")
 
-u_reader = open("datafile/38650-username-sktorrent.txt", "rb")
-p_reader = open("datafile/38650-password-sktorrent.txt", "rb")
-a_reader = open("datafile/53962-address.csv", "rt") 
-n_reader = open("datafile/30000-user.csv", "rt")
+u_reader = open("..datafile/38650-username-sktorrent.txt", "rb")
+p_reader = open("..datafile/38650-password-sktorrent.txt", "rb")
+a_reader = open("..datafile/53962-address.csv", "rt") 
+n_reader = open("..datafile/30000-user.csv", "rt")
 
 def init_user(i):
     insert_query = "INSERT IGNORE INTO user VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
