@@ -177,12 +177,15 @@
     </script>
 	<script>
 		function deletePet(pet_id) {
-			var site = 'http://coasttocoast.web.illinois.edu';
-			var url = site + '/pet?pet_id=' + pet_id;
-			console.log(url);
-			fetch(url, { method: 'delete' })
-            .then(res => res.json())
-			.catch(error => console.log('ERROR'));
+			 var txt;
+ 			 if (confirm("Are you sure to delete this pet?")) {
+				var site = 'http://coasttocoast.web.illinois.edu';
+				var url = site + '/pet?pet_id=' + pet_id;
+				console.log(url);
+				fetch(url, { method: 'delete' })
+            	.then(res => res.json())
+				.catch(error => console.log('ERROR'));
+			 }
 		}
     </script>
 	<script>
