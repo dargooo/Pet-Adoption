@@ -136,7 +136,9 @@
                                 <option>long</option>
                                 <option>medium</option>
                                 <option>short</option>
-                                <option>none</option>
+                                <option>hairless</option>
+                                <option>curly</option>
+                                <option>wire</option>
                             </select>
                         </div>
 
@@ -229,13 +231,13 @@
 		    .then(data => {
 		        console.log(data);
 		        data.forEach(obj => {
-		            document.getElementById("name").placeholder      = obj.name;
+		            document.getElementById("name").value      = obj.name;
 		            document.getElementById("breed").value      = obj.breed;
 		            document.getElementById("gender").value = obj.gender;
-		            document.getElementById("age").placeholder      = obj.age;
+		            document.getElementById("age").value      = obj.age;
 		            document.getElementById("color").value      = obj.color;
 		            document.getElementById("hair").value      = obj.hair;
-		            document.getElementById("weight").placeholder      = obj.weight;
+		            document.getElementById("weight").value      = obj.weight;
 		            document.getElementById("personality").value = obj.personality;
 		            if (obj.image == 'NULL') { document.getElementById("present-img").setAttribute("src", "/static/img/nophoto-dog.png"); }
 		            else                     { document.getElementById("present-img").setAttribute("src", obj.image); }
