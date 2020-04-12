@@ -49,33 +49,24 @@
 
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
-	<div class="w3-bar" id="myNavbar">
+    <div class="w3-bar" id="myNavbar">
         <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
             <i class="fa fa-bars"></i>
         </a>
-        <a href="/home" class="w3-bar-item w3-button"><i class="fa fa-th-large"></i> HOME</a>
-        <a href="/post" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-file-o"></i> POST</a>
-        <a href="/find" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-link"></i> FIND</a>
-        <a href="/account" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-camera"></i> ACCOUNT</a>
-        <a href="/login" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red" id="login"><i class="fa fa-user"></i> LOG IN  </a>
-    </div>
-    <!-- Navbar on small screens -->
-    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
-        <a href="/home" class="w3-bar-item w3-button" onclick="toggleFunction()">HOME</a>
-        <a href="/post" class="w3-bar-item w3-button" onclick="toggleFunction()">POST</a>
-        <a href="/find" class="w3-bar-item w3-button" onclick="toggleFunction()">FIND</a>
-        <a href="/account" class="w3-bar-item w3-button" onclick="toggleFunction()">ACCOUNT</a>
-        <a href="#" class="w3-bar-item w3-button">LOG IN</a>
+        <a id="nav-home" href="/home" class="w3-bar-item w3-button"><i class="fa fa-th-large"></i> HOME</a>
+        <a id="nav-post" href="/post" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-file-o"></i> POST</a>
+        <a id="nav-find" href="/find" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-link"></i> FIND</a>
+		<a id="nav-account" href="/login" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> ACCOUNT</a>
     </div>
 </div>
 
 <!-- POST & ADOPT in the middle -->
 <div class="bgimg-1 w3-display-container w3-opacity-min" id="PostAdopt">
     <div class="w3-display-middle" style="padding-top:150px; white-space:nowrap;">
-        <span onclick="window.location.href='/post-cat';"><a class="lg_btn_font ex1">CAT</a></span>
+        <span id="mid-post-cat" onclick="window.location.href='/login';"><a class="lg_btn_font ex1">CAT</a></span>
         <span><a
                 class="lg_btn_font ex1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></span>
-        <span onclick="window.location.href='/post-dog';"><a class="lg_btn_font ex1">DOG</a></span>
+        <span id="mid-post-dog" onclick="window.location.href='/login';"><a class="lg_btn_font ex1">DOG</a></span>
     </div>
 </div>
 
@@ -100,7 +91,17 @@
 
 <script src='/static/js/usage.js' language='javascript'></script>
 <script src='/static/js/home.js' language='javascript'></script>
-<script> if ("{{ login }}" != "") { document.getElementById("login").innerHTML="{{ login }}"; } </script>
+	<script>
+        if ("{{ login }}" != "") {
+            document.getElementById("mid-post-cat").setAttribute("onclick", "window.location.href='/post-cat/login/{{ login }}'");
+            document.getElementById("mid-post-dog").setAttribute("onclick", "window.location.href='/post-dog/login/{{ login }}'");
+
+            document.getElementById("nav-home").setAttribute("href", "/home/login/{{ login }}");
+            document.getElementById("nav-post").setAttribute("href", "/post/login/{{ login }}");
+            document.getElementById("nav-find").setAttribute("href", "/find/login/{{ login }}");
+			document.getElementById("nav-account").setAttribute("href", "/userpage/{{ login }}/login/{{ login }}");
+        }
+    </script>
 
 
 </body>

@@ -33,7 +33,8 @@ function getPet(pet_id) {
             document.getElementById("present-title").innerHTML       = obj.title;
             document.getElementById("present-description").innerHTML = obj.description;
             document.getElementById("present-postby").innerHTML      = obj.username;
-			document.getElementById("present-postby").setAttribute("href", "http://coasttocoast.web.illinois.edu/userpage/" + obj.username);
+			if ("{{ login }}" != "") { document.getElementById("present-postby").setAttribute("href", "http://coasttocoast.web.illinois.edu/userpage/" + obj.username + "/login/" + {{ login }}); }
+			else { 					   document.getElementById("present-postby").setAttribute("href", "http://coasttocoast.web.illinois.edu/userpage/" + obj.username); }
             document.getElementById("present-posttime").innerHTML    = obj.open_time;
         });
     })

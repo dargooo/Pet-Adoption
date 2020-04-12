@@ -42,25 +42,16 @@
         <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
             <i class="fa fa-bars"></i>
         </a>
-        <a href="/home" class="w3-bar-item w3-button"><i class="fa fa-th-large"></i> HOME</a>
-        <a href="/post" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-file-o"></i> POST</a>
-        <a href="/find" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-link"></i> FIND</a>
-        <a href="/account" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-camera"></i> ACCOUNT</a>
-        <a href="/login" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red" id="login"><i class="fa fa-user"></i> LOG IN  </a>
-    </div>
-    <!-- Navbar on small screens -->
-    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
-        <a href="/home" class="w3-bar-item w3-button" onclick="toggleFunction()">HOME</a>
-        <a href="/post" class="w3-bar-item w3-button" onclick="toggleFunction()">POST</a>
-        <a href="/find" class="w3-bar-item w3-button" onclick="toggleFunction()">FIND</a>
-        <a href="/account" class="w3-bar-item w3-button" onclick="toggleFunction()">ACCOUNT</a>
-        <a href="#" class="w3-bar-item w3-button">LOG IN</a>
+        <a id="nav-home" href="/home" class="w3-bar-item w3-button"><i class="fa fa-th-large"></i> HOME</a>
+        <a id="nav-post" href="/post" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-file-o"></i> POST</a>
+        <a id="nav-find" href="/find" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-link"></i> FIND</a>
+		<a id="nav-account" href="/login" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> ACCOUNT</a>
     </div>
 </div>
 
 <!-- POST & ADOPT in the middle -->
 
-<img src="static/img/dog-post.png" class="center"></img>
+<img src="/static/img/dog-post.png" class="center"></img>
 
 <div class="container-contact100">
     <div class="wrap-contact100">
@@ -129,7 +120,9 @@
                             <option>long</option>
                             <option>medium</option>
                             <option>short</option>
-                            <option>none</option>
+                            <option>hairless</option>
+                            <option>wire</option>
+                            <option>curly</option>
                         </select>
                         <div class="select-dropdown"></div>
                     </div>
@@ -202,9 +195,62 @@
 <script src="/static/vendor/datepicker/moment.min.js"></script>
 <script src="/static/js/global.js"></script>
 <script src='/static/js/usage.js' language='javascript'></script>
-<script src='/static/js/post.js' language='javascript'></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script> if ("{{ login }}" != "") { document.getElementById("login").innerHTML="{{ login }}"; } </script>
+	<script>
+        if ("{{ login }}" != "") {
+            document.getElementById("nav-home").setAttribute("href", "/home/login/{{ login }}");
+            document.getElementById("nav-post").setAttribute("href", "/post/login/{{ login }}");
+            document.getElementById("nav-find").setAttribute("href", "/find/login/{{ login }}");
+			document.getElementById("nav-account").setAttribute("href", "/userpage/{{ login }}/login/{{ login }}");
+        }
+    </script>
+	<script>
+		    /* post pet */
+		function postPet(species_id) {
+		    var name        = document.getElementById("post-name").value;
+		    var breed       = document.getElementById("post-breed").value;
+		    var gender      = document.getElementById("post-gender").value;
+		    var age         = document.getElementById("post-age").value;
+		    var color       = document.getElementById("post-color").value;
+		    var hair        = document.getElementById("post-hair").value;
+		    var weight      = document.getElementById("post-weight").value;
+		    var personality = document.getElementById("post-personality").value;
+		    var title       = document.getElementById("post-title").value;
+		    var description = document.getElementById("post-description").value;
+		
+		    var json = {
+		        "name":         name,
+		        "breed":        breed,
+		        "gender":       gender,
+		        "age":          age,
+		        "color":        color,
+		        "hair":         hair,
+		        "weight":       weight,
+		        "personality":  personality,
+		        "username":     "{{ login }}",
+		        "title":        title,
+		        "description":  description,
+		    }
+		
+		    var url = 'http://coasttocoast.web.illinois.edu';
+		    fetch(url + "/pet", {
+		        method: 'POST',
+		        headers: { 'Content-Type': 'application/json' },
+		        body: JSON.stringify(json)
+		      }).then(function(response) {
+		          console.log(JSON.stringify(json));
+		          return response.json();
+		      }) .then(data => {
+		          console.log(data);
+		          var obj = JSON.parse(data);
+		          var pet_id = obj.id;
+		          if ("{{ login }}" != "") { window.location = url + "/present-dog/" + pet_id + "/login/{{ login }}"; }
+		          else {                     window.location = url + "/present-dog/" + pet_id; }
+		       }).catch(error => console.log('ERROR'));
+		
+		}
+    </script>
+<script src='/static/js/post.js' language='javascript'></script>
 
 
 </body>

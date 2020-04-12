@@ -47,19 +47,10 @@
         <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
             <i class="fa fa-bars"></i>
         </a>
-        <a href="/home" class="w3-bar-item w3-button"><i class="fa fa-th-large"></i> HOME</a>
-        <a href="/post" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-file-o"></i> POST</a>
-        <a href="/find" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-link"></i> FIND</a>
-        <a href="/account" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-camera"></i> ACCOUNT</a>
-        <a href="/login" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red" id="login"><i class="fa fa-user"></i> LOG IN  </a>
-    </div>
-    <!-- Navbar on small screens -->
-    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
-        <a href="/home" class="w3-bar-item w3-button" onclick="toggleFunction()">HOME</a>
-        <a href="/post" class="w3-bar-item w3-button" onclick="toggleFunction()">POST</a>
-        <a href="/find" class="w3-bar-item w3-button" onclick="toggleFunction()">FIND</a>
-        <a href="/account" class="w3-bar-item w3-button" onclick="toggleFunction()">ACCOUNT</a>
-        <a href="#" class="w3-bar-item w3-button">LOG IN</a>
+        <a id="nav-home" href="/home" class="w3-bar-item w3-button"><i class="fa fa-th-large"></i> HOME</a>
+        <a id="nav-post" href="/post" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-file-o"></i> POST</a>
+        <a id="nav-find" href="/find" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-link"></i> FIND</a>
+		<a id="nav-account" href="/login" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> ACCOUNT</a>
     </div>
 </div>
 
@@ -139,12 +130,61 @@
 <script src="/static/vendor/datepicker/moment.min.js"></script>
 <script src="/static/js/global.js"></script>
 <script src='/static/js/usage.js' language='javascript'></script>
-<script src='/static/js/present.js' language='javascript'></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script> if ("{{ login }}" != "") { document.getElementById("login").innerHTML="{{ login }}"; } </script>
+	<script>
+        if ("{{ login }}" != "") {
+            document.getElementById("nav-home").setAttribute("href", "/home/login/{{ login }}");
+            document.getElementById("nav-post").setAttribute("href", "/post/login/{{ login }}");
+            document.getElementById("nav-find").setAttribute("href", "/find/login/{{ login }}");
+			document.getElementById("nav-account").setAttribute("href", "/userpage/{{ login }}/login/{{ login }}");
+        }
+    </script>
+	<script>
+		function getPet(pet_id) {
+		    var site = 'http://coasttocoast.web.illinois.edu';
+		
+		    // from pet
+		    var url = site + '/pet?id=' + pet_id + '\&species_id=0';
+		    console.log(url);
+		    fetch(url)
+		    .then(res => res.json())
+		    .then(data => {
+		        console.log(data);
+		        data.forEach(obj => {
+		            document.getElementById("present-name").innerHTML        = obj.name;
+		            document.getElementById("present-breed").innerHTML       = obj.breed;
+		            document.getElementById("present-gender").innerHTML      = obj.gender;
+		            document.getElementById("present-age").innerHTML         = obj.age;
+		            document.getElementById("present-color").innerHTML       = obj.color;
+		            document.getElementById("present-hair").innerHTML        = obj.hair;
+		            document.getElementById("present-weight").innerHTML      = obj.weight;
+		            document.getElementById("present-personality").innerHTML = obj.personality;
+		            if (obj.image == 'NULL') { document.getElementById("present-img").setAttribute("src", "/static/img/nophoto-dog.png"); }
+		            else                   { document.getElementById("present-img").setAttribute("src", obj.image); }
+		        });
+		    })
+		        .catch(error => console.log('ERROR'));
+		
+		    // from posts
+		    url = site + '/posts?pet_id=' + pet_id;
+		    fetch(url)
+		    .then(res => res.json())
+		    .then(data => {
+		        console.log(data);
+		        data.forEach(obj => {
+		            document.getElementById("present-title").innerHTML       = obj.title;
+		            document.getElementById("present-description").innerHTML = obj.description;
+		            document.getElementById("present-postby").innerHTML      = obj.username;
+		            if ("{{ login }}" != "") { document.getElementById("present-postby").setAttribute("href", "http://coasttocoast.web.illinois.edu/userpage/" + obj.username + "/login/{{ login }}"); }
+		            else {                     document.getElementById("present-postby").setAttribute("href", "http://coasttocoast.web.illinois.edu/userpage/" + obj.username); }
+		            document.getElementById("present-posttime").innerHTML    = obj.open_time;
+		        });
+		    })
+		
+		}
+    </script>
 
 <script>getPet({{ pet_id }});</script>
-
 
 </body>
 </html>

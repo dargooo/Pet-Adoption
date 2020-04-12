@@ -24,6 +24,15 @@
 	  color: #777;
 	  line-height: 1.8;
 	}
+	.selections {
+        border: none;
+        width: 100%;
+        height: 30px;
+        background: white;
+        margin: 0 0;
+        font-size: 19px;
+        color: grey;
+    }
 </style>
 
 <body>
@@ -34,19 +43,10 @@
         <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
             <i class="fa fa-bars"></i>
         </a>
-        <a href="/home" class="w3-bar-item w3-button"><i class="fa fa-th-large"></i> HOME</a>
-        <a href="/post" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-file-o"></i> POST</a>
-        <a href="/find" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-link"></i> FIND</a>
-        <a href="/account" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-camera"></i> ACCOUNT</a>
-        <a href="/login" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red" id="login"><i class="fa fa-user"></i> LOG IN  </a>
-    </div>
-    <!-- Navbar on small screens -->
-    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
-        <a href="/home" class="w3-bar-item w3-button" onclick="toggleFunction()">HOME</a>
-        <a href="/post" class="w3-bar-item w3-button" onclick="toggleFunction()">POST</a>
-        <a href="/find" class="w3-bar-item w3-button" onclick="toggleFunction()">FIND</a>
-        <a href="/account" class="w3-bar-item w3-button" onclick="toggleFunction()">ACCOUNT</a>
-        <a href="#" class="w3-bar-item w3-button">LOG IN</a>
+        <a id="nav-home" href="/home" class="w3-bar-item w3-button"><i class="fa fa-th-large"></i> HOME</a>
+        <a id="nav-post" href="/post" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-file-o"></i> POST</a>
+        <a id="nav-find" href="/find" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-link"></i> FIND</a>
+		<a id="nav-account" href="/login" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> ACCOUNT</a>
     </div>
 </div>
 
@@ -54,7 +54,7 @@
 
 <!-- ########################################## FILTER BAR ########################################## -->
     <nav class="w3-sidebar-r card-4 w3-collapse w3-top w3-large" style="z-index:3;width:325px;font-weight:bold;" id="mySidebar">
-		<img src="static/img/dog-1.png"></img>
+		<img src="/static/img/dog-1.png"></img>
         <div class="tab-content">
             <div class="tab-pane active" id="tab1">
                 <form method="POST" action="#">
@@ -73,24 +73,17 @@
 
                         <div class="input-group-select">
                             <label class="label">breed</label>
-                            <div class="input-group-icon rs-select2 js-select-simple select--no-search">
-                                <select name="breed" id="breed">
+                                <select name="breed" id="breed" class="selections">
                                     <option></option>
                                 </select>
-                                <div class="select-dropdown"></div>
-                            </div>
                         </div>
                         <div class="input-group-select">
                             <label class="label">gender</label>
-                            <div class="input-group-icon rs-select2 js-select-simple select--no-search">
-                                <div class="select-dropdown">
-                                    <select name="gender" id="gender">
+                                    <select name="gender" id="gender" class="selections">
                                         <option></option>
                                         <option>M</option>
                                         <option>F</option>
                                     </select>
-                                </div>
-                            </div>
                         </div>
 
                         <div class="input-group">
@@ -102,8 +95,7 @@
 
                         <div class="input-group-select">
                             <label class="label">Color</label>
-                            <div class="input-group-icon rs-select2 js-select-simple select--no-search">
-                                <select name="color" id="color">
+                                <select name="color" id="color" class="selections">
                                     <option></option>
                                     <option>white</option>
                                     <option>brown</option>
@@ -112,28 +104,24 @@
                                     <option>gray</option>
                                     <option>mix</option>
                                 </select>
-                                <div class="select-dropdown"></div>
-                            </div>
                         </div>
 
                         <div class="input-group-select">
                             <label class="label">Hair</label>
-                            <div class="input-group-icon rs-select2 js-select-simple select--no-search">
-                                <select name="hair" id="hair">
+                                <select name="hair" id="hair" class="selections">
                                     <option></option>
                                     <option>long</option>
                                     <option>medium</option>
                                     <option>short</option>
-                                    <option>none</option>
+                                    <option>hairless</option>
+                                    <option>wire</option>
+                                    <option>curly</option>
                                 </select>
-                                <div class="select-dropdown"></div>
-                            </div>
                         </div>
 
                         <div class="input-group-select">
                             <label class="label">Personalities</label>
-                            <div class="input-group-icon rs-select2 js-select-simple select--no-search">
-                                <select name="personality" id="personality" multiple>
+                                <select name="personality" id="personality" class="selections">
                                     <option></option>
                                     <option>sweet</option>
                                     <option>stubborn</option>
@@ -152,8 +140,6 @@
                                     <option>wild</option>
                                     <option>needy</option>
                                 </select>
-                                <div class="select-dropdown"></div>
-                            </div>
                         </div>
 
                     </div>
@@ -187,9 +173,115 @@
 <script src="/static/vendor/datepicker/moment.min.js"></script>
 <script src="/static/js/global.js"></script>
 <script src="/static/js/usage.js"></script>
-<script src='/static/js/search.js' language='javascript'></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script> if ("{{ login }}" != "") { document.getElementById("login").innerHTML="{{ login }}"; } </script>
+	<script>
+        if ("{{ login }}" != "") {
+            document.getElementById("nav-home").setAttribute("href", "/home/login/{{ login }}");
+            document.getElementById("nav-post").setAttribute("href", "/post/login/{{ login }}");
+            document.getElementById("nav-find").setAttribute("href", "/find/login/{{ login }}");
+			document.getElementById("nav-account").setAttribute("href", "/userpage/{{ login }}/login/{{ login }}");
+        }
+    </script>
+	<script>
+		// DOG
+		const btnDog = document.getElementById('btn-search-dog');
+		if (btnDog) {
+		    setUp(0);
+		    btnDog.addEventListener('click', function(){ getPet(0); }, false);
+		}
+		// CAT
+		const btnCat = document.getElementById('btn-search-cat');
+		if (btnCat) {
+		    setUp(1);
+		    btnCat.addEventListener('click', function(){ getPet(1); }, false);
+		}
+		
+		function setUp(species_id) {
+		    var site = 'http://coasttocoast.web.illinois.edu';
+		    // breed list
+		    var url = site + '/breed?species_id=' + species_id;
+		    fetch(url)
+		        .then(res => {
+		                return res.json()
+		        })
+		        .then(data => {
+		                console.log(data);
+		                data.forEach(obj => {
+		            var opt = document.createElement("option");
+		                        var t = document.createTextNode(obj.name);
+		                        opt.appendChild(t);
+		            document.getElementById("breed").appendChild(opt);
+		        });
+		        })
+		        .catch(error => console.log('ERROR'))
+		}
+
+		function getPet(species_id){
+		    var zipcode = document.getElementById("zipcode").value;
+		    var miles   = document.getElementById("miles").value;
+		    var breed   = document.getElementById("breed").value;
+		    var gender  = document.getElementById("gender").value;
+		    var minAge  = document.getElementById("minAge").value;
+		    var maxAge  = document.getElementById("maxAge").value;
+		    var color   = document.getElementById("color").value;
+		    var hair    = document.getElementById("hair").value;
+		    var personality    = document.getElementById("personality").value;
+
+		    var url = 'http://coasttocoast.web.illinois.edu/pet?species_id=' + species_id;
+		    if (zipcode) {
+		        url = url + "\&zipcode=" + zipcode;
+		        if (miles) { url = url + "\&miles=" + miles; }
+		        else       { url = url + "\&miles=" + 100; }
+		    }
+		    if (breed)   { url = url + "\&breed=" + breed; }
+		    if (gender)      { url = url + "\&gender=" + gender; }
+		    if (minAge)      { url = url + "\&min_age=" + parseInt(minAge); }
+		    if (maxAge)      { url = url + "\&max_age=" + parseInt(maxAge); }
+		    if (color)   { url = url + "\&color=" + color; }
+		    if (hair)    { url = url + "\&hair=" + hair; }
+		    if (personality) { url = url + "\&personality=" + personality; }
+		    console.log(url);
+		
+		    fetch(url)
+		    .then(res => res.json())
+		    .then(data => {
+		        document.getElementById("display-grid").innerHTML = "";
+		        console.log(data);
+		        var count = 0;
+		        data.forEach(obj => {
+		            console.log(count);
+		            if (count % 4 == 0) {
+		                var row = document.createElement("div");
+		                row.setAttribute("class", "w3-row-padding w3-padding-8 w3-center");
+		                row.setAttribute("id", "row-" + (count/4 | 0));
+		                document.getElementById("display-grid").appendChild(row);
+		            }
+		
+		            var div = document.createElement("div");
+		            div.setAttribute("class", "w3-quarter");
+		
+		            var img = document.createElement("IMG");
+		            if (obj.image == 'NULL') { img.setAttribute("src", "/static/img/nophoto-dog.png"); }
+		            else                   { img.setAttribute("src", obj.image); }
+		            img.setAttribute("style", "width:100%");
+		            div.appendChild(img);
+		
+		            var a = document.createElement("a");
+		            if ("{{ login }}" != "") { a.setAttribute("href", "http://coasttocoast.web.illinois.edu/present-dog/" + obj.id + "/login/{{ login }}"); }
+		            else                     { a.setAttribute("href", "http://coasttocoast.web.illinois.edu/present-dog/" + obj.id); }
+		            var t = document.createTextNode(obj.name);
+		            a.appendChild(t);
+					a.setAttribute("style", "font-size: 25px; color:rgb(94,94,94);");
+            		div.appendChild(a);
+		
+		            document.getElementById("row-" + (count/4 | 0)).appendChild(div);
+		            count++;
+		        });
+		    })
+		        .catch(error => console.log('ERROR'))
+		
+		}
+	 </script>
 
 
 </body>

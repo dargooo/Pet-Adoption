@@ -52,7 +52,7 @@ class Pet(Resource):
         if args['min_age']:     query = query + " AND age >= " + str(args['min_age'])
         if args['max_age']:     query = query + " AND age <= " + str(args['max_age'])
         if args['gender']:      query = query + " AND gender = \'" + args['gender'] + "\'"
-        if args['personality']: query = query + " AND personality IN (" + args['personality'] + ")"
+        if args['personality']: query = query + " AND personality = \'" + args['personality'] + "\'"
         if args['color']:       query = query + " AND color = \'" + args['color'] + "\'"
         if args['hair']:        query = query + " AND hair = \'" + args['hair'] + "\'"
         if args['breed']:       query = query + " AND breed_id = (SELECT id FROM breed WHERE name = \'%s\')" % args['breed']
@@ -106,6 +106,60 @@ class Pet(Resource):
         r = {}
         r["id"] = pet_id
         return json.dumps(r, ensure_ascii=False)
+
+    def delete(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('pet_id', type=int, required=True)
+        args = parser.parse_args()
+        cursor.execute("DELETE FROM pet WHERE id = " + str(args['pet_id']))
+        cursor.execute("DELETE FROM posts WHERE pet_id = " + str(args['pet_id']))
+        cnx.commit()
+
+    def put(self):
+        # | id | name | age | gender | weight | adopt_status | personality | color | image | hair | breed_id | adopt_user | adopt_time |
+        parser = reqparse.RequestParser()
+        parser.add_argument('pet_id',      type=int,   required=True)
+        parser.add_argument('name',        type=str,   required=True)
+        parser.add_argument('age',         type=float, required=True)
+        parser.add_argument('gender',      type=str,   required=True)
+        parser.add_argument('weight',      type=float, required=True)
+        parser.add_argument('personality', type=str)
+        parser.add_argument('color',       type=str,   required=True)
+        parser.add_argument('hair',        type=str,   required=True)
+        parser.add_argument('breed',    type=str,   required=True)
+        # | pet_id | username | title | open_time | close_time | description |
+        parser.add_argument('title',       type=str,   required=True)
+        parser.add_argument('description', type=str)
+        args = parser.parse_args()
+        print(args)
+
+        # update pet table
+        query = "UPDATE pet SET id = " + str(args['pet_id'])
+
+        if args['name']:        query = query + ", name = \"" +         args['name'] + "\""
+        if args['age']:         query = query + ", age = " +            str(args['age'])
+        if args['gender']:      query = query + ", gender = \"" +       args['gender'] + "\""
+        if args['weight']:      query = query + ", weight = " +         str(args['weight'])
+        if args['personality']: query = query + ", personality = \"" +  args['personality'] + "\""
+        if args['color']:       query = query + ", color = \"" +        args['color'] + "\""
+        if args['hair']:        query = query + ", hair = \"" +         args['hair'] + "\""
+        if args['breed']:       
+            cursor.execute("SELECT id FROM breed WHERE name = \"%s\"" % args['breed'])
+            breed_id = cursor.fetchone()[0]
+            query = query + ", breed_id = " + str(breed_id)
+
+        query = query + " WHERE id = " + str(args['pet_id'])
+        print(query)
+        cursor.execute(query)
+
+        # update posts table
+        query_2 = "UPDATE posts SET pet_id = " + str(args['pet_id'])
+        if args['title']:       query_2 = query_2 + ", title = \"" +        args['title'] + "\""
+        if args['description']: query_2 = query_2 + ", description = \"" +  args['description'] + "\""
+        query_2 = query_2 + " WHERE pet_id = " + str(args['pet_id'])
+        print(query_2)
+        cursor.execute(query_2)
+        cnx.commit()
 ###########################  Pet  ###########################
 
 ###########################  Image  ###########################

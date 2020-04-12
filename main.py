@@ -107,6 +107,11 @@ def present_dog2(pet_id, login):
 def user_page2(username, login):
     return render_template('user.html', username=username, login=login)
 
+@app.route('/edit-dog/<int:pet_id>/login/<login>')
+def edit_dog(pet_id, login):
+    return render_template('edit-dog.html', pet_id=pet_id, login=login)
+
+
 if __name__ == '__main__':
     app.run()
 

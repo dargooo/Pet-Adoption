@@ -21,26 +21,16 @@
 
 <body style="background-color: rgb(230,249,255);">
 
-<!-- ############################# Navbar (sit on top) ############################# -->
-<div class="w3-top"  style="color:grey;">
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
     <div class="w3-bar" id="myNavbar">
-        <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);"
-           onclick="toggleFunction()" title="Toggle Navigation Menu">
+        <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
             <i class="fa fa-bars"></i>
         </a>
-        <a href="/home" class="w3-bar-item w3-button"><i class="fa fa-th-large"></i> HOME</a>
-        <a href="/post" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-file-o"></i> POST</a>
-        <a href="/find" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-link"></i> FIND</a>
-        <a href="/account" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-camera"></i> ACCOUNT</a>
-        <a href="/login" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red" id="login"><i class="fa fa-user"></i> LOG IN  </a>
-    </div>
-    <!-- Navbar on small screens -->
-    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
-        <a href="/home" class="w3-bar-item w3-button" onclick="toggleFunction()">HOME</a>
-        <a href="/post" class="w3-bar-item w3-button" onclick="toggleFunction()">POST</a>
-        <a href="/find" class="w3-bar-item w3-button" onclick="toggleFunction()">FIND</a>
-        <a href="/account" class="w3-bar-item w3-button" onclick="toggleFunction()">ACCOUNT</a>
-        <a href="#" class="w3-bar-item w3-button">LOG IN</a>
+        <a id="nav-home" href="/home" class="w3-bar-item w3-button"><i class="fa fa-th-large"></i> HOME</a>
+        <a id="nav-post" href="/post" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-file-o"></i> POST</a>
+        <a id="nav-find" href="/find" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-link"></i> FIND</a>
+		<a id="nav-account" href="/login" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> ACCOUNT</a>
     </div>
 </div>
 
@@ -176,10 +166,175 @@
 	<br>
 	<br>
 <script src='/static/js/user.js' language='javascript'></script>
-<script> if ("{{ login }}" != "") { document.getElementById("login").innerHTML="{{ login }}"; } </script>
-
-<script>getUser('{{ username }}');</script>
 <script>document.getElementById('btn-submit').addEventListener('click', function(){ postReview('{{ username }}'); }, false);</script>
+	<script>
+        if ("{{ login }}" != "") {
+            document.getElementById("nav-home").setAttribute("href", "/home/login/{{ login }}");
+            document.getElementById("nav-post").setAttribute("href", "/post/login/{{ login }}");
+            document.getElementById("nav-find").setAttribute("href", "/find/login/{{ login }}");
+			document.getElementById("nav-account").setAttribute("href", "/userpage/{{ login }}/login/{{ login }}");
+        }
+    </script>
+	<script>
+		function deletePet(pet_id) {
+			 var txt;
+ 			 if (confirm("Are you sure to delete this pet?")) {
+				var site = 'http://coasttocoast.web.illinois.edu';
+				var url = site + '/pet?pet_id=' + pet_id;
+				console.log(url);
+				fetch(url, { method: 'delete' })
+            	.then(res => res.json())
+				.catch(error => console.log('ERROR'));
+			 }
+		}
+    </script>
+	<script>
+		function getUser(username) {
+		    var site = 'http://coasttocoast.web.illinois.edu';
+		    // user info
+		    var url = site + '/user?username=\"' + username + '\"';
+		    console.log(url);
+		    fetch(url)
+		    .then(res => res.json())
+		    .then(data => {
+		        console.log(data);
+		        data.forEach(obj => {
+		            var is_person = obj.is_person;
+		            if (is_person) { document.getElementById("user-username").innerHTML       = obj.username + ' &#183; individual'; }
+		            else           { document.getElementById("user-username").innerHTML       = obj.username + ' &#183; shelter'; }
+		            document.getElementById("user-name").innerHTML  = obj.name;
+		            document.getElementById("user-addr").innerHTML  = obj.address + " " + obj.zipcode;
+		            document.getElementById("user-email").innerHTML = obj.email;
+		            //document.getElementById("user-avatar").setAttribute("src", obj.avatar);
+		        });
+		    })
+		    .catch(error => console.log('ERROR'));
+		
+		    // counts - posted
+		    var url = site + '/count/pet?username=\"' + username + '\"';
+		    fetch(url)
+		        .then(res => {
+		                return res.json()
+		        })
+		        .then(data => {
+		                console.log(data);
+		                data.forEach(obj => {
+		                document.getElementById("user-c-posted").innerHTML=obj.count;
+		        });
+		        })
+		        .catch(error => console.log('ERROR'))
+		
+		    // counts - adopted
+		    var url = site + '/count/pet?username=\"' + username + '\"\&status=\'adopted\'';
+		    fetch(url)
+		        .then(res => {
+		                return res.json()
+		        })
+		        .then(data => {
+		                console.log(data);
+		                data.forEach(obj => {
+		                document.getElementById("user-c-adopted").innerHTML=obj.count;
+		        });
+		        })
+		        .catch(error => console.log('ERROR'));
+		
+		    // posted pets list
+		    var url = site + '/pet/user/' + username;
+		    console.log(url);
+		    fetch(url)
+		    .then(res => res.json())
+		    .then(data => {
+		        console.log(data);
+		        var count = 0;
+		        data.forEach(obj => {
+		            console.log(count); 
+		            if (count % 4 == 0) {
+		                var row = document.createElement("div");
+		                row.setAttribute("class", "w3-row-padding w3-padding-8 w3-center");
+		                row.setAttribute("id", "row-" + (count/4 | 0));
+		                row.setAttribute("style", "margin-top:30px;");
+		                document.getElementById("user-post-container").appendChild(row);
+		            }
+		
+		            var div = document.createElement("div");
+		            div.setAttribute("class", "w3-quarter");
+		
+		            var img = document.createElement("IMG");
+		            if (obj.image == 'NULL') { img.setAttribute("src", "/static/img/nophoto-dog.png"); }
+		            else                   { img.setAttribute("src", obj.image); }
+		            img.setAttribute("style", "width:100%;");
+		            div.appendChild(img);
+		
+		            var a = document.createElement("a");
+		            if ("{{ login }}" != "") { a.setAttribute("href", "http://coasttocoast.web.illinois.edu/present-dog/" + obj.id + "/login/{{ login }}"); }
+		            else {                     a.setAttribute("href", "http://coasttocoast.web.illinois.edu/present-dog/" + obj.id); }
+		            a.setAttribute("style", "margin:0;");
+		            var text = obj.name + ' - ' + obj.adopt_status;
+		            var t = document.createTextNode(text);
+		            a.appendChild(t);
+		            div.appendChild(a);
+
+					if ("{{ login }}" != "" && "{{ login }}" == "{{ username }}") {
+						var divBtn = document.createElement("div");
+						var btnEdit = document.createElement("button");
+						btnEdit.setAttribute("class", "btn-pair");
+						btnEdit.innerHTML = "Edit";
+						var ref = '/edit-dog/' + obj.id + '/login/{{ login }}';
+						btnEdit.setAttribute("onclick", "window.location.href = '" + ref + "'");
+
+						var btnDelete = document.createElement("button");
+						btnDelete.setAttribute("class", "btn-pair");
+						btnDelete.innerHTML = "Delete";
+						btnDelete.setAttribute("style","background:#fc682d");
+						btnDelete.addEventListener('click', function(){ deletePet(obj.id); }, false);
+
+						divBtn.appendChild(btnEdit);
+						divBtn.appendChild(btnDelete);
+						div.appendChild(divBtn);
+
+					}
+
+		            document.getElementById("row-" + (count/4 | 0)).appendChild(div);
+		            count++;
+		        });
+		    })
+		    .catch(error => console.log('ERROR'));
+		
+		    // reviews list
+		    var url = site + '/reviews?reviewee=\"' + username + '\"';
+		    console.log(url);
+		    fetch(url)
+		    .then(res => res.json())
+		    .then(data => {
+		        console.log(data);
+		        var count = 0, good = 0;
+		        data.forEach(obj => {
+		            console.log(count);
+		            var p = document.createElement("p");
+		            var b = obj.reviewer;
+		            var face = "&#9830;";
+		            face.fontsize("6px");
+		            if (obj.recommand) {
+		                p.innerHTML = face.fontcolor("#a5db42") + " " + b.bold() + ": " + obj.content;
+		            }
+		            else {
+		                p.innerHTML = face.fontcolor("#fc682d") + " " + b.bold() + ": " + obj.content;
+		            }
+		            document.getElementById("user-reviews-list").appendChild(p);
+		            count++;
+		            if (obj.recommand) { good++; }
+		
+		            var score = good * 100 / count;
+		            console.log(score);
+		            document.getElementById("user-score").setAttribute("style", "height:28px; width:" + score + "%");
+		            document.getElementById("user-c-reviews").innerHTML      = count;
+		            document.getElementById("user-c-reviews-good").innerHTML = good;
+		        });
+		    })
+		    .catch(error => console.log('ERROR'));
+		}
+    </script>
+<script>getUser('{{ username }}');</script>
 
 </body>
 </html>

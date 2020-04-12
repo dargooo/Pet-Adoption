@@ -11,7 +11,7 @@ try:
 except:
     print("Log in mysql db failed!")
 
-post_reader = open("datafile/post_info.txt")
+post_reader = open("../datafile/post_info.txt")
 
 def generate_post(username, is_person):
     insert_query = "INSERT INTO posts VALUES (%s, %s, %s, %s, %s, %s)"
