@@ -302,6 +302,7 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(json)
               }).then(function(response) {
+				  alert("Pet info updated!");
                   console.log(JSON.stringify(json));
                   return response.json();
               }) .then(data => {

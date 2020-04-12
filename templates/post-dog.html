@@ -51,7 +51,7 @@
 
 <!-- POST & ADOPT in the middle -->
 
-<img src="static/img/dog-post.png" class="center"></img>
+<img src="/static/img/dog-post.png" class="center"></img>
 
 <div class="container-contact100">
     <div class="wrap-contact100">
@@ -120,7 +120,9 @@
                             <option>long</option>
                             <option>medium</option>
                             <option>short</option>
-                            <option>none</option>
+                            <option>hairless</option>
+                            <option>wire</option>
+                            <option>curly</option>
                         </select>
                         <div class="select-dropdown"></div>
                     </div>
@@ -225,7 +227,7 @@
 		        "hair":         hair,
 		        "weight":       weight,
 		        "personality":  personality,
-		        "username":     "ywang14",
+		        "username":     {{ login }},
 		        "title":        title,
 		        "description":  description,
 		    }
