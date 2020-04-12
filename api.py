@@ -52,7 +52,7 @@ class Pet(Resource):
         if args['min_age']:     query = query + " AND age >= " + str(args['min_age'])
         if args['max_age']:     query = query + " AND age <= " + str(args['max_age'])
         if args['gender']:      query = query + " AND gender = \'" + args['gender'] + "\'"
-        if args['personality']: query = query + " AND personality IN (" + args['personality'] + ")"
+        if args['personality']: query = query + " AND personality = \'" + args['personality'] + "\'"
         if args['color']:       query = query + " AND color = \'" + args['color'] + "\'"
         if args['hair']:        query = query + " AND hair = \'" + args['hair'] + "\'"
         if args['breed']:       query = query + " AND breed_id = (SELECT id FROM breed WHERE name = \'%s\')" % args['breed']

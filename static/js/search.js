@@ -40,13 +40,8 @@ function getPet(species_id){
 	var maxAge 	= document.getElementById("maxAge").value;
 	var color 	= document.getElementById("color").value;
 	var hair 	= document.getElementById("hair").value;
-	var arr = document.getElementById("personality").selectedOptions;
-	personalities = "";
-	for (let i=0; i<arr.length; i++) {
-		if (i>0) { personalities = personalities + ","; }
-		personalities = personalities + "\"" + arr[i].value + "\"";
-	}
-	//var url = 'http://127.0.0.1:5000/pet?species_id=0';
+	var personality = document.getElementById("personality").value;
+
 	var url = 'http://coasttocoast.web.illinois.edu/pet?species_id=' + species_id;
 	if (zipcode) { 
 		url = url + "\&zipcode=" + zipcode; 
@@ -59,7 +54,7 @@ function getPet(species_id){
 	if (maxAge) 	 { url = url + "\&maxAge=" + parseInt(maxAge); }
 	if (color) 	 { url = url + "\&color=" + color; }
 	if (hair) 	 { url = url + "\&hair=" + hair; }
-	if (personalities) { url = url + "\&personality=" + personalities + ""; }
+	if (personalities) { url = url + "\&personality=" + personality; }
 	console.log(url);
 
 	fetch(url)
