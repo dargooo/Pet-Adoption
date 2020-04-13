@@ -315,6 +315,34 @@ class Reviews(Resource):
         cnx.commit()
 ########################### Reviews  ###########################
 
+########################### Messages ###########################
+class Messages(Resource):
+    def get(self):
+        # | id | sender | receiver | time | content | new |
+        parser = reqparse.RequestParser()
+        parser.add_argument('username', type=str, required=True)
+        args = parser.parse_args()
+        cursor.execute("SELECT * FROM message WHERE sender = %s OR receiver = %s" % (args['username'], args['username']))
+        return sql_2_json(cursor)
+
+    def post(self):
+        # | id | sender | receiver | time | content | new |
+        parser = reqparse.RequestParser()
+        parser.add_argument('sender',  type=str,  required=True)
+        parser.add_argument('receiver',  type=str,  required=True)
+        parser.add_argument('content',   type=str,  required=True)
+        args = parser.parse_args()
+
+        cursor.execute("SELECT MAX(id) FROM message")
+        message_id = cursor.fetchone()[0] + 1
+        time       = str(datetime.now()).split('.')[0]
+
+        insert_query = "INSERT INTO message VALUES (%s, %s, %s, %s, %s, %s)"
+        query_data = (message_id, args['sender'], args['receiver'], time, args['content'], True)
+        cursor.execute(insert_query, query_data)
+        cnx.commit()
+########################### Messages  ###########################
+
 
 if __name__ == '__main__':
     app.run(debug=True)
