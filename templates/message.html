@@ -171,6 +171,7 @@
 							var pad = document.createElement("div");
 							pad.setAttribute("class", "w3-padding-32 w3-justify w3-content");
 
+							// header
 							var l1 = document.createElement("hr");
 							l1.setAttribute("class", "horizon-line w3-opacityi");
 							l1.setAttribute("style", "margin-bottom: 5px;");
@@ -188,13 +189,49 @@
 
 							var card = document.createElement("div");
 							card.setAttribute("class", "card");
+
+							// card body - dialogs
 							var cb = document.createElement("div");
 							cb.setAttribute("class", "card-body msg_card_body");
 							cb.setAttribute("id", "card-" + obj.sender);
 							card.appendChild(cb);
+
+							// card foot - text area
+							var cf = document.createElement("div");
+							cf.setAttribute("class", "card-foot");
+							var ig = document.createElement("div");
+							ig.setAttribute("class", "input-group");
+
+							var iga = document.createElement("div");
+							iga.setAttribute("class", "input-group-append");
+							var sp1 = document.createElement("span");
+							sp1.setAttribute("class", "input-group-text attach_btn");
+							var icon1 = document.createElement("i");
+							icon1.setAttribute("class", "fas fa-paperclip");
+							sp1.appendChild(icon1);
+							iga.appendChild(sp1);
+							ig.appendChild(iga);
+
+							var area = document.createElement("textarea");
+							area.setAttribute("class", "form-control type_msg");
+							area.setAttribute("placeholder", "Type your message...");
+							ig.appendChild(area);
+
+							var iga2 = document.createElement("div");
+                            iga2.setAttribute("class", "input-group-append");
+                            var sp2 = document.createElement("span");
+							sp2.setAttribute("class", "input-group-text send_btn");
+                            var icon2 = document.createElement("i");
+                            icon2.setAttribute("class", "fas fa-location-arrow");
+                            sp2.appendChild(icon2);
+                            iga2.appendChild(sp2);
+                            ig.appendChild(iga2);
+
+							cf.appendChild(ig);
+							card.appendChild(cf);
+
 							pad.appendChild(card);
 							document.getElementById("main").appendChild(pad);
-
 						}
 
 						var div = document.createElement("div");
@@ -245,8 +282,43 @@
                             cb.setAttribute("class", "card-body msg_card_body");
                             cb.setAttribute("id", "card-" + obj.receiver);
 							card.appendChild(cb);
-							pad.appendChild(card);
-							document.getElementById("main").appendChild(pad);
+
+							// card foot - text area
+                            var cf = document.createElement("div");
+                            cf.setAttribute("class", "card-foot");
+                            var ig = document.createElement("div");
+                            ig.setAttribute("class", "input-group");
+
+                            var iga = document.createElement("div");
+                            iga.setAttribute("class", "input-group-append");
+                            var sp1 = document.createElement("span");
+                            sp1.setAttribute("class", "input-group-text attach_btn");
+                            var icon1 = document.createElement("i");
+                            icon1.setAttribute("class", "fas fa-paperclip");
+                            sp1.appendChild(icon1);
+                            iga.appendChild(sp1);
+                            ig.appendChild(iga);
+
+                            var area = document.createElement("textarea");
+                            area.setAttribute("class", "form-control type_msg");
+                            area.setAttribute("placeholder", "Type your message...");
+                            ig.appendChild(area);
+
+                            var iga2 = document.createElement("div");
+                            iga2.setAttribute("class", "input-group-append");
+                            var sp2 = document.createElement("span");
+                            sp2.setAttribute("class", "input-group-text send_btn");
+                            var icon2 = document.createElement("i");
+                            icon2.setAttribute("class", "fas fa-location-arrow");
+                            sp2.appendChild(icon2);
+                            iga2.appendChild(sp2);
+                            ig.appendChild(iga2);
+
+                            cf.appendChild(ig);
+                            card.appendChild(cf);
+
+                            pad.appendChild(card);
+                            document.getElementById("main").appendChild(pad);
                         }
 
 						var div = document.createElement("div");
@@ -259,7 +331,7 @@
 						span.setAttribute("class", "msg_time_send");
 						span.innerHTML = obj.time;
 						msg_div.appendChild(span);
-						div.appendChild(msg_div)
+						div.appendChild(msg_div);
 
 						var img_div = document.createElement("div");
 						img_div.setAttribute("class", "img_cont_msg");
@@ -275,7 +347,7 @@
                 });
             })
             .catch(error => console.log('ERROR'));
-			}
+		}
 </script>
 <script>
 </script>
