@@ -7,8 +7,8 @@ from random import random
 from datetime import datetime, timedelta
 
 try:
-#    cnx = mysql.connector.connect(user='root', password='Ms41149.',
-    cnx = mysql.connector.connect(user='coasttocoast_yijun', password='sql41149.',
+    cnx = mysql.connector.connect(user='root', password='Ms41149.',
+#    cnx = mysql.connector.connect(user='coasttocoast_yijun', password='sql41149.',
                                   host='localhost', database='coasttocoast_petadoptionapp')
     cursor = cnx.cursor()
 except:
@@ -24,7 +24,7 @@ def generate_message(user, talkers):
     start = datetime(2019,1,1)
     end   = datetime(2020,5,1)
 
-    num = randint(1, 5)
+    num = randint(2, 5)
     for i in range(1, num + 1):
         talker = choice(talkers)[0]
         diags = randint(0, 5)
@@ -43,11 +43,12 @@ def generate_message(user, talkers):
             query_data = (count, sender, receiver, time, content, False)
             cursor.execute(insert_query, query_data)
             count += 1
-        # last message - unread
-        content = review_reader.readline().split('\n')[0]
-        query_data = (count, talker, user, diag_end.strftime("%Y-%m-%d %H:%M:%S"), content, True)
-        cursor.execute(insert_query, query_data)
-        count += 1
+        if count % 3 != 0:
+            # last message - unread
+            content = review_reader.readline().split('\n')[0]
+            query_data = (count, talker, user, diag_end.strftime("%Y-%m-%d %H:%M:%S"), content, True)
+            cursor.execute(insert_query, query_data)
+            count += 1
         cnx.commit()
 
 
