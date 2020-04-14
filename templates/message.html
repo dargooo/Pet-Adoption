@@ -121,8 +121,8 @@
 
 <script>
 	function getMessages(username) {
-			//var site = 'http://coasttocoast.web.illinois.edu';
-			var site = "http://127.0.0.1:5000";
+			var site = 'http://coasttocoast.web.illinois.edu';
+			//var site = "http://127.0.0.1:5000";
             var url = site + '/messages?username=\"' + username + '\"';
             console.log(url);
             fetch(url)
@@ -140,6 +140,7 @@
 							var l1 = document.createElement("hr");
 							l1.setAttribute("class", "horizon-line w3-opacityi");
 							l1.setAttribute("style", "margin-bottom: 5px;");
+							l1.setAttribute("id", "line-" + obj.sender);
 							pad.appendChild(l1);
 
 							var p = document.createElement("p");
@@ -196,7 +197,7 @@
 							// add to side nav bar
 							var a = document.createElement("a");
 							a.setAttribute("class", "side-bar-font w3-bar-item w3-button w3-padding-large w3-hover-blue-2");
-							a.setAttribute("href", "#" + "card-" + obj.sender);
+							a.setAttribute("href", "#" + "line-" + obj.sender);
 							var p = document.createElement("p");
 							p.innerHTML = obj.sender;
 							a.appendChild(p);
@@ -210,7 +211,7 @@
 						var img_div = document.createElement("div");
 						img_div.setAttribute("class", "img_cont_msg");
 						var img = document.createElement("img");
-						img.setAttribute("src", "https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg");
+						img.setAttribute("src", obj.sender_avatar);
 						img.setAttribute("class", "rounded-circle user_img_msg");
 						img_div.appendChild(img);
 						div.appendChild(img_div);
@@ -234,6 +235,7 @@
 							var l1 = document.createElement("hr");
 							l1.setAttribute("class", "horizon-line w3-opacityi");
 							l1.setAttribute("style", "margin-bottom: 5px;");
+							l1.setAttribute("id", "line-" + obj.receiver);
 							pad.appendChild(l1);
 
 							var p = document.createElement("p");
@@ -288,7 +290,7 @@
 							// add to side nav bar
 							var a = document.createElement("a");
 							a.setAttribute("class", "side-bar-font w3-bar-item w3-button w3-padding-large w3-hover-blue-2");
-							a.setAttribute("href", "#" + "card-" + obj.receiver);
+							a.setAttribute("href", "#" + "line-" + obj.receiver);
 							var p = document.createElement("p");
 							p.innerHTML = obj.receiver;
 							a.appendChild(p);
@@ -310,7 +312,7 @@
 						var img_div = document.createElement("div");
 						img_div.setAttribute("class", "img_cont_msg");
 						var img = document.createElement("img");
-						img.setAttribute("src", "https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg");
+						img.setAttribute("src", obj.sender_avatar);
 						img.setAttribute("class", "rounded-circle user_img_msg");
 						img_div.appendChild(img);
 						div.appendChild(img_div);

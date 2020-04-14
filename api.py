@@ -322,7 +322,7 @@ class Messages(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument('username', type=str, required=True)
         args = parser.parse_args()
-        cursor.execute("SELECT * FROM message WHERE sender = %s OR receiver = %s ORDER BY time" % (args['username'], args['username']))
+        cursor.execute("SELECT sender, receiver, time, content, new, user1.avatar AS sender_avatar, user2.avatar AS receiver_avatar FROM message, user AS user1, user AS user2 WHERE sender=user1.username AND receiver=user2.username AND (sender = %s OR receiver = %s) ORDER BY time" % (args['username'], args['username']))
         return sql_2_json(cursor)
 
     def post(self):

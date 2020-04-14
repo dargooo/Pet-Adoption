@@ -20,12 +20,14 @@ breed = Base.classes.breed
 user = Base.classes.user
 pet = Base.classes.pet
 posts = Base.classes.posts
+message = Base.classes.message
 
 admin.add_view(ModelView(species, db.session))
 admin.add_view(ModelView(breed, db.session))
 admin.add_view(ModelView(user, db.session))
 admin.add_view(ModelView(pet, db.session))
 admin.add_view(ModelView(posts, db.session))
+admin.add_view(ModelView(message, db.session))
 
 api = Api(app)
 CORS(app)
