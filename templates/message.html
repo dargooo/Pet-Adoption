@@ -148,6 +148,7 @@
 							a.setAttribute("class", "side-bar-font w3-bar-item w3-button w3-padding-large w3-hover-blue-2");
 							a.setAttribute("href", "#" + "line-" + obj.sender);
 							var p = document.createElement("p");
+							p.setAttribute("id", "bar-" + obj.sender);
 							p.innerHTML = obj.sender;
 							a.appendChild(p);
 							document.getElementById("sidebar").appendChild(a);
@@ -173,6 +174,14 @@
 						span.innerHTML = obj.time;
 						msg_div.appendChild(span);
 						div.appendChild(msg_div)
+
+						// If new message
+						if (obj.new) {
+							var icon = document.createElement("i");
+							icon.setAttribute("class", "far fa-comment-dots");
+							icon.setAttribute("style", "color:#db6842;");
+							document.getElementById("bar-" + obj.sender).appendChild(icon);
+						}
 
 						document.getElementById("card-" + obj.sender).appendChild(div);
 					} 
@@ -234,6 +243,7 @@
 							a.setAttribute("class", "side-bar-font w3-bar-item w3-button w3-padding-large w3-hover-blue-2");
 							a.setAttribute("href", "#" + "line-" + obj.receiver);
 							var p = document.createElement("p");
+							p.setAttribute("id", "bar-" + obj.receiver);
 							p.innerHTML = obj.receiver;
 							a.appendChild(p);
 							document.getElementById("sidebar").appendChild(a);
@@ -259,6 +269,13 @@
 						img_div.appendChild(img);
 						div.appendChild(img_div);
 
+						// If new message
+						if (obj.new) {
+							var icon = document.createElement("i");
+							icon.setAttribute("class", "far fa-comment-dots");
+							icon.setAttribute("style", "color:#db6842;");
+							document.getElementById("bar-" + obj.receiver).appendChild(icon);
+						}
 						document.getElementById("card-" + obj.receiver).appendChild(div);
 					}
 
