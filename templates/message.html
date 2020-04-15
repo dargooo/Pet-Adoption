@@ -270,27 +270,28 @@
 <script>
 	function postMessage(sender, receiver, content) {
 
-    var json = {
-        "sender": sender,
-        "receiver": receiver,
-        "content": content
-    }
-
-//  var url = "http://127.0.0.1:5000"
-    var url = 'http://coasttocoast.web.illinois.edu';
-    fetch(url + "/messages", {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(json)
-      }).then(function(response) {
-          console.log(JSON.stringify(json));
-          return response.json();
-      }) .then(data => {
-          //console.log(data);
-          //var obj = JSON.parse(data);
-       }).catch(error => console.log('ERROR'));
-
-	}
+	    var json = {
+	        "sender": sender,
+	        "receiver": receiver,
+	        "content": content
+	    }
+	
+	//  var url = "http://127.0.0.1:5000"
+	    var url = 'http://coasttocoast.web.illinois.edu';
+	    fetch(url + "/messages", {
+	        method: 'POST',
+	        headers: { 'Content-Type': 'application/json' },
+	        body: JSON.stringify(json)
+	      }).then(function(response) {
+	          console.log(JSON.stringify(json));
+	          return response.json();
+	      }) .then(data => {
+	          //console.log(data);
+	          //var obj = JSON.parse(data);
+	       }).catch(error => console.log('ERROR'));
+	
+		}
+		location.reload();
 </script>
 <script>getMessages('ywang14');</script>
 
