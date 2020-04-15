@@ -149,7 +149,7 @@
 							a.setAttribute("href", "#" + "line-" + obj.sender);
 							var p = document.createElement("p");
 							p.setAttribute("id", "bar-" + obj.sender);
-							p.innerHTML = obj.sender;
+							p.innerHTML = obj.sender + " ";
 							a.appendChild(p);
 							document.getElementById("sidebar").appendChild(a);
 
@@ -244,7 +244,7 @@
 							a.setAttribute("href", "#" + "line-" + obj.receiver);
 							var p = document.createElement("p");
 							p.setAttribute("id", "bar-" + obj.receiver);
-							p.innerHTML = obj.receiver;
+							p.innerHTML = obj.receiver + " ";
 							a.appendChild(p);
 							document.getElementById("sidebar").appendChild(a);
                         }
