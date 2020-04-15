@@ -41,7 +41,7 @@
             <i class="fa fa-bars"></i>
         </a>
         <a id="nav-home" href="/home" class="w3-bar-item w3-button"><i class="fa fa-th-large"></i> HOME</a>
-        <a id="nav-post" href="/post" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-file-o"></i> POST</a>
+        <a id="nav-post" href="/post" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-file"></i> POST</a>
         <a id="nav-find" href="/find" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-link"></i> FIND</a>
         <a id="nav-account" href="/login" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> ACCOUNT</a>
 		 <a href="javascript:void(0)" class="w3-padding-large w3-hide-small w3-right"><i class="fa fa-envelope w3-xlarge"></i></a>
@@ -119,16 +119,6 @@
 							var ig = document.createElement("div");
 							ig.setAttribute("class", "input-group");
 
-							var iga = document.createElement("div");
-							iga.setAttribute("class", "input-group-append");
-							var sp1 = document.createElement("span");
-							sp1.setAttribute("class", "input-group-text attach_btn");
-							var icon1 = document.createElement("i");
-							icon1.setAttribute("class", "fas fa-paperclip");
-							sp1.appendChild(icon1);
-							iga.appendChild(sp1);
-							ig.appendChild(iga);
-
 							var area = document.createElement("textarea");
 							area.setAttribute("class", "form-control type_msg");
 							area.setAttribute("placeholder", "Type your message...");
@@ -143,6 +133,9 @@
                             sp2.appendChild(icon2);
                             iga2.appendChild(sp2);
                             ig.appendChild(iga2);
+
+							// add click listener to sp2
+							sp2.addEventListener('click', function(){ postMessage(username, obj.sender, area.value); }, false);
 
 							cf.appendChild(ig);
 							card.appendChild(cf);
@@ -212,16 +205,6 @@
                             var ig = document.createElement("div");
                             ig.setAttribute("class", "input-group");
 
-                            var iga = document.createElement("div");
-                            iga.setAttribute("class", "input-group-append");
-                            var sp1 = document.createElement("span");
-                            sp1.setAttribute("class", "input-group-text attach_btn");
-                            var icon1 = document.createElement("i");
-                            icon1.setAttribute("class", "fas fa-paperclip");
-                            sp1.appendChild(icon1);
-                            iga.appendChild(sp1);
-                            ig.appendChild(iga);
-
                             var area = document.createElement("textarea");
                             area.setAttribute("class", "form-control type_msg");
                             area.setAttribute("placeholder", "Type your message...");
@@ -236,6 +219,9 @@
                             sp2.appendChild(icon2);
                             iga2.appendChild(sp2);
                             ig.appendChild(iga2);
+
+							// add click listener to sp2
+							sp2.addEventListener('click', function(){ postMessage(username, obj.receiver, area.value); }, false);
 
                             cf.appendChild(ig);
                             card.appendChild(cf);
@@ -282,6 +268,29 @@
 		}
 </script>
 <script>
+	function postMessage(sender, receiver, content) {
+
+    var json = {
+        "sender": sender,
+        "receiver": receiver,
+        "content": content
+    }
+
+//  var url = "http://127.0.0.1:5000"
+    var url = 'http://coasttocoast.web.illinois.edu';
+    fetch(url + "/messages", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(json)
+      }).then(function(response) {
+          console.log(JSON.stringify(json));
+          return response.json();
+      }) .then(data => {
+          //console.log(data);
+          //var obj = JSON.parse(data);
+       }).catch(error => console.log('ERROR'));
+
+	}
 </script>
 <script>getMessages('ywang14');</script>
 

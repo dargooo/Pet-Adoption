@@ -94,18 +94,18 @@ background-color: rgba(0,0,0,0.3) !important;
 .active{
 		background-color: rgba(0,0,0,0.3);
 }
-	.user_img{
-		height: 70px;
-		width: 70px;
-		border:1.5px solid #f5f6fa;
-	
-	}
-	.user_img_msg{
-		height: 40px;
-		width: 40px;
-		border:1.5px solid #f5f6fa;
-	
-	}
+.user_img{
+	height: 70px;
+	width: 70px;
+	border:1.5px solid #f5f6fa;
+
+}
+.user_img_msg{
+	height: 45px;
+	width: 45px;
+	border:1.5px solid #f5f6fa;
+
+}
 .img_cont{
 		position: relative;
 		height: 70px;
