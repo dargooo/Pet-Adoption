@@ -176,8 +176,9 @@
 						div.appendChild(msg_div)
 
 						// If new message
-						if (obj.new) {
+						if (obj.new && !document.getElementById("bar-" + obj.sender).contains(document.getElementById("icon-" + obj.sender))) {
 							var icon = document.createElement("i");
+							icon.setAttribute("id", "icon-" + obj.sender);
 							icon.setAttribute("class", "far fa-comment-dots");
 							icon.setAttribute("style", "color:#db6842;");
 							document.getElementById("bar-" + obj.sender).appendChild(icon);
