@@ -323,7 +323,11 @@ class Messages(Resource):
         parser.add_argument('username', type=str, required=True)
         args = parser.parse_args()
         cursor.execute("SELECT sender, receiver, time, content, new, user1.avatar AS sender_avatar, user2.avatar AS receiver_avatar FROM message, user AS user1, user AS user2 WHERE sender=user1.username AND receiver=user2.username AND (sender = %s OR receiver = %s) ORDER BY time" % (args['username'], args['username']))
-        return sql_2_json(cursor)
+        result = sql_2_json(cursor)
+
+        cursor.execute("UPDATE message SET new = false WHERE receiver = " + args['username'])
+
+        return result
 
     def post(self):
         # | id | sender | receiver | time | content | new |

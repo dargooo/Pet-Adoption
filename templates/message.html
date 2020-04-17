@@ -269,13 +269,6 @@
 						img_div.appendChild(img);
 						div.appendChild(img_div);
 
-						// If new message
-						if (obj.new) {
-							var icon = document.createElement("i");
-							icon.setAttribute("class", "far fa-comment-dots");
-							icon.setAttribute("style", "color:#db6842;");
-							document.getElementById("bar-" + obj.receiver).appendChild(icon);
-						}
 						document.getElementById("card-" + obj.receiver).appendChild(div);
 					}
 
