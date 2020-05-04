@@ -83,6 +83,9 @@ def login():
 def dialogs():
     return render_template('message.html')
 
+@app.route('/register')
+def register():
+    return render_template('register.html')
 
 ########## user logged in ###########
 
