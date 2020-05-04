@@ -198,7 +198,7 @@ class User(Resource):
         parser.add_argument('username',  type=str, required=True)
         parser.add_argument('password',  type=str, required=True)
         parser.add_argument('name',      type=str, required=True)
-        parser.add_argument('avatar',    type=str, required=True)
+        parser.add_argument('avatar',    type=str)
         parser.add_argument('email',     type=str, required=True)
         parser.add_argument('address',   type=str)
         parser.add_argument('zipcode',   type=int, required=True)
