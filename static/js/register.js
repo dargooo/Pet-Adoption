@@ -34,7 +34,7 @@ function register() {
                 is_person: parseInt(type)
             };
         
-            fetch("http://localhost:5000/user", {
+            fetch("http://coasttocoast.web.illinois.edu/user", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(json)
