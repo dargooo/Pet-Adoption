@@ -23,6 +23,7 @@ function register() {
     request.onload = () => {
         console.log("reached here");
         if (request.responseText.length == 3) {
+            document.getElementById('register-form').submit();
             var json = {
                 name: name,
                 username: username,
