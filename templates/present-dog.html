@@ -77,8 +77,8 @@
 					<span id="present-status"></span>
 				</span>
 				<div>
-					<button id="btn-apply" class="btn-submit" type="submit">Want to adopt</button>
-					<button id="btn-sendmsg" class="btn-submit" type="submit">Send Message</button>
+					<button id="btn-request" class="btn-adopt" onclick="dialog()">Request to Adopt</button>
+					<button id="btn-contact" class="btn-adopt" onclick="request()">Send Message</button>
 				</div>
             </div>
 
@@ -150,7 +150,15 @@
             document.getElementById("nav-find").setAttribute("href", "/find/login/{{ login }}");
 			document.getElementById("nav-account").setAttribute("href", "/userpage/{{ login }}/login/{{ login }}");
         }
+</script>
+<script>
+		function dialog() {
+			alert("say sth");
+		}
 
+		function request() {
+			alert("Your request has been sent!");
+		}
 </script>
 <script>
 		function getPet(pet_id) {
@@ -174,6 +182,11 @@
 		            document.getElementById("present-personality").innerHTML = obj.personality;
 		            if (obj.image == 'NULL') { document.getElementById("present-img").setAttribute("src", "/static/img/nophoto-dog.png"); }
 		            else                   { document.getElementById("present-img").setAttribute("src", obj.image); }
+					
+					document.getElementById("present-status").innerHTML 	 = obj.adopt_status;
+					if (obj.adopt_status == "adoptable") { document.getElementById("present-status").setAttribute("class", "label adoptable"); }
+					else if (obj.adopt_status == "adopted") { document.getElementById("present-status").setAttribute("class", "label adopted"); }
+					else { document.getElementById("present-status").setAttribute("class", "label pending"); }
 		        });
 		    })
 		        .catch(error => console.log('ERROR'));
@@ -191,11 +204,7 @@
 		            if ("{{ login }}" != "") { document.getElementById("present-postby").setAttribute("href", "http://coasttocoast.web.illinois.edu/userpage/" + obj.username + "/login/{{ login }}"); }
 		            else {                     document.getElementById("present-postby").setAttribute("href", "http://coasttocoast.web.illinois.edu/userpage/" + obj.username); }
 		            document.getElementById("present-posttime").innerHTML    = obj.open_time;
-					document.getElementById("present-status").innerHTML 	 = obj.adopt_status;
-					if (obj.adopt_status == "adoptable") { document.getElementById("present-status").setAttribute("class", "label adoptable"); }
-					else if (obj.adopt_status == "adopted") { document.getElementById("present-status").setAttribute("class", "label adopted"); }
-					else { document.getElementById("present-status").setAttribute("class", "label pending"); }
-		        });
+				});
 		    })
 		
 		}

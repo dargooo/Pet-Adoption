@@ -73,3 +73,25 @@
 .adoptable {background-color: #4CAF50;} /* Green */
 .adopted {background-color: #2196F3;} /* Blue */
 .pending {background-color: #ff9800;} /* Orange */
+
+.btn-adopt {
+  width: 35%;
+  line-height: 50px;
+  font-family: inherit;
+  background: rgb(0, 119, 255);
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 400;
+  -webkit-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  margin: 30px;
+}
+
+.btn-adopt:hover {
+  background: rgb(117, 214, 255);
+}
