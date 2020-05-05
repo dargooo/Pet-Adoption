@@ -121,6 +121,10 @@ def user_page2(username, login):
 def edit_dog(pet_id, login):
     return render_template('edit-dog.html', pet_id=pet_id, login=login)
 
+@app.route('/dialogs/login/<login>')
+def dialogs2(login):
+    return render_template('message.html', login=login)
+
 
 if __name__ == '__main__':
     app.run()

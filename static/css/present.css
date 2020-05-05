@@ -64,3 +64,12 @@
     left: 23%;
     transform: translate(-15%);
 }
+
+.label {
+  color: white;
+  padding: 8px;
+}
+
+.adoptable {background-color: #4CAF50;} /* Green */
+.adopted {background-color: #2196F3;} /* Blue */
+.pending {background-color: #ff9800;} /* Orange */
