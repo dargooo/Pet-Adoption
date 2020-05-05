@@ -6,8 +6,8 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="static/css/user.css" rel="stylesheet" media="all">
-<link href="static/css/message.css" rel="stylesheet" media="all">
+<link href="/static/css/user.css" rel="stylesheet" media="all">
+<link href="/static/css/message.css" rel="stylesheet" media="all">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -63,9 +63,6 @@
 <br>
 <br>
 
-<script>
-    document.getElementById('btn-submit').addEventListener('click', function(){ postReview('{{ username }}'); }, false);
-</script>
 <script>
         if ("{{ login }}" != "") {
             document.getElementById("nav-home").setAttribute("href", "/home/login/{{ login }}");
