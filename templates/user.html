@@ -206,7 +206,7 @@
 		            document.getElementById("user-name").innerHTML  = obj.name;
 		            document.getElementById("user-addr").innerHTML  = obj.address + " " + obj.zipcode;
 		            document.getElementById("user-email").innerHTML = obj.email;
-		            document.getElementById("user-avatar").setAttribute("src", obj.avatar);
+		            document.getElementById("user-avatar").setAttribute("src", "/static/img/avatar" + obj.avatar);
 		        });
 		    })
 		    .catch(error => console.log('ERROR'));
