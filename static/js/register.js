@@ -74,7 +74,7 @@ function setAvatars() {
             document.getElementById("avatar-form").appendChild(row);
 		 }
 		var img = document.createElement("IMG");
-        img.setAttribute("src", "../static/img/avatar/ava" + i + ".png");
+        img.setAttribute("src", "/static/img/avatar/ava" + i + ".png");
 		img.setAttribute("class", "avatar");
 		img.setAttribute("id", "ava" + i);
 		img.setAttribute("onclick", "selectAva(\"ava" + i + "\")");
