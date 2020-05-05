@@ -70,15 +70,14 @@
 					Post By:
 					<a style="color:rgb(0, 119, 255);" id="present-postby"></a>
 				</span>
-                <span class="cute_font_sm contact100-form-title" id="present-posttime"
-                      style="text-align: center; padding-bottom: 0;"></span>
+                <span class="cute_font_sm contact100-form-title" id="present-posttime" style="text-align: center; padding-bottom: 25px;"></span>
                 <span class="cute_font_sm contact100-form-title" style="text-align: center; padding-bottom: 20px;">
 					Status:
 					<span id="present-status"></span>
 				</span>
 				<div>
-					<button id="btn-request" class="btn-adopt" onclick="dialog()">Request to Adopt</button>
-					<button id="btn-contact" class="btn-adopt" onclick="request()">Send Message</button>
+					<button id="btn-request" class="btn-adopt" onclick="request()">Request to Adopt</button>
+					<button id="btn-contact" class="btn-adopt" onclick="dialog()">Send Message</button>
 				</div>
             </div>
 
@@ -152,13 +151,34 @@
         }
 </script>
 <script>
-		function dialog() {
-			alert("say sth");
-		}
-
 		function request() {
 			alert("Your request has been sent!");
 		}
+
+		function dialog() {
+ 			var message = prompt("Please enter your message:", "Hi! I'm interested in adopting your pet.");
+			var receiver = document.getElementById("present-postby").innerHTML;
+            var json = {
+                "sender":     "{{ login }}",
+                "receiver":   receiver,
+                "content":    message
+            }
+
+            var url = 'http://coasttocoast.web.illinois.edu';
+            fetch(url + "/messages", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(json)
+              }).then(function(response) {
+                  console.log(JSON.stringify(json));
+                  return response.json();
+              }) .then(data => {
+                  console.log(data);
+               }).catch(error => console.log('ERROR'));
+
+			
+		}
+
 </script>
 <script>
 		function getPet(pet_id) {
@@ -184,9 +204,9 @@
 		            else                   { document.getElementById("present-img").setAttribute("src", obj.image); }
 					
 					document.getElementById("present-status").innerHTML 	 = obj.adopt_status;
-					if (obj.adopt_status == "adoptable") { document.getElementById("present-status").setAttribute("class", "label adoptable"); }
-					else if (obj.adopt_status == "adopted") { document.getElementById("present-status").setAttribute("class", "label adopted"); }
-					else { document.getElementById("present-status").setAttribute("class", "label pending"); }
+					if (obj.adopt_status == "adoptable") { document.getElementById("present-status").setAttribute("class", "labelll adoptable"); }
+					else if (obj.adopt_status == "adopted") { document.getElementById("present-status").setAttribute("class", "labelll adopted"); }
+					else { document.getElementById("present-status").setAttribute("class", "labelll pending"); }
 		        });
 		    })
 		        .catch(error => console.log('ERROR'));

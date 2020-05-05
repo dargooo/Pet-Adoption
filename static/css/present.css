@@ -65,7 +65,8 @@
     transform: translate(-15%);
 }
 
-.label {
+.labelll {
+	border-radius: 5px;
   color: white;
   padding: 8px;
 }
