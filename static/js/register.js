@@ -1,5 +1,14 @@
 function init() {
     document.getElementById('btn-register').addEventListener('click', register);
+	setAvatars();
+}
+
+var avaSelected = "";
+
+function selectAva(ava) {
+	document.getElementById(ava).setAttribute("style", "border: dashed 3px black");
+	if (avaSelected != "") { document.getElementById(avaSelected).setAttribute("style", "border: none"); }
+	avaSelected = ava;
 }
 
 function register() {
@@ -32,6 +41,7 @@ function register() {
                 address: address + ", " + city + ", " + state,
                 zipcode: zip,
                 is_person: parseInt(type)
+				avatar: avaSelected;
             };
         
             fetch("http://coasttocoast.web.illinois.edu/user", {
@@ -53,3 +63,21 @@ function register() {
 }
 
 document.addEventListener('DOMContentLoaded', init);
+
+function setAvatars() {
+	var i;
+	for (i = 1; i <= 50; i++) {
+		 if (i % 5 == 1) {
+            var row = document.createElement("div");
+		    row.setAttribute("class", "avatar-row");
+            row.setAttribute("id", "ava-row-" + ((i-1)/5 | 0));
+            document.getElementById("avatar-form").appendChild(row);
+		 }
+		var img = document.createElement("IMG");
+        img.setAttribute("src", "../static/img/avatar/ava" + i + ".png");
+		img.setAttribute("class", "avatar");
+		img.setAttribute("id", "ava" + i);
+		img.setAttribute("onclick", "selectAva(\"ava" + i + "\")");
+		document.getElementById("ava-row-" + ((i-1)/5 | 0)).appendChild(img);
+	}
+}

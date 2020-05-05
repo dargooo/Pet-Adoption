@@ -1,48 +1,55 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Register</title>
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-        <link href="/static/css/login.css" rel="stylesheet" type="text/css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	</head>
-	<body>
-		<div class="login">
-			<h1>Register</h1>
-			<form id="register-form">
+<head>
+    <meta charset="utf-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <link href="../static/css/login.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="login" style="width:750px;">
+    <h1>Register</h1>
+    <div class="w3-row-padding" style="margin:0 -16px">
+        <div class="w3-half" style="width:405px;">
+            <form id="register-form">
                 <label for="name">
-					<i class="fas fa-user"></i>
-				</label>
+                    <i class="fas fa-user"></i>
+                </label>
                 <input type="text" name="name" placeholder="Name" id="name" minLength="5" maxLength="40" required>
-				<label for="username">
-					<i class="fas fa-user"></i>
-				</label>
-                <input type="text" name="username" placeholder="Username" id="username" minLength="4" maxLength="20" required>
+                <label for="username">
+                    <i class="fas fa-user"></i>
+                </label>
+                <input type="text" name="username" placeholder="Username" id="username" minLength="4" maxLength="20"
+                       required>
                 <label for="email">
-					<i class="fas fa-envelope"></i>
+                    <i class="fas fa-envelope"></i>
                 </label>
                 <input type="email" name="email" placeholder="Email" id="email" maxLength="40" required>
-				<label for="password">
-					<i class="fas fa-lock"></i>
-				</label>
-                <input type="password" name="password" placeholder="Password" id="password" minLength="8" maxlength="20" required>
+                <label for="password">
+                    <i class="fas fa-lock"></i>
+                </label>
+                <input type="password" name="password" placeholder="Password" id="password" minLength="8" maxlength="20"
+                       required>
+
                 <label for="confirm_password">
-					<i class="fas fa-lock"></i>
-				</label>
-                <input type="password" name="confirm_password" placeholder="Confirm Password" id="confirm_password" minLength="8" maxlength="20"  required>
+                    <i class="fas fa-lock"></i>
+                </label>
+                <input type="password" name="confirm_password" placeholder="Confirm Password" id="confirm_password"
+                       minLength="8" maxlength="20" required>
                 <label for="address">
-					<i class="fas fa-map"></i>
-				</label>
+                    <i class="fas fa-map"></i>
+                </label>
                 <input type="text" name="address" placeholder="Address" id="address" maxLength="255" required>
                 <label for="city">
-					<i class="fas fa-city"></i>
-				</label>
-                <input type="text" name="city" placeholder="City" id="city" maxLength="40" required> 
-                <label for="state">
-					<i class="fas fa-flag-usa"></i>
+                    <i class="fas fa-city"></i>
                 </label>
-                <select id="state", name="state">
+                <input type="text" name="city" placeholder="City" id="city" maxLength="40" required>
+                <label for="state">
+                    <i class="fas fa-flag-usa"></i>
+                </label>
+                <select id="state" , name="state">
                     <option value="AL">Alabama</option>
                     <option value="AK">Alaska</option>
                     <option value="AZ">Arizona</option>
@@ -96,24 +103,33 @@
                     <option value="WY">Wyoming</option>
                 </select>
                 <label for="zip">
-					<i class="fas fa-map-pin"></i>
-                </label>		              
+                    <i class="fas fa-map-pin"></i>
+                </label>
                 <input type="text" name="zip" placeholder="Zip Code" id="zip" maxLength="16" required>
                 <label for="type">
-					<i class="fas fa-question-circle"></i>
-				</label>
+                    <i class="fas fa-question-circle"></i>
+                </label>
                 <select id="type" name="type">
                     <option value="1">Individual</option>
                     <option value="0">Organization</option>
                 </select>
-                <input type="submit" value="Register" id="btn-register">
                 <div id='message'></div>
-			</form>
+            </form>
         </div>
 
-        <script src='/static/js/register.js' language='javascript'></script>  
-    </body>
-    <script>
+        <div class="w3-half" style="width:350px;">
+			<form id="avatar-form">
+			</form>
+
+        </div>
+
+    </div>
+    <input class="register" value="Register" id="btn-register">
+</div>
+
+<script src='../static/js/register.js' language='javascript'></script>
+</body>
+<script>
         $('#password, #confirm_password').on('keyup', function () {
             if ($('#password').val() != "" && $('#confirm_password').val() != "") {
                 if ($('#password').val() == $('#confirm_password').val()) {
@@ -131,5 +147,7 @@
 
             return false;
         });
-    </script>
+
+
+</script>
 </html>

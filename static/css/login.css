@@ -78,3 +78,34 @@ body {
 #message {
 	color: red;
 }
+
+.avatar {
+  vertical-align: middle;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+
+.avatar-row {
+  padding-bottom: 14px;
+  width: 100%;
+}
+
+.register {
+	text-align: center;
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    background-color: #3274d6;
+    border: 0;
+    cursor: pointer;
+    font-weight: bold;
+    color: #ffffff;
+    transition: background-color 0.2s;
+}
+
+.register:hover {
+  background-color: #ff4d2e;
+    transition: background-color 0.2s;
+}
