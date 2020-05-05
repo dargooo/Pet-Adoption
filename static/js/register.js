@@ -21,6 +21,7 @@ function register() {
     var state = document.getElementById("state").value;    
     var zip = document.getElementById("zip").value;
     var type = document.getElementById("type").value;
+    var avatar = avaSelected + ".png";
 
     if (name == "" || username == "" || email == "" || password == "" || address == ""
         || city == "" || state == "" || zip == "" || type == "") {
@@ -40,8 +41,8 @@ function register() {
                 password: password,
                 address: address + ", " + city + ", " + state,
                 zipcode: zip,
-                is_person: parseInt(type)
-				avatar: avaSelected;
+                is_person: parseInt(type),
+				avatar: avatar
             };
         
             fetch("http://coasttocoast.web.illinois.edu/user", {

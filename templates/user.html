@@ -37,6 +37,7 @@
 <!-- ############################# Icon Bar (Sidebar - hidden on small screens) ############################# -->
 <nav class="user-sidebar w3-bar-block w3-small w3-hide-small w3-center" style="color:rgb(117, 214, 255); ">
     <!-- Avatar image in top left corner -->
+	<img id="user-avatar" style="width:100%">
     <a href="#posts" class="w3-bar-item w3-button w3-padding-large w3-hover-blue-2">
         <i class="fa fa-eye w3-xxlarge"></i>
         <p>POSTS</p>
@@ -205,7 +206,7 @@
 		            document.getElementById("user-name").innerHTML  = obj.name;
 		            document.getElementById("user-addr").innerHTML  = obj.address + " " + obj.zipcode;
 		            document.getElementById("user-email").innerHTML = obj.email;
-		            //document.getElementById("user-avatar").setAttribute("src", obj.avatar);
+		            document.getElementById("user-avatar").setAttribute("src", obj.avatar);
 		        });
 		    })
 		    .catch(error => console.log('ERROR'));
