@@ -10,8 +10,8 @@ import os, os.path
 app = Flask(__name__)
 api = Api(app)
 try:
-#    cnx = mysql.connector.connect(user='root', password='Ms41149.',
-    cnx = mysql.connector.connect(user='coasttocoast_yijun', password='sql41149.',
+    cnx = mysql.connector.connect(user='root', password='Ms41149.',
+#    cnx = mysql.connector.connect(user='coasttocoast_yijun', password='sql41149.',
                                   host='localhost', database='coasttocoast_petadoptionapp')
     cursor = cnx.cursor()
 except: print("Log in mysql db failed!")
@@ -346,6 +346,30 @@ class Messages(Resource):
         cursor.execute(insert_query, query_data)
         cnx.commit()
 ########################### Messages  ###########################
+
+########################### Requests ###########################
+class Requests(Resource):
+    def get(self):
+        # | pet_id | username |
+        parser = reqparse.RequestParser()
+        parser.add_argument('pet_id', type=int, required=True)
+        args = parser.parse_args()
+        cursor.execute("SELECT username FROM request WHERE pet_id = " + str(args['pet_id']))
+        result = sql_2_json(cursor)
+        return result
+
+    def post(self):
+        # | pet_id | username |
+        parser = reqparse.RequestParser()
+        parser.add_argument('pet_id', type=int, required=True)
+        parser.add_argument('username', type=str, required=True)
+        args = parser.parse_args()
+
+        insert_query = "INSERT IGNORE INTO request VALUES (%s, %s)"
+        query_data = (args['pet_id'], args['username'])
+        cursor.execute(insert_query, query_data)
+        cnx.commit()
+########################### Requests  ###########################
 
 
 if __name__ == '__main__':

@@ -8,8 +8,8 @@ from sqlalchemy.ext.automap import automap_base
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://coasttocoast_admin:EwFDKfkwfnyh@localhost/coasttocoast_petadoptionapp'
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Ms41149.@localhost/coasttocoast_petadoptionapp'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://coasttocoast_admin:EwFDKfkwfnyh@localhost/coasttocoast_petadoptionapp'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Ms41149.@localhost/coasttocoast_petadoptionapp'
 db = SQLAlchemy(app)
 admin = Admin(app)
 
@@ -42,6 +42,7 @@ api.add_resource(CountUser, '/count/user')
 api.add_resource(Posts, '/posts')
 api.add_resource(Reviews, '/reviews')
 api.add_resource(Messages, '/messages')
+api.add_resource(Requests, '/request')
 
 @app.route('/')
 def main():
