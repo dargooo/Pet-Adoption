@@ -55,6 +55,28 @@
     	font-size: 30px;
 		text-align: center;
 	}
+	.btn-apr {
+		  display: block;
+		  width: 110px;
+		  line-height: 30px;
+		  font-family: inherit;
+		  background: #fc682d;
+		  -webkit-border-radius: 10px;
+		  -moz-border-radius: 10px;
+		  border-radius: 10px;
+		  text-transform: uppercase;
+		  color: #fff;
+		  font-size: 6px;
+		  font-weight: 700;
+		  -webkit-transition: all 0.4s ease;
+		  -o-transition: all 0.4s ease;
+		  -moz-transition: all 0.4s ease;
+		  transition: all 0.4s ease;
+	}
+		
+		.btn-apr:hover {
+		  background: rgb(117, 214, 255);
+		}
 </style>
 <body style="background-color:rgb(230,249,255);">
 
@@ -68,6 +90,7 @@
         <a id="nav-post" href="/post" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-file-o"></i> POST</a>
         <a id="nav-find" href="/find" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-link"></i> FIND</a>
 		<a id="nav-account" href="/login" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> ACCOUNT</a>
+        <a id="nav-msg" href="/login" class="w3-padding-large w3-hide-small w3-right"><i class="fa fa-envelope w3-xlarge" style="color:#007bff"></i></a>
     </div>
 </div>
 
@@ -94,18 +117,18 @@
             	</span>
 				<div class="content-table" style="margin-left:100px; margin-top:30px;">
         			<div class="content-row">
-        			    <div class="column">
+        			    <div class="column" style="width:30%">
 							<span class="cute_font_sm contact100-form-title" style="padding-bottom: 0;">Request users: </span>
         			    </div>
-        			    <div class="column">
+        			    <div class="column" style="width:30%">
 						    <ul class="cute_font_sm" style="font-size:10px;">
 								<li>Coffee</li>
   								<li>Tea</li>
   								<li>Milk</li>
 							</ul>
         			    </div>
-        			    <div class="column">
-							<button id="btn-apr" class="btn-submit" style="width:80px; margin-top:40px;">Approve</button>
+        			    <div class="column" style="width:30%">
+							<button id="btn-apr" class="btn-apr">Approve</button>
         			    </div>
 					</div>
        			</div>
@@ -218,6 +241,7 @@
             document.getElementById("nav-post").setAttribute("href", "/post/login/{{ login }}");
             document.getElementById("nav-find").setAttribute("href", "/find/login/{{ login }}");
 			document.getElementById("nav-account").setAttribute("href", "/userpage/{{ login }}/login/{{ login }}");
+			document.getElementById("nav-msg").setAttribute("href", "/dialogs/login/{{ login }}");
         }
     </script>
 	<script>
