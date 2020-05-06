@@ -77,18 +77,25 @@
         <div class="content-row">
 
             <div class="column wrap-img">
-			<div class="input-group" style="margin-bottom: 25px; margin-top: 30px;">
-                <textarea class="titles" type="text" id="title"></textarea>
-            </div>
-            <img id="present-img" style="margin-top: 5px;"></img>
-			<div class="input-group" style="margin-bottom: 25px; margin-top: 30px;">
-            	<textarea class="comment" type="text" id="description"></textarea>
-        	</div>
-            <span class="cute_font_sm contact100-form-title" style="text-align: center; padding-bottom: 20px;">
-				Post By:
-				<a style="color:rgb(0, 119, 255);" id="present-postby"></a>
-			</span>
-            <span class="cute_font_sm contact100-form-title" id="present-posttime" style="text-align: center; padding-bottom: 0;"></span>
+				<div class="input-group" style="margin-bottom: 25px; margin-top: 30px;">
+            	    <textarea class="titles" type="text" id="title"></textarea>
+            	</div>
+            	<img id="present-img" style="margin-top: 5px;"></img>
+				<div class="input-group" style="margin-bottom: 25px; margin-top: 30px;">
+            		<textarea class="comment" type="text" id="description"></textarea>
+        		</div>
+            	<span class="cute_font_sm contact100-form-title" style="text-align: center; padding-bottom: 20px;">
+					Post By:
+					<a style="color:rgb(0, 119, 255);" id="present-postby"></a>
+				</span>
+            	<span class="cute_font_sm contact100-form-title" id="present-posttime" style="text-align: center; padding-bottom: 0;"></span>
+				<span class="cute_font_sm contact100-form-title" style="text-align: center; padding-bottom: 20px;">
+            	    Status:
+            	    <span id="present-status"></span>
+            	</span>
+				<div id="requesters">
+					<span class="cute_font_sm contact100-form-title" style="text-align: center; padding-bottom: 0;">Request users: </span>
+				</div>
             </div>
 
             <div class="column sidebar wrap-form">
@@ -241,6 +248,11 @@
 		            document.getElementById("personality").value = obj.personality;
 		            if (obj.image == 'NULL') { document.getElementById("present-img").setAttribute("src", "/static/img/nophoto-dog.png"); }
 		            else                     { document.getElementById("present-img").setAttribute("src", obj.image); }
+
+					document.getElementById("present-status").innerHTML      = obj.adopt_status;
+                    if (obj.adopt_status == "adoptable") { document.getElementById("present-status").setAttribute("class", "labelll adoptable"); }
+                    else if (obj.adopt_status == "adopted") { document.getElementById("present-status").setAttribute("class", "labelll adopted"); }
+                    else { document.getElementById("present-status").setAttribute("class", "labelll pending"); }
 		        });
 		    })
 		        .catch(error => console.log('ERROR'));
@@ -313,6 +325,8 @@
 		document.getElementById('btn-edit-dog').addEventListener('click', function(){ editPet(0); }, false);
     </script>
 
+    <script>
+    </script>
 </body>
 </html>
 

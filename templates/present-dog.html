@@ -76,8 +76,8 @@
 					<span id="present-status"></span>
 				</span>
 				<div id="operations">
-					<!--button id="btn-request" class="btn-adopt" onclick="request()">Request to Adopt</button-->
-					<!--button id="btn-contact" class="btn-adopt" onclick="dialog()">Send Message</button-->
+					<button id="btn-request" class="btn-adopt" onclick="request()">Request to Adopt</button>
+					<button id="btn-contact" class="btn-adopt" onclick="dialog()">Send Message</button>
 				</div>
             </div>
 
@@ -263,28 +263,21 @@
 				});
 		    })
 
-			if ("{{ login }}" == document.getElementById("present-postby").innerHTML) {
-				var span = document.createElement("span");
-				span.innerHTML = "Request users: ";
-				span.setAttribute("class", "cute_font contact100-form-title");
-				document.getElementById("operations").appendChild(span);
-			}
-			else {
-				var btnRequest = document.createElement("button");
-                btnRequest.setAttribute("class", "btn-adopt");
-				btnRequest.setAttribute("id", "btn-request");
-				btnRequest.addEventListener("click", request());
-				btnRequest.innerHTML = "Request to Adopt";
-				document.getElementById("operations").appendChild(btnRequest);
+			/*
+			var btnRequest = document.createElement("button");
+            btnRequest.setAttribute("class", "btn-adopt");
+			btnRequest.setAttribute("id", "btn-request");
+			btnRequest.setAttribute("onclick", "request()");
+			btnRequest.innerHTML = "Request to Adopt";
+			document.getElementById("operations").appendChild(btnRequest);
 
-				var btnContact = document.createElement("button");
-                btnContact.setAttribute("class", "btn-adopt");
-				btnContact.setAttribute("id", "btn-contact");
-				btnContact.addEventListener("click", dialog());
-				btnContact.innerHTML = "Send Message";
-				document.getElementById("operations").appendChild(btnContact);
-			}
-		
+			var btnContact = document.createElement("button");
+            btnContact.setAttribute("class", "btn-adopt");
+			btnContact.setAttribute("id", "btn-contact");
+			btnContact.setAttribute("onclick", "dialog()");
+			btnContact.innerHTML = "Send Message";
+			document.getElementById("operations").appendChild(btnContact);
+			*/
 		}
 
 </script>
