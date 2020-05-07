@@ -125,7 +125,7 @@
 							</ul>
         			    </div>
         			    <div class="column" style="width:30%">
-							<button id="btn-apr" class="btn-apr" style="padding-left: 20px;">Approve</button>
+							<button id="btn-apr" class="btn-apr" style="margin-left: 20px;">Approve</button>
         			    </div>
 					</div>
        			</div>
@@ -321,6 +321,7 @@
 
 				if (document.getElementById("present-status").innerHTML == "pending") {
 					// from request
+					console.log("pending");
 					url = site + '/request?pet_id=' + pet_id;
 					fetch(url)
             		.then(res => res.json())
@@ -335,6 +336,7 @@
             		    });
             		})
 				} else if (document.getElementById("present-status").innerHTML == "adopted") {
+					console.log("adopted");
 					document.getElementById("btn-apr").setAttribute("style", "display:none;");
 					document.getElementById("disp").innerHTML = "Adopted by: ";
 					var adu = document.createElement("li");
