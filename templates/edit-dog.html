@@ -376,6 +376,8 @@
               }) .then(data => {
                   console.log(data);
               }).catch(error => console.log('ERROR'));
+
+			location.reload();
 		}
 
 		document.getElementById('btn-apr').addEventListener('click', function(){ approve(); }, false);
@@ -423,6 +425,8 @@
               }) .then(data => {
                   console.log(data);
               }).catch(error => console.log('ERROR'));
+
+			location.reload();
         }
 
 		document.getElementById('btn-edit-dog').addEventListener('click', function(){ editPet(0); }, false);
