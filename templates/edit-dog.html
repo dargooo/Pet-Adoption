@@ -118,14 +118,14 @@
 				<div class="content-table" style="margin-left:100px; margin-top:30px;">
         			<div class="content-row">
         			    <div class="column" style="width:30%">
-							<span class="cute_font_sm contact100-form-title" style="padding-bottom: 0;">Request users: </span>
+							<span id="disp" class="cute_font_sm contact100-form-title" style="padding-bottom: 0;">Request users: </span>
         			    </div>
         			    <div class="column" style="width:30%">
-						    <ul class="cute_font_sm" id="request-list">
+						    <ul class="cute_font_sm" id="request-list" style="color:rgb(0, 119, 255);">
 							</ul>
         			    </div>
         			    <div class="column" style="width:30%">
-							<button id="btn-apr" class="btn-apr">Approve</button>
+							<button id="btn-apr" class="btn-apr" style="padding-left: 20px;">Approve</button>
         			    </div>
 					</div>
        			</div>
@@ -264,6 +264,7 @@
 
 	<script>
 		var userSelected = "";
+		var adopter;
 
 		function selectUser(username) {
 		    document.getElementById(username).setAttribute("style", "border: dashed 3px black");
@@ -290,6 +291,7 @@
 		            document.getElementById("hair").value      = obj.hair;
 		            document.getElementById("weight").value      = obj.weight;
 		            document.getElementById("personality").value = obj.personality;
+					adopter = obj.adopt_user;
 		            if (obj.image == 'NULL') { document.getElementById("present-img").setAttribute("src", "/static/img/nophoto-dog.png"); }
 		            else                     { document.getElementById("present-img").setAttribute("src", obj.image); }
 
@@ -317,21 +319,28 @@
 		        });
 		    })
 
-			// from request
-			url = site + '/request?pet_id=' + pet_id;
-			fetch(url)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                data.forEach(obj => {
-					var opt = document.createElement("li");
-					opt.innerHTML = obj.username;
-					opt.setAttribute("id", obj.username);
-					opt.setAttribute("onclick", "selectUser(\"" + obj.username + "\")");
-					opt.setAttribute("style", "color:rgb(0, 119, 255)");
-                    document.getElementById("request-list").appendChild(opt);
-                });
-            })
+				if (document.getElementById("present-status").innerHTML == "pending") {
+					// from request
+					url = site + '/request?pet_id=' + pet_id;
+					fetch(url)
+            		.then(res => res.json())
+            		.then(data => {
+            		    console.log(data);
+            		    data.forEach(obj => {
+							var opt = document.createElement("li");
+							opt.innerHTML = obj.username;
+							opt.setAttribute("id", obj.username);
+							opt.setAttribute("onclick", "selectUser(\"" + obj.username + "\")");
+            		        document.getElementById("request-list").appendChild(opt);
+            		    });
+            		})
+				} else if (document.getElementById("present-status").innerHTML == "adopted") {
+					document.getElementById("btn-apr").setAttribute("style", "display:none;");
+					document.getElementById("disp").innerHTML = "Adopted by: ";
+					var adu = document.createElement("li");
+                    adu.innerHTML = adopter;
+                    document.getElementById("request-list").appendChild(adu);
+				}
 		
 		}
     </script>
