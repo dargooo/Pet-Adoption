@@ -265,7 +265,6 @@
 	<script>
 		var userSelected = "";
 		var adopter;
-		var pet_status;
 
 		function selectUser(username) {
 		    document.getElementById(username).setAttribute("style", "border: dashed 3px black");
@@ -297,7 +296,6 @@
 		            else                     { document.getElementById("present-img").setAttribute("src", obj.image); }
 
 					document.getElementById("present-status").innerHTML      = obj.adopt_status;
-					pet_status = obj.adopt_status;
                     if (obj.adopt_status == "adoptable") { 
 						document.getElementById("present-status").setAttribute("class", "labelll adoptable"); 
 
@@ -311,6 +309,7 @@
                     	document.getElementById("disp").innerHTML = "Adopted by: ";
                     	var adu = document.createElement("li");
                     	adu.innerHTML = adopter;
+						adu.setAttribute("href", "http://coasttocoast.web.illinois.edu/userpage/" + adopter + "/login/{{ login }}"); }
                     	document.getElementById("request-list").appendChild(adu);
 					}
                     else { 
