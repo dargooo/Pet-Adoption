@@ -265,6 +265,7 @@
 	<script>
 		var userSelected = "";
 		var adopter;
+		var pet_status;
 
 		function selectUser(username) {
 		    document.getElementById(username).setAttribute("style", "border: dashed 3px black");
@@ -296,6 +297,7 @@
 		            else                     { document.getElementById("present-img").setAttribute("src", obj.image); }
 
 					document.getElementById("present-status").innerHTML      = obj.adopt_status;
+					pet_status = obj.adopt_status;
                     if (obj.adopt_status == "adoptable") { document.getElementById("present-status").setAttribute("class", "labelll adoptable"); }
                     else if (obj.adopt_status == "adopted") { document.getElementById("present-status").setAttribute("class", "labelll adopted"); }
                     else { document.getElementById("present-status").setAttribute("class", "labelll pending"); }
@@ -317,9 +319,9 @@
 		            else {                     document.getElementById("present-postby").setAttribute("href", "http://coasttocoast.web.illinois.edu/userpage/" + obj.username); }
 		            document.getElementById("present-posttime").innerHTML    = obj.open_time;
 		        });
-		    })
+		    }).catch(error => console.log('ERROR'));
 
-				if (document.getElementById("present-status").innerHTML == "pending") {
+				if (pet_status == "pending") {
 					// from request
 					console.log("pending");
 					url = site + '/request?pet_id=' + pet_id;
@@ -335,13 +337,15 @@
             		        document.getElementById("request-list").appendChild(opt);
             		    });
             		})
-				} else if (document.getElementById("present-status").innerHTML == "adopted") {
+				} else if (pet_status == "adopted") {
 					console.log("adopted");
 					document.getElementById("btn-apr").setAttribute("style", "display:none;");
 					document.getElementById("disp").innerHTML = "Adopted by: ";
 					var adu = document.createElement("li");
                     adu.innerHTML = adopter;
                     document.getElementById("request-list").appendChild(adu);
+				} else {
+					console.log("adoptable");
 				}
 		
 		}
