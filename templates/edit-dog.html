@@ -307,7 +307,7 @@
 						console.log("adopted");
                     	document.getElementById("btn-apr").setAttribute("style", "display:none;");
                     	document.getElementById("disp").innerHTML = "Adopted by: ";
-                    	var adu = document.createElement("li");
+                    	var adu = document.createElement("a");
                     	adu.innerHTML = adopter;
 						adu.setAttribute("href", "http://coasttocoast.web.illinois.edu/userpage/" + adopter + "/login/{{ login }}"); 
                     	document.getElementById("request-list").appendChild(adu);
