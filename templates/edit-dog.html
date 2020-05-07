@@ -122,9 +122,6 @@
         			    </div>
         			    <div class="column" style="width:30%">
 						    <ul class="cute_font_sm" id="request-list">
-								<li>Coffee</li>
-  								<li>Tea</li>
-  								<li>Milk</li>
 							</ul>
         			    </div>
         			    <div class="column" style="width:30%">
@@ -328,7 +325,8 @@
                 console.log(data);
                 data.forEach(obj => {
 					var opt = document.createElement("li");
-					opt.value = obj.username;
+					opt.innerHTML = obj.username;
+					opt.setAttribute("id", obj.username);
 					opt.setAttribute("onclick", "selectUser(\"" + obj.username + "\")");
 					opt.setAttribute("style", "color:rgb(0, 119, 255)");
                     document.getElementById("request-list").appendChild(opt);
