@@ -121,7 +121,7 @@
 							<span class="cute_font_sm contact100-form-title" style="padding-bottom: 0;">Request users: </span>
         			    </div>
         			    <div class="column" style="width:30%">
-						    <ul class="cute_font_sm">
+						    <ul class="cute_font_sm" id="request-list">
 								<li>Coffee</li>
   								<li>Tea</li>
   								<li>Milk</li>
@@ -263,7 +263,17 @@
         }
     </script>
 <script>setUp(0);</script>
+
+
 	<script>
+		var userSelected = "";
+
+		function selectUser(username) {
+		    document.getElementById(username).setAttribute("style", "border: dashed 3px black");
+		    if (userSelected != "") { document.getElementById(userSelected).setAttribute("style", "border: none"); }
+		    userSelected = username;
+		}
+
 		function getPet(pet_id) {
 		    var site = 'http://coasttocoast.web.illinois.edu';
 		
@@ -309,11 +319,67 @@
 		            document.getElementById("present-posttime").innerHTML    = obj.open_time;
 		        });
 		    })
+
+			// from request
+			url = site + '/request?pet_id=' + pet_id;
+			fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                data.forEach(obj => {
+					var opt = document.createElement("li");
+					opt.value = obj.username;
+					opt.setAttribute("onclick", "selectUser(\"" + obj.username + "\")");
+					opt.setAttribute("style", "color:rgb(0, 119, 255)");
+                    document.getElementById("request-list").appendChild(opt);
+                });
+            })
 		
 		}
     </script>
 
 <script>getPet({{ pet_id }});</script>
+
+    <script>
+		function approve() {
+			 var json = {
+                "pet_id":       {{ pet_id }},
+                "status":       "adopted",
+                "adopt_user":   userSelected
+			 }
+			 var url = 'http://coasttocoast.web.illinois.edu';
+             fetch(url + "/status", {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(json)
+              }).then(function(response) {
+                  alert("Congratulations! " + document.getElementById("name").value + " is adopted by " + userSelected + "!");
+                  console.log(JSON.stringify(json));
+                  return response.json();
+              }) .then(data => {
+                  console.log(data);
+              }).catch(error => console.log('ERROR'));
+
+			// send reminder to adopter
+            json = {
+                "sender":     "{{ login }}",
+                "receiver":   userSelected,
+                "content":    "Congratulations! Your request to adopt " + document.getElementById("name").value + " has been approved!"
+            }
+            fetch(url + "/messages", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(json)
+              }).then(function(response) {
+                  console.log(JSON.stringify(json));
+                  return response.json();
+              }) .then(data => {
+                  console.log(data);
+              }).catch(error => console.log('ERROR'));
+		}
+
+		document.getElementById('btn-apr').addEventListener('click', function(){ approve(); }, false);
+    </script>
 
     <script>
             /* edit pet */
@@ -356,13 +422,10 @@
                   return response.json();
               }) .then(data => {
                   console.log(data);
-               }).catch(error => console.log('ERROR'));
+              }).catch(error => console.log('ERROR'));
         }
 
 		document.getElementById('btn-edit-dog').addEventListener('click', function(){ editPet(0); }, false);
-    </script>
-
-    <script>
     </script>
 </body>
 </html>
