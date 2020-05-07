@@ -298,12 +298,42 @@
 
 					document.getElementById("present-status").innerHTML      = obj.adopt_status;
 					pet_status = obj.adopt_status;
-                    if (obj.adopt_status == "adoptable") { document.getElementById("present-status").setAttribute("class", "labelll adoptable"); }
-                    else if (obj.adopt_status == "adopted") { document.getElementById("present-status").setAttribute("class", "labelll adopted"); }
-                    else { document.getElementById("present-status").setAttribute("class", "labelll pending"); }
+                    if (obj.adopt_status == "adoptable") { 
+						document.getElementById("present-status").setAttribute("class", "labelll adoptable"); 
+
+						console.log("adoptable");
+					}
+                    else if (obj.adopt_status == "adopted") { 
+						document.getElementById("present-status").setAttribute("class", "labelll adopted"); 
+
+						console.log("adopted");
+                    	document.getElementById("btn-apr").setAttribute("style", "display:none;");
+                    	document.getElementById("disp").innerHTML = "Adopted by: ";
+                    	var adu = document.createElement("li");
+                    	adu.innerHTML = adopter;
+                    	document.getElementById("request-list").appendChild(adu);
+					}
+                    else { 
+						document.getElementById("present-status").setAttribute("class", "labelll pending"); 
+
+						// from request
+                    	console.log("pending");
+                    	url = site + '/request?pet_id=' + pet_id;
+                    	fetch(url)
+                    	.then(res => res.json())
+                    	.then(data => {
+                    	    console.log(data);
+                    	    data.forEach(obj => {
+                    	        var opt = document.createElement("li");
+                    	        opt.innerHTML = obj.username;
+                    	        opt.setAttribute("id", obj.username);
+                    	        opt.setAttribute("onclick", "selectUser(\"" + obj.username + "\")");
+                    	        document.getElementById("request-list").appendChild(opt);
+                    	    });
+                    	}).catch(error => console.log('ERROR'));
+					}
 		        });
-		    })
-		        .catch(error => console.log('ERROR'));
+		    }).catch(error => console.log('ERROR'));
 		
 		    // from posts
 		    url = site + '/posts?pet_id=' + pet_id;
@@ -321,33 +351,6 @@
 		        });
 		    }).catch(error => console.log('ERROR'));
 
-				if (pet_status == "pending") {
-					// from request
-					console.log("pending");
-					url = site + '/request?pet_id=' + pet_id;
-					fetch(url)
-            		.then(res => res.json())
-            		.then(data => {
-            		    console.log(data);
-            		    data.forEach(obj => {
-							var opt = document.createElement("li");
-							opt.innerHTML = obj.username;
-							opt.setAttribute("id", obj.username);
-							opt.setAttribute("onclick", "selectUser(\"" + obj.username + "\")");
-            		        document.getElementById("request-list").appendChild(opt);
-            		    });
-            		})
-				} else if (pet_status == "adopted") {
-					console.log("adopted");
-					document.getElementById("btn-apr").setAttribute("style", "display:none;");
-					document.getElementById("disp").innerHTML = "Adopted by: ";
-					var adu = document.createElement("li");
-                    adu.innerHTML = adopter;
-                    document.getElementById("request-list").appendChild(adu);
-				} else {
-					console.log("adoptable");
-				}
-		
 		}
     </script>
 
