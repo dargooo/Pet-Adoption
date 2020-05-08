@@ -34,7 +34,7 @@ class Pet(Resource):
         # | id | name | age | gender | weight | adopt_status | personality | color | image | hair | breed_id | adopt_user | adopt_time |
         # | id | species_id | name |
         parser = reqparse.RequestParser()
-        parser.add_argument('species_id',  type=int, required=True)
+        parser.add_argument('species_id',  type=int)
         parser.add_argument('id',          type=int)
         parser.add_argument('min_age',     type=float)
         parser.add_argument('max_age',     type=float)
