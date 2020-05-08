@@ -60,6 +60,11 @@ def find():
 def find_dog():
     return render_template('find-dog.html')
 
+@app.route('/find-cat')
+def find_cat():
+    return render_template('find-cat.html')
+
+
 @app.route('/post')
 def post():
     return render_template('post.html')
@@ -68,9 +73,14 @@ def post():
 def post_dog():
     return render_template('post-dog.html')
 
-@app.route('/present-dog/<int:pet_id>')
-def present_dog(pet_id):
-    return render_template('present-dog.html', pet_id=pet_id)
+@app.route('/post-cat')
+def post_cat():
+    return render_template('post-cat.html')
+
+
+@app.route('/present/<int:pet_id>')
+def present(pet_id):
+    return render_template('present.html', pet_id=pet_id)
 
 @app.route('/userpage/<username>')
 def user_page(username):
@@ -102,6 +112,11 @@ def find2(login):
 def find_dog2(login):
     return render_template('find-dog.html', login=login)
 
+@app.route('/find-cat/login/<login>')
+def find_cat2(login):
+    return render_template('find-cat.html', login=login)
+
+
 @app.route('/post/login/<login>')
 def post2(login):
     return render_template('post.html', login=login)
@@ -110,17 +125,22 @@ def post2(login):
 def post_dog2(login):
     return render_template('post-dog.html', login=login)
 
-@app.route('/present-dog/<int:pet_id>/login/<login>')
-def present_dog2(pet_id, login):
-    return render_template('present-dog.html', pet_id=pet_id, login=login)
+@app.route('/post-cat/login/<login>')
+def post_cat2(login):
+    return render_template('post-cat.html', login=login)
+
+
+@app.route('/present/<int:pet_id>/login/<login>')
+def present_2(pet_id, login):
+    return render_template('present.html', pet_id=pet_id, login=login)
 
 @app.route('/userpage/<username>/login/<login>')
 def user_page2(username, login):
     return render_template('user.html', username=username, login=login)
 
-@app.route('/edit-dog/<int:pet_id>/login/<login>')
-def edit_dog(pet_id, login):
-    return render_template('edit-dog.html', pet_id=pet_id, login=login)
+@app.route('/edit/<int:pet_id>/login/<login>')
+def edit(pet_id, login):
+    return render_template('edit.html', pet_id=pet_id, login=login)
 
 @app.route('/dialogs/login/<login>')
 def dialogs2(login):

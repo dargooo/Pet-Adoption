@@ -269,8 +269,8 @@
 		            div.appendChild(img);
 		
 		            var a = document.createElement("a");
-		            if ("{{ login }}" != "") { a.setAttribute("href", "http://coasttocoast.web.illinois.edu/present-dog/" + obj.id + "/login/{{ login }}"); }
-		            else {                     a.setAttribute("href", "http://coasttocoast.web.illinois.edu/present-dog/" + obj.id); }
+		            if ("{{ login }}" != "") { a.setAttribute("href", "http://coasttocoast.web.illinois.edu/present/" + obj.id + "/login/{{ login }}"); }
+		            else {                     a.setAttribute("href", "http://coasttocoast.web.illinois.edu/present/" + obj.id); }
 		            a.setAttribute("style", "margin:0;");
 		            var text = obj.name + ' - ' + obj.adopt_status;
 		            var t = document.createTextNode(text);
@@ -282,7 +282,7 @@
 						var btnEdit = document.createElement("button");
 						btnEdit.setAttribute("class", "btn-pair");
 						btnEdit.innerHTML = "Edit";
-						var ref = '/edit-dog/' + obj.id + '/login/{{ login }}';
+						var ref = '/edit/' + obj.id + '/login/{{ login }}';
 						btnEdit.setAttribute("onclick", "window.location.href = '" + ref + "'");
 
 						var btnDelete = document.createElement("button");
