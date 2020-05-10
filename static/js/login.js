@@ -4,21 +4,19 @@ function login() {
 	var password = document.getElementById("password").value;
 
     var site = 'http://coasttocoast.web.illinois.edu';
-    // user info
-    var url = site + '/user?username=\"' + username + '\"';
-    console.log(url);
-    fetch(url)
-    .then(res => res.json())
-    .then(data => {
-        console.log(data);
-        data.forEach(obj => {
-			if (obj.password == password) {
-				window.location = site + "/home/login/" + username;
-			}
-			else { alert("Username or password wrong !"); }
-        });
-    })
-    .catch(error => console.log('ERROR'));
+    var request = new XMLHttpRequest();
+    request.open("GET", '/user?username=\"' + username + '\"', true);
+    request.onload = () => {
+        console.log(request.responseText);
+        var json = JSON.parse(request.responseText);
+
+        if (json.password == password) {
+            window.location = site + "/home/login/" + username;
+        }
+        else {
+            alert("Username and/or password is wrong!");
+        }
+    };
 }
 
 document.getElementById('btn-login').addEventListener('click', function(){ login(); }, false);
