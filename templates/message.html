@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<title>Message</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="/static/css/user.css" rel="stylesheet" media="all">
+<link href="/static/css/message.css" rel="stylesheet" media="all">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
+<style>
+	body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+	.w3-row-padding img {margin-bottom: 12px}
+	.w3-sidebar {width: 120px;background: #222;}
+	#main {margin-left: 120px}
+    .cute_font_sm {
+        font-family: "Comic Sans MS", "Comic Sans", cursive;
+        font-size: 20px;
+        color: white;
+    }
+    .side-bar-font {
+        font-family: "Comic Sans MS", "Comic Sans", cursive;
+        font-size: 20px;
+		color: #359fcc;
+    }
+
+</style>
+
+<body style="background-color: rgb(230,249,255);">
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+    <div class="w3-bar" id="myNavbar">
+        <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);"
+           onclick="toggleFunction()" title="Toggle Navigation Menu">
+            <i class="fa fa-bars"></i>
+        </a>
+        <a id="nav-home" href="/home" class="w3-bar-item w3-button"><i class="fa fa-th-large"></i> HOME</a>
+        <a id="nav-post" href="/post" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-file"></i> POST</a>
+        <a id="nav-find" href="/find" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-link"></i> FIND</a>
+        <a id="nav-account" href="/login" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> ACCOUNT</a>
+		<a id="nav-msg" href="/login" class="w3-padding-large w3-hide-small w3-right"><i class="fa fa-envelope w3-xlarge"></i></a>
+    </div>
+</div>
+
+<!-- Side Navbar -->
+<nav class="message-sidebar w3-bar-block w3-small w3-hide-small w3-center" style="color:rgb(117, 214, 255); " id="sidebar">
+</nav>
+
+<!-- ############################# Page Content ############################# -->
+<div class="cute_font_sm" style="padding: 20px 80px; border-radius: 10px; margin-top:100px; margin-left:200px; margin-right:200px; background-color: rgb(117, 214, 255);" id="main">
+
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<script>
+        if ("{{ login }}" != "") {
+            document.getElementById("nav-home").setAttribute("href", "/home/login/{{ login }}");
+            document.getElementById("nav-post").setAttribute("href", "/post/login/{{ login }}");
+            document.getElementById("nav-find").setAttribute("href", "/find/login/{{ login }}");
+			document.getElementById("nav-account").setAttribute("href", "/userpage/{{ login }}/login/{{ login }}");
+			document.getElementById("nav-msg").setAttribute("href", "/dialogs/login/{{ login }}");
+        }
+</script>
+
+<script>
+	function getMessages(username) {
+			var site = 'http://coasttocoast.web.illinois.edu';
+			//var site = "http://127.0.0.1:5000";
+            var url = site + '/messages?username=\"' + username + '\"';
+            console.log(url);
+            fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                data.forEach(obj => {
+
+					if (username == obj.receiver) {
+						if (document.getElementById("card-" + obj.sender) == null) {
+							var pad = document.createElement("div");
+							pad.setAttribute("class", "w3-padding-32 w3-justify w3-content");
+
+							// header
+							var l1 = document.createElement("hr");
+							l1.setAttribute("class", "horizon-line w3-opacityi");
+							l1.setAttribute("style", "margin-bottom: 5px;");
+							l1.setAttribute("id", "line-" + obj.sender);
+							pad.appendChild(l1);
+
+							var p = document.createElement("p");
+							p.setAttribute("style", "font-size:25px; margin-bottom: 10px; margin-top:0;");
+							p.innerHTML = obj.sender;
+							pad.appendChild(p);
+
+							var card = document.createElement("div");
+							card.setAttribute("class", "card");
+
+							// card body - dialogs
+							var cb = document.createElement("div");
+							cb.setAttribute("class", "card-body msg_card_body");
+							cb.setAttribute("id", "card-" + obj.sender);
+							card.appendChild(cb);
+
+							// card foot - text area
+							var cf = document.createElement("div");
+							cf.setAttribute("class", "card-foot");
+							var ig = document.createElement("div");
+							ig.setAttribute("class", "input-group");
+
+							var area = document.createElement("textarea");
+							area.setAttribute("class", "form-control type_msg");
+							area.setAttribute("placeholder", "Type your message...");
+							ig.appendChild(area);
+
+							var iga2 = document.createElement("div");
+                            iga2.setAttribute("class", "input-group-append");
+                            var sp2 = document.createElement("span");
+							sp2.setAttribute("class", "input-group-text send_btn");
+                            var icon2 = document.createElement("i");
+                            icon2.setAttribute("class", "fas fa-location-arrow");
+                            sp2.appendChild(icon2);
+                            iga2.appendChild(sp2);
+                            ig.appendChild(iga2);
+
+							// add click listener to sp2
+							sp2.addEventListener('click', function(){ postMessage(username, obj.sender, area.value); }, false);
+
+							cf.appendChild(ig);
+							card.appendChild(cf);
+
+							pad.appendChild(card);
+							document.getElementById("main").appendChild(pad);
+
+							// add to side nav bar
+							var a = document.createElement("a");
+							a.setAttribute("class", "side-bar-font w3-bar-item w3-button w3-padding-large w3-hover-blue-2");
+							a.setAttribute("href", "#" + "line-" + obj.sender);
+							var p = document.createElement("p");
+							p.setAttribute("id", "bar-" + obj.sender);
+							p.innerHTML = obj.sender + " ";
+							a.appendChild(p);
+							document.getElementById("sidebar").appendChild(a);
+
+						}
+
+						var div = document.createElement("div");
+						div.setAttribute("class", "d-flex justify-content-start mb-4");
+
+						var img_div = document.createElement("div");
+						img_div.setAttribute("class", "img_cont_msg");
+						var img = document.createElement("img");
+						img.setAttribute("src", "/static/img/avatar/" + obj.sender_avatar);
+						img.setAttribute("class", "rounded-circle user_img_msg");
+						img_div.appendChild(img);
+						div.appendChild(img_div);
+
+						var msg_div = document.createElement("div");
+						msg_div.setAttribute("class", "msg_cotainer");
+						msg_div.innerHTML = obj.content;
+						var span = document.createElement("span");
+						span.setAttribute("class", "msg_time");
+						span.innerHTML = obj.time;
+						msg_div.appendChild(span);
+						div.appendChild(msg_div)
+
+						// If new message
+						if (obj.new && !document.getElementById("bar-" + obj.sender).contains(document.getElementById("icon-" + obj.sender))) {
+							var icon = document.createElement("i");
+							icon.setAttribute("id", "icon-" + obj.sender);
+							icon.setAttribute("class", "far fa-comment-dots");
+							icon.setAttribute("style", "color:#db6842;");
+							document.getElementById("bar-" + obj.sender).appendChild(icon);
+						}
+
+						document.getElementById("card-" + obj.sender).appendChild(div);
+					} 
+					else {
+                        if (document.getElementById("card-" + obj.receiver) == null) {
+							var pad = document.createElement("div");
+							pad.setAttribute("class", "w3-padding-32 w3-justify w3-content");
+
+							var l1 = document.createElement("hr");
+							l1.setAttribute("class", "horizon-line w3-opacityi");
+							l1.setAttribute("style", "margin-bottom: 5px;");
+							l1.setAttribute("id", "line-" + obj.receiver);
+							pad.appendChild(l1);
+
+							var p = document.createElement("p");
+							p.setAttribute("style", "font-size:25px; margin-bottom: 10px; margin-top:0;");
+							p.innerHTML = obj.receiver;
+							pad.appendChild(p);
+
+                            var card = document.createElement("div");
+                            card.setAttribute("class", "card");
+                            var cb = document.createElement("div");
+                            cb.setAttribute("class", "card-body msg_card_body");
+                            cb.setAttribute("id", "card-" + obj.receiver);
+							card.appendChild(cb);
+
+							// card foot - text area
+                            var cf = document.createElement("div");
+                            cf.setAttribute("class", "card-foot");
+                            var ig = document.createElement("div");
+                            ig.setAttribute("class", "input-group");
+
+                            var area = document.createElement("textarea");
+                            area.setAttribute("class", "form-control type_msg");
+                            area.setAttribute("placeholder", "Type your message...");
+                            ig.appendChild(area);
+
+                            var iga2 = document.createElement("div");
+                            iga2.setAttribute("class", "input-group-append");
+                            var sp2 = document.createElement("span");
+                            sp2.setAttribute("class", "input-group-text send_btn");
+                            var icon2 = document.createElement("i");
+                            icon2.setAttribute("class", "fas fa-location-arrow");
+                            sp2.appendChild(icon2);
+                            iga2.appendChild(sp2);
+                            ig.appendChild(iga2);
+
+							// add click listener to sp2
+							sp2.addEventListener('click', function(){ postMessage(username, obj.receiver, area.value); }, false);
+
+                            cf.appendChild(ig);
+                            card.appendChild(cf);
+
+                            pad.appendChild(card);
+                            document.getElementById("main").appendChild(pad);
+
+							// add to side nav bar
+							var a = document.createElement("a");
+							a.setAttribute("class", "side-bar-font w3-bar-item w3-button w3-padding-large w3-hover-blue-2");
+							a.setAttribute("href", "#" + "line-" + obj.receiver);
+							var p = document.createElement("p");
+							p.setAttribute("id", "bar-" + obj.receiver);
+							p.innerHTML = obj.receiver + " ";
+							a.appendChild(p);
+							document.getElementById("sidebar").appendChild(a);
+                        }
+
+						var div = document.createElement("div");
+						div.setAttribute("class", "d-flex justify-content-end mb-4");
+
+						var msg_div = document.createElement("div");
+						msg_div.setAttribute("class", "msg_cotainer_send");
+						msg_div.innerHTML = obj.content;
+						var span = document.createElement("span");
+						span.setAttribute("class", "msg_time_send");
+						span.innerHTML = obj.time;
+						msg_div.appendChild(span);
+						div.appendChild(msg_div);
+
+						var img_div = document.createElement("div");
+						img_div.setAttribute("class", "img_cont_msg");
+						var img = document.createElement("img");
+						img.setAttribute("src", "/static/img/avatar/" + obj.sender_avatar);
+						img.setAttribute("class", "rounded-circle user_img_msg");
+						img_div.appendChild(img);
+						div.appendChild(img_div);
+
+						document.getElementById("card-" + obj.receiver).appendChild(div);
+					}
+
+                });
+            })
+            .catch(error => console.log('ERROR'));
+		}
+</script>
+<script>
+	function postMessage(sender, receiver, content) {
+
+	    var json = {
+	        "sender": sender,
+	        "receiver": receiver,
+	        "content": content
+	    }
+	
+	//  var url = "http://127.0.0.1:5000"
+	    var url = 'http://coasttocoast.web.illinois.edu';
+	    fetch(url + "/messages", {
+	        method: 'POST',
+	        headers: { 'Content-Type': 'application/json' },
+	        body: JSON.stringify(json)
+	      }).then(function(response) {
+	          console.log(JSON.stringify(json));
+	          return response.json();
+	      }) .then(data => {
+	          //console.log(data);
+	          //var obj = JSON.parse(data);
+	       }).catch(error => console.log('ERROR'));
+
+		location.reload();
+	}
+</script>
+<script>getMessages('{{ login }}');</script>
+
+</body>
+</html>
+

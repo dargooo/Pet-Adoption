@@ -50,5 +50,11 @@ CREATE TABLE IF NOT EXISTS posts (
     PRIMARY KEY (pet_id, username)
 );
 
-INSERT INTO species VALUES (0, 'dog');
-INSERT INTO species VALUES (1, 'cat');
+CREATE TABLE IF NOT EXISTS message (
+	id INT  PRIMARY KEY,
+	sender VARCHAR(20),
+	receiver VARCHAR(20),
+	time DATETIME DEFAULT CURRENT_TIMESTAMP,
+	content VARCHAR(500),
+	new BOOLEAN NOT NULL
+);

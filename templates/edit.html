@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<title>EDIT DOG</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Icons font CSS-->
+<link href="/static/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+<link href="/static/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+<!-- Font special for pages-->
+<link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet">
+<!-- Vendor CSS-->
+<link href="/static/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+<link href="/static/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+<link href="/static/css/main.css" rel="stylesheet" media="all">
+<link href="/static/css/main-2.css" rel="stylesheet" media="all">
+<link href="/static/css/present.css" rel="stylesheet" media="all">
+<style>
+	body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+	body, html {
+	  height: 100%;
+	  color: #777;
+	  line-height: 1.8;
+	}
+	.w3-wide {letter-spacing: 10px;}
+	.w3-hover-opacity {cursor: pointer;}
+	.cute_font {
+		font-family: "Comic Sans MS", "Comic Sans", cursive;
+		font-size: 40px;
+		color: white;
+	}
+	.cute_font_sm {
+        font-family: "Comic Sans MS", "Comic Sans", cursive;
+        font-size: 20px;
+        color: white;
+    }
+	.selections {
+	    border: none;
+	    width: 100%;
+	    height: 30px;
+	    background: white;
+	    margin: 0 0;
+		font-size: 19px;
+		color: grey;
+	}
+	.titles {
+    	display: block;
+    	width: 100%;
+    	line-height: 20px;
+    	padding-top: 10px;
+    	font-size: 30px;
+		text-align: center;
+	}
+	.btn-apr {
+		  display: block;
+		  width: 110px;
+		  line-height: 30px;
+		  font-family: inherit;
+		  background: #fc682d;
+		  -webkit-border-radius: 10px;
+		  -moz-border-radius: 10px;
+		  border-radius: 10px;
+		  text-transform: uppercase;
+		  color: #fff;
+		  font-size: 16px;
+		  font-weight: 700;
+		  -webkit-transition: all 0.4s ease;
+		  -o-transition: all 0.4s ease;
+		  -moz-transition: all 0.4s ease;
+		  transition: all 0.4s ease;
+	}
+		
+		.btn-apr:hover {
+		  background: rgb(117, 214, 255);
+		}
+
+</style>
+<body style="background-color:rgb(230,249,255);">
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+    <div class="w3-bar" id="myNavbar">
+        <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);"
+           onclick="toggleFunction()" title="Toggle Navigation Menu">
+            <i class="fa fa-bars"></i>
+        </a>
+        <a id="nav-home" href="/home" class="w3-bar-item w3-button"><i class="fa fa-th-large"></i> HOME</a>
+        <a id="nav-post" href="/post" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-file-o"></i> POST</a>
+        <a id="nav-find" href="/find" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-link"></i> FIND</a>
+        <a id="nav-account" href="/login" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> ACCOUNT</a>
+        <a id="nav-msg" href="/login" class="w3-padding-large w3-hide-small w3-right"><i
+                class="fa fa-envelope w3-xlarge" style="color:#007bff"></i></a>
+    </div>
+</div>
+
+<!--div class="container-contact100"-->
+<div class="container outline">
+    <div class="content-table">
+        <div class="content-row">
+            <div class="column wrap-img">
+                <div class="input-group" style="margin-bottom: 25px; margin-top: 30px;">
+                    <textarea class="titles" type="text" id="title"></textarea>
+                </div>
+                <img id="present-img" style="margin-top: 5px;"></img>
+                <div class="input-group" style="margin-bottom: 25px; margin-top: 30px;">
+                    <textarea class="comment" type="text" id="description"></textarea>
+                </div>
+                <span class="cute_font_sm contact100-form-title" style="text-align: center; padding-bottom: 20px;">
+					Post By:
+					<a style="color:rgb(0, 119, 255);" id="present-postby"></a>
+				</span>
+                <span class="cute_font_sm contact100-form-title" id="present-posttime"
+                      style="text-align: center; padding-bottom: 25px;"></span>
+                <span class="cute_font_sm contact100-form-title" style="text-align: center; padding-bottom: 20px;">
+            	    Status:
+            	    <span id="present-status"></span>
+            	</span>
+                <div id="operations">
+                    <div class="content-table" style="margin-left:100px; margin-top:30px;">
+                        <div class="content-row">
+                            <div class="column" style="width:30%">
+                                <span id="disp" class="cute_font_sm contact100-form-title" style="padding-bottom: 0;">Request users: </span>
+                            </div>
+                            <div class="column" style="width:30%">
+                                <ul class="cute_font_sm" id="request-list" style="color:rgb(0, 119, 255);">
+                                </ul>
+                            </div>
+                            <div class="column" style="width:30%">
+                                <button id="btn-apr" class="btn-apr" style="margin-left: 20px;">Approve</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column sidebar wrap-form">
+                <span class="cute_font contact100-form-title">About Me</span>
+                <form method="POST" action="#">
+                    <div class="col-2">
+
+                        <div class="input-group">
+                            <label class="label">name</label>
+                            <input class="input--style-1" type="text" name="name" id="name">
+                        </div>
+
+                        <div class="input-group-select">
+                            <label class="label">breed</label>
+                            <select name="breed" id="breed" class="selections">
+                            </select>
+                        </div>
+                        <div class="input-group-select">
+                            <label class="label">gender</label>
+                            <select name="gender" id="gender" class="selections">
+                                <option id="M">M</option>
+                                <option id="F">F</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label class="label">age</label>
+                            <input class="input--style-1" type="text" name="age" id="age">
+                        </div>
+
+                        <div class="input-group-select">
+                            <label class="label">Color</label>
+                            <select name="color" id="color" class="selections">
+                                <option>white</option>
+                                <option>brown</option>
+                                <option>black</option>
+                                <option>orange</option>
+                                <option>gray</option>
+                                <option>mix</option>
+                            </select>
+                        </div>
+                        <div class="input-group-select">
+                            <label class="label">Hair</label>
+                            <select name="hair" id="hair" class="selections">
+                                <option>long</option>
+                                <option>medium</option>
+                                <option>short</option>
+                                <option>hairless</option>
+                                <option>curly</option>
+                                <option>wire</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label class="label">weight</label>
+                            <input class="input--style-1" type="text" name="weight" id="weight">
+                        </div>
+
+                        <div class="input-group-select">
+                            <label class="label">Personalities</label>
+                            <select name="personality" id="personality" class="selections">
+                                <option>sweet</option>
+                                <option>stubborn</option>
+                                <option>proud</option>
+                                <option>quite</option>
+                                <option>cute</option>
+                                <option>royal</option>
+                                <option>independent</option>
+                                <option>happy</option>
+                                <option>shy</option>
+                                <option>adaptable</option>
+                                <option>intelligent</option>
+                                <option>anxious</option>
+                                <option>brave</option>
+                                <option>crazy</option>
+                                <option>wild</option>
+                                <option>needy</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </form>
+                <button id="btn-edit-dog" class="btn-submit" type="submit" style="margin-top:40px;margin-bottom:35px;">
+                    save
+                </button>
+
+            </div>
+            <!--/div-->
+        </div>
+    </div>
+</div>
+
+<!-- Vendor JS-->
+<script src="/static/vendor/jquery/jquery.min.js"></script>
+<script src="/static/vendor/select2/select2.min.js"></script>
+<script src="/static/vendor/jquery-validate/jquery.validate.min.js"></script>
+<script src="/static/vendor/bootstrap-wizard/bootstrap.min.js"></script>
+<script src="/static/vendor/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+<script src="/static/vendor/datepicker/moment.min.js"></script>
+<script src="/static/js/global.js"></script>
+<script src='/static/js/usage.js' language='javascript'></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+        if ("{{ login }}" != "") {
+            document.getElementById("nav-home").setAttribute("href", "/home/login/{{ login }}");
+            document.getElementById("nav-post").setAttribute("href", "/post/login/{{ login }}");
+            document.getElementById("nav-find").setAttribute("href", "/find/login/{{ login }}");
+			document.getElementById("nav-account").setAttribute("href", "/userpage/{{ login }}/login/{{ login }}");
+			document.getElementById("nav-msg").setAttribute("href", "/dialogs/login/{{ login }}");
+        }
+
+</script>
+<script>
+		function setUp(species_id) {
+            var site = 'http://coasttocoast.web.illinois.edu';
+            // breed list
+            var url = site + '/breed?species_id=' + species_id;
+            fetch(url)
+                .then(res => {
+                        return res.json()
+                })
+                .then(data => {
+                        console.log(data);
+                        data.forEach(obj => {
+                    var opt = document.createElement("option");
+                                var t = document.createTextNode(obj.name);
+                                opt.appendChild(t);
+                    document.getElementById("breed").appendChild(opt);
+                });
+                })
+                .catch(error => console.log('ERROR'))
+        }
+
+</script>
+<script>setUp(0);</script>
+
+
+<script>
+		var userSelected = "";
+		var adopter;
+
+		function selectUser(username) {
+		    document.getElementById(username).setAttribute("style", "border: dashed 3px black");
+		    if (userSelected != "") { document.getElementById(userSelected).setAttribute("style", "border: none"); }
+		    userSelected = username;
+		}
+
+		function getPet(pet_id) {
+		    var site = 'http://coasttocoast.web.illinois.edu';
+		
+		    // from pet
+		    var url = site + '/pet?id=' + pet_id + '\&species_id=0';
+		    console.log(url);
+		    fetch(url)
+		    .then(res => res.json())
+		    .then(data => {
+		        console.log(data);
+		        data.forEach(obj => {
+		            document.getElementById("name").value      = obj.name;
+		            document.getElementById("breed").value      = obj.breed;
+		            document.getElementById("gender").value = obj.gender;
+		            document.getElementById("age").value      = obj.age;
+		            document.getElementById("color").value      = obj.color;
+		            document.getElementById("hair").value      = obj.hair;
+		            document.getElementById("weight").value      = obj.weight;
+		            document.getElementById("personality").value = obj.personality;
+					adopter = obj.adopt_user;
+		            if (obj.image == 'NULL') { document.getElementById("present-img").setAttribute("src", "/static/img/nophoto-dog.png"); }
+		            else                     { document.getElementById("present-img").setAttribute("src", obj.image); }
+
+					document.getElementById("present-status").innerHTML      = obj.adopt_status;
+                    if (obj.adopt_status == "adoptable") { 
+						document.getElementById("present-status").setAttribute("class", "labelll adoptable"); 
+
+						console.log("adoptable");
+					}
+                    else if (obj.adopt_status == "adopted") { 
+						document.getElementById("present-status").setAttribute("class", "labelll adopted"); 
+
+						console.log("adopted");
+						document.getElementById("operations").innerHTML = "";
+                        document.getElementById("operations").setAttribute("class", "cute_font_sm");
+                        var disp1 = document.createElement("label");
+                        disp1.innerHTML = "Adopted by: ";
+                        document.getElementById("operations").appendChild(disp1);
+                        var adu = document.createElement("a");
+                        adu.setAttribute("style", "color: rgb(0, 119, 255)");
+                        adu.innerHTML = obj.adopt_user;
+                        adu.setAttribute("href", "http://coasttocoast.web.illinois.edu/userpage/" + obj.adopt_user + "/login/{{ login }}");
+                        document.getElementById("operations").appendChild(adu);
+					}
+                    else { 
+						document.getElementById("present-status").setAttribute("class", "labelll pending"); 
+
+						// from request
+                    	console.log("pending");
+                    	url = site + '/request?pet_id=' + pet_id;
+                    	fetch(url)
+                    	.then(res => res.json())
+                    	.then(data => {
+                    	    console.log(data);
+                    	    data.forEach(obj => {
+                    	        var opt = document.createElement("li");
+                    	        opt.innerHTML = obj.username;
+                    	        opt.setAttribute("id", obj.username);
+                    	        opt.setAttribute("onclick", "selectUser(\"" + obj.username + "\")");
+                    	        document.getElementById("request-list").appendChild(opt);
+                    	    });
+                    	}).catch(error => console.log('ERROR'));
+					}
+		        });
+		    }).catch(error => console.log('ERROR'));
+		
+		    // from posts
+		    url = site + '/posts?pet_id=' + pet_id;
+		    fetch(url)
+		    .then(res => res.json())
+		    .then(data => {
+		        console.log(data);
+		        data.forEach(obj => {
+		            document.getElementById("title").value       = obj.title;
+		            document.getElementById("description").value = "" + obj.description;
+		            document.getElementById("present-postby").innerHTML      = obj.username;
+		            if ("{{ login }}" != "") { document.getElementById("present-postby").setAttribute("href", "http://coasttocoast.web.illinois.edu/userpage/" + obj.username + "/login/{{ login }}"); }
+		            else {                     document.getElementById("present-postby").setAttribute("href", "http://coasttocoast.web.illinois.edu/userpage/" + obj.username); }
+		            document.getElementById("present-posttime").innerHTML    = obj.open_time;
+		        });
+		    }).catch(error => console.log('ERROR'));
+
+		}
+
+</script>
+
+<script>getPet({{ pet_id }});</script>
+
+<script>
+		function approve() {
+			 var json = {
+                "pet_id":       {{ pet_id }},
+                "status":       "adopted",
+                "adopt_user":   userSelected
+			 }
+			 var url = 'http://coasttocoast.web.illinois.edu';
+             fetch(url + "/status", {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(json)
+              }).then(function(response) {
+                  alert("Congratulations! " + document.getElementById("name").value + " is adopted by " + userSelected + "!");
+                  console.log(JSON.stringify(json));
+                  return response.json();
+              }) .then(data => {
+                  console.log(data);
+              }).catch(error => console.log('ERROR'));
+
+			// send reminder to adopter
+            json = {
+                "sender":     "{{ login }}",
+                "receiver":   userSelected,
+                "content":    "Congratulations! Your request to adopt " + document.getElementById("name").value + " has been approved!"
+            }
+            fetch(url + "/messages", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(json)
+              }).then(function(response) {
+                  console.log(JSON.stringify(json));
+                  return response.json();
+              }) .then(data => {
+                  console.log(data);
+              }).catch(error => console.log('ERROR'));
+
+			location.reload();
+		}
+
+		document.getElementById('btn-apr').addEventListener('click', function(){ approve(); }, false);
+
+</script>
+
+<script>
+            /* edit pet */
+        function editPet(species_id) {
+			var pet_id		= {{ pet_id }};
+            var name        = document.getElementById("name").value;
+            var breed       = document.getElementById("breed").value;
+            var gender      = document.getElementById("gender").value;
+            var age         = document.getElementById("age").value;
+            var color       = document.getElementById("color").value;
+            var hair        = document.getElementById("hair").value;
+            var weight      = document.getElementById("weight").value;
+            var personality = document.getElementById("personality").value;
+            var title       = document.getElementById("title").value;
+            var description = document.getElementById("description").value;
+
+            var json = {
+				"pet_id":		pet_id,
+                "name":         name,
+                "breed":        breed,
+                "gender":       gender,
+                "age":          age,
+                "color":        color,
+                "hair":         hair,
+                "weight":       weight,
+                "personality":  personality,
+                "title":        title,
+                "description":  description,
+            }
+			console.log(json);
+
+            var url = 'http://coasttocoast.web.illinois.edu';
+            fetch(url + "/pet", {
+              	method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(json)
+              }).then(function(response) {
+				  alert("Pet info updated!");
+                  console.log(JSON.stringify(json));
+                  return response.json();
+              }) .then(data => {
+                  console.log(data);
+              }).catch(error => console.log('ERROR'));
+
+			location.reload();
+        }
+
+		document.getElementById('btn-edit-dog').addEventListener('click', function(){ editPet(0); }, false);
+
+</script>
+</body>
+</html>
+

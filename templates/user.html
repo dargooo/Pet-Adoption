@@ -31,12 +31,14 @@
         <a id="nav-post" href="/post" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-file-o"></i> POST</a>
         <a id="nav-find" href="/find" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-link"></i> FIND</a>
 		<a id="nav-account" href="/login" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> ACCOUNT</a>
+		<a id="nav-msg" href="/login" class="w3-padding-large w3-hide-small w3-right"><i class="fa fa-envelope w3-xlarge" style="color:#007bff"></i></a>
     </div>
 </div>
 
 <!-- ############################# Icon Bar (Sidebar - hidden on small screens) ############################# -->
 <nav class="user-sidebar w3-bar-block w3-small w3-hide-small w3-center" style="color:rgb(117, 214, 255); ">
     <!-- Avatar image in top left corner -->
+	<img id="user-avatar" class="w3-bar-item" style="width: 50%; margin-left: 50px; padding-bottom: 30px;">
     <a href="#posts" class="w3-bar-item w3-button w3-padding-large w3-hover-blue-2">
         <i class="fa fa-eye w3-xxlarge"></i>
         <p>POSTS</p>
@@ -149,7 +151,7 @@
         <hr class="horz-line" style="margin-top: 10px; margin-bottom: 35px;" class="w3-opacity">
 
         <div class="" style="margin-bottom:0px; border:white 1px solid">
-            <div class="w3-white" style="height:28px;width:80%" id="user-score"></div>
+            <div class="w3-white" style="height:28px;width:0%" id="user-score"></div>
         </div>
         <p style="margin-bottom: 10px; margin-top:5px; text-align:right;">100%</p>
 		<div id="user-reviews-list">
@@ -173,6 +175,7 @@
             document.getElementById("nav-post").setAttribute("href", "/post/login/{{ login }}");
             document.getElementById("nav-find").setAttribute("href", "/find/login/{{ login }}");
 			document.getElementById("nav-account").setAttribute("href", "/userpage/{{ login }}/login/{{ login }}");
+			document.getElementById("nav-msg").setAttribute("href", "/dialogs/login/{{ login }}");
         }
     </script>
 	<script>
@@ -205,7 +208,7 @@
 		            document.getElementById("user-name").innerHTML  = obj.name;
 		            document.getElementById("user-addr").innerHTML  = obj.address + " " + obj.zipcode;
 		            document.getElementById("user-email").innerHTML = obj.email;
-		            //document.getElementById("user-avatar").setAttribute("src", obj.avatar);
+		            document.getElementById("user-avatar").setAttribute("src", "/static/img/avatar/" + obj.avatar);
 		        });
 		    })
 		    .catch(error => console.log('ERROR'));
@@ -266,8 +269,8 @@
 		            div.appendChild(img);
 		
 		            var a = document.createElement("a");
-		            if ("{{ login }}" != "") { a.setAttribute("href", "http://coasttocoast.web.illinois.edu/present-dog/" + obj.id + "/login/{{ login }}"); }
-		            else {                     a.setAttribute("href", "http://coasttocoast.web.illinois.edu/present-dog/" + obj.id); }
+		            if ("{{ login }}" != "") { a.setAttribute("href", "http://coasttocoast.web.illinois.edu/present/" + obj.id + "/login/{{ login }}"); }
+		            else {                     a.setAttribute("href", "http://coasttocoast.web.illinois.edu/present/" + obj.id); }
 		            a.setAttribute("style", "margin:0;");
 		            var text = obj.name + ' - ' + obj.adopt_status;
 		            var t = document.createTextNode(text);
@@ -279,7 +282,7 @@
 						var btnEdit = document.createElement("button");
 						btnEdit.setAttribute("class", "btn-pair");
 						btnEdit.innerHTML = "Edit";
-						var ref = '/edit-dog/' + obj.id + '/login/{{ login }}';
+						var ref = '/edit/' + obj.id + '/login/{{ login }}';
 						btnEdit.setAttribute("onclick", "window.location.href = '" + ref + "'");
 
 						var btnDelete = document.createElement("button");
@@ -335,6 +338,40 @@
 		}
     </script>
 <script>getUser('{{ username }}');</script>
+
+
+<script>
+		 /* post review */
+function postReview(reviewee) {
+    var reviewer  = "{{ login }}";
+    var content   = document.getElementById("user-review-content").value;
+    var recommand = document.getElementById("togBtn").value;
+
+    var json = {
+        "reviewer": reviewer,
+        "reviewee": reviewee,
+        "content": content,
+        "recommand": recommand
+    }
+
+//  var url = "http://127.0.0.1:5000"
+    var url = 'http://coasttocoast.web.illinois.edu';
+    fetch(url + "/reviews", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(json)
+      }).then(function(response) {
+          console.log(JSON.stringify(json));
+          return response.json();
+      }) .then(data => {
+          //console.log(data);
+          //var obj = JSON.parse(data);
+       }).catch(error => console.log('ERROR'));
+
+	location.reload();
+
+}
+</script>
 
 </body>
 </html>

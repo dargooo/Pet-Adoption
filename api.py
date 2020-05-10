@@ -34,7 +34,7 @@ class Pet(Resource):
         # | id | name | age | gender | weight | adopt_status | personality | color | image | hair | breed_id | adopt_user | adopt_time |
         # | id | species_id | name |
         parser = reqparse.RequestParser()
-        parser.add_argument('species_id',  type=int, required=True)
+        parser.add_argument('species_id',  type=int)
         parser.add_argument('id',          type=int)
         parser.add_argument('min_age',     type=float)
         parser.add_argument('max_age',     type=float)
@@ -47,7 +47,8 @@ class Pet(Resource):
         parser.add_argument('miles',       type=int)
         args = parser.parse_args()
         print(args)
-        query = "SELECT *, pet.name AS name, breed.name AS breed FROM breed, pet WHERE breed.id = pet.breed_id AND breed_id IN (SELECT id FROM breed WHERE species_id = %s)" % str(args['species_id']);
+        query = "SELECT *, pet.name AS name, breed.name AS breed FROM breed, pet WHERE breed.id = pet.breed_id AND breed_id IN (SELECT id FROM breed WHERE id >= 0)"
+        if args['species_id']:  query = query + " AND species_id = " + str(args['species_id'])
         if args['id']:          query = query + " AND pet.id = " + str(args['id'])
         if args['min_age']:     query = query + " AND age >= " + str(args['min_age'])
         if args['max_age']:     query = query + " AND age <= " + str(args['max_age'])
@@ -314,6 +315,62 @@ class Reviews(Resource):
         cursor.execute(insert_query, query_data)
         cnx.commit()
 ########################### Reviews  ###########################
+
+########################### Messages ###########################
+class Messages(Resource):
+    def get(self):
+        # | id | sender | receiver | time | content | new |
+        parser = reqparse.RequestParser()
+        parser.add_argument('username', type=str, required=True)
+        args = parser.parse_args()
+        cursor.execute("SELECT sender, receiver, time, content, new, user1.avatar AS sender_avatar, user2.avatar AS receiver_avatar FROM message, user AS user1, user AS user2 WHERE sender=user1.username AND receiver=user2.username AND (sender = %s OR receiver = %s) ORDER BY time" % (args['username'], args['username']))
+        result = sql_2_json(cursor)
+
+        cursor.execute("UPDATE message SET new = false WHERE receiver = " + args['username'])
+
+        return result
+
+    def post(self):
+        # | id | sender | receiver | time | content | new |
+        parser = reqparse.RequestParser()
+        parser.add_argument('sender',  type=str,  required=True)
+        parser.add_argument('receiver',  type=str,  required=True)
+        parser.add_argument('content',   type=str,  required=True)
+        args = parser.parse_args()
+
+        cursor.execute("SELECT MAX(id) FROM message")
+        message_id = cursor.fetchone()[0] + 1
+        time       = str(datetime.now()).split('.')[0]
+
+        insert_query = "INSERT INTO message VALUES (%s, %s, %s, %s, %s, %s)"
+        query_data = (message_id, args['sender'], args['receiver'], time, args['content'], True)
+        cursor.execute(insert_query, query_data)
+        cnx.commit()
+########################### Messages  ###########################
+
+########################### Requests ###########################
+class Requests(Resource):
+    def get(self):
+        # | pet_id | username |
+        parser = reqparse.RequestParser()
+        parser.add_argument('pet_id', type=int, required=True)
+        args = parser.parse_args()
+        cursor.execute("SELECT username FROM request WHERE pet_id = " + str(args['pet_id']))
+        result = sql_2_json(cursor)
+        return result
+
+    def post(self):
+        # | pet_id | username |
+        parser = reqparse.RequestParser()
+        parser.add_argument('pet_id', type=int, required=True)
+        parser.add_argument('username', type=str, required=True)
+        args = parser.parse_args()
+
+        insert_query = "INSERT IGNORE INTO request VALUES (%s, %s)"
+        query_data = (args['pet_id'], args['username'])
+        cursor.execute(insert_query, query_data)
+        cnx.commit()
+########################### Requests  ###########################
 
 
 if __name__ == '__main__':

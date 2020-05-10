@@ -82,8 +82,8 @@ function getPet(species_id){
 			div.appendChild(img);                                          
 
 			var a = document.createElement("a");
-			if ("{{ login }}" != "") { a.setAttribute("href", "http://coasttocoast.web.illinois.edu/present-dog/" + obj.id + "/login/{{ login }}"); }
-			else 					 { a.setAttribute("href", "http://coasttocoast.web.illinois.edu/present-dog/" + obj.id); }
+			if ("{{ login }}" != "") { a.setAttribute("href", "http://coasttocoast.web.illinois.edu/present/" + obj.id + "/login/{{ login }}"); }
+			else 					 { a.setAttribute("href", "http://coasttocoast.web.illinois.edu/present/" + obj.id); }
 			var t = document.createTextNode(obj.name);
 			a.appendChild(t);
 			a.setAttribute("style", "font-size: 25px; color:rgb(94,94,94);");
