@@ -1,4 +1,10 @@
-function login() {
+function init() {
+    document.getElementById('btn-register').addEventListener('click', register);
+}
+
+function login(ev) {
+    ev.preventDefault();
+    ev.stopPropagation();
 
 	var username = document.getElementById("username").value;
 	var password = document.getElementById("password").value;
@@ -19,6 +25,4 @@ function login() {
     };
 }
 
-document.getElementById('btn-login').addEventListener('click', function(){ login(); }, false);
-
-
+document.addEventListener('DOMContentLoaded', init);
