@@ -338,6 +338,11 @@
 		}
     </script>
 <script>getUser('{{ username }}');</script>
+<script>
+        if ('{{ username }}' == '{{ login }}') {
+                document.getElementById("review").innerHTML = "";
+        }
+</script>
 
 
 <script>

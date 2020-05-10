@@ -21,7 +21,8 @@ function register() {
     var state = document.getElementById("state").value;    
     var zip = document.getElementById("zip").value;
     var type = document.getElementById("type").value;
-    var avatar = avaSelected + ".png";
+	if (avaSelected == "") { var avatar = "ava5.png"; }
+	else { var avatar = avaSelected + ".png"; }
 
     if (name == "" || username == "" || email == "" || password == "" || address == ""
         || city == "" || state == "" || zip == "" || type == "") {
