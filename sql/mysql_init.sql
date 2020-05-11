@@ -36,8 +36,8 @@ CREATE TABLE IF NOT EXISTS pet (
     breed_id INT,
     adopt_user VARCHAR(20),
     adopt_time DATETIME
---    KEY `adopt_username` (`adopt_user`),
---    CONSTRAINT `adopt_username` FOREIGN KEY (`adopt_user`) REFERENCES `user`(`username`)
+    KEY `adopt_username` (`adopt_user`),
+    CONSTRAINT `adopt_username` FOREIGN KEY (`adopt_user`) REFERENCES `user`(`username`)
 );
 
 CREATE TABLE IF NOT EXISTS posts (
@@ -57,4 +57,9 @@ CREATE TABLE IF NOT EXISTS message (
 	time DATETIME DEFAULT CURRENT_TIMESTAMP,
 	content VARCHAR(500),
 	new BOOLEAN NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS request (
+	pet_id INT,
+	username VARCHAR(20)
 );
